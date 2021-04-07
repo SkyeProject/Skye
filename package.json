@@ -1,0 +1,25 @@
+{
+  "name": "atizap",
+  "version": "1.0.0",
+  "description": "Um incrível bot pro WhatsApp.",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oMrRexD/atizap.git"
+  },
+  "author": "MrRexD",
+  "license": "GPLv3",
+  "bugs": {
+    "url": "https://github.com/oMrRexD/atizap/issues"
+  },
+  "homepage": "https://github.com/oMrRexD/atizap#readme",
+  "dependencies": {
+    "glob": "^7.1.6",
+    "object-collection": "^1.1.0",
+    "venom-bot": "^3.0.13"
+  }
+}
