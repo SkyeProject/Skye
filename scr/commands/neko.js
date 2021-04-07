@@ -1,25 +1,18 @@
 const Commands = require("../config/commands");
-const client = require('nekos.life');
-const neko = new client();
+const superagent = require('superagent');
 
-async function test() {
-    console.log(await neko.sfw.hug());
-  }
-   
-  test();
-  
-
-module.exports = class CommandSay extends Commands {
+module.exports = class NekoCommand extends Commands {
     constructor(zap) {
         super(zap, {
-            name: 'loli',
-            aliases: ['neko'],
-            category: 'test',
+            name: 'neko',
+            aliases: ['kwaii, gata'],
+            category: 'fun',
             ownerOnly: false
         })
     }
-    execute({ msg }) {
-        msg.file('')
+    async execute({ msg }) {
+        const nekoimage = (await superagent.get('https://nekos.life/api/v2/img/neko')).body,
+            nekotext = (await superagent.get('https://nekos.life/api/v2/cat')).body
+        msg.sendImage(nekoimage.url, nekotext.cat)
     }
-}; 
- 
+};

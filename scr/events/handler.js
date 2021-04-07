@@ -19,6 +19,10 @@ async function start(client) {
             client.sendText(msg.from, options)
         }
 
+        msg.sendImage = (options, options2) => {
+            client.sendImage(msg.from, options, "file", options2)
+        }
+
         const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
         if (file) {
             file.execute({ msg, args, prefix })

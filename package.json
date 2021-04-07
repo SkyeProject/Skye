@@ -20,6 +20,7 @@
   "dependencies": {
     "glob": "^7.1.6",
     "object-collection": "^1.1.0",
+    "superagent": "^6.1.0",
     "venom-bot": "^3.0.13"
   }
 }
