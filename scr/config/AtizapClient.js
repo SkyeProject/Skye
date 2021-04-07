@@ -1,12 +1,8 @@
-
 const venom = require("venom-bot");
 const Collection = require("object-collection");
 
 const glob = require("glob");
 const path = require("path");
-
-// let Client
-// venom.create().then((client) => { Client = client})
 
 module.exports = class AtizapClient {
     constructor(options) {
@@ -37,6 +33,5 @@ module.exports = class AtizapClient {
                 this.aliases.set(alias, cmd.config.name)
             });
         })
-
     }
 }
