@@ -1,7 +1,6 @@
 const Commands = require("../config/commands");
-
-let time = new Date().getTime();
-time = (new Date().getTime()) - time
+const moment = require("moment-timezone")
+moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 
 module.exports = class pingCommand extends Commands {
     constructor(zap) {
@@ -12,7 +11,7 @@ module.exports = class pingCommand extends Commands {
             ownerOnly: false
         })
     }
-    execute({ msg }) {
-        msg.send(`${time}ms`)
-}
+    async execute({ msg }) {
+        msg.send(`${moment.duration(moment() - moment(msg.t * 1000)).asSeconds()} segundo(s).`)
+    }
 }
