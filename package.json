@@ -2,7 +2,7 @@
   "name": "atizap",
   "version": "1.0.0",
   "description": "Um incrível bot pro WhatsApp.",
-  "main": "index.js",
+  "main": "./scr/index.js",
   "scripts": {
     "test": "nodemon index.js",
     "start": "node index.js"
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/oMrRexD/atizap#readme",
   "dependencies": {
     "glob": "^7.1.6",
+    "mkdirp": "^1.0.4",
     "object-collection": "^1.1.0",
     "superagent": "^6.1.0",
     "venom-bot": "^3.0.13"
