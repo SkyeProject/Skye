@@ -1,10 +1,14 @@
+const { create, Client } = require("@open-wa/wa-automate");
 const { zap, config } = require("../index");
-zap.venom.create().then((client) => start(client));
+const sleep = require ("sleep-promise")
+create().then((client) => start(client));
 
-async function start(client) {
+async function start(atizap = new Client()) {
 
-    client.onMessage(async (msg) => {
+    atizap.onMessage(async (msg) => {
         msg.content = msg.caption || msg.body;
+        if (!msg.content)
+            return;
 
         const prefix = config.prefix;
         if (!msg.content.toLowerCase().startsWith(prefix))
@@ -16,17 +20,34 @@ async function start(client) {
         if (!zap.commands.has(cmd) && !zap.aliases.has(cmd))
             return;
 
-        msg.send = (options) => {
-            client.sendText(msg.from, options);
+        msg.send = async (message, deleteMessage) => {
+            atizap.reply(msg.from, message, msg.id).then(async m => {
+                if (deleteMessage) {
+                    await sleep(deleteMessage)
+                    atizap.deleteMessage(msg.from, [m]);
+                }
+            })
         }
 
-        msg.sendImage = (options, options2) => {
-            client.sendImage(msg.from, options, "file", options2);
+        msg.sendImage = (image, message) => {
+            atizap.sendImage(msg.from, image, "file", message);
+        }
+
+        msg.sendSticker = (Base64, boolean) => {
+            switch (boolean) {
+                case false:
+                    atizap.sendImageAsSticker(msg.from, Base64, { author: 'Atizapbot', pack: '+55 3398530288', keepScale: true })
+                    break;
+
+                case true:
+                    atizap.sendMp4AsSticker(msg.from, Base64, null, { author: '+55 3398530288', pack: 'Atizapbot' })
+                    break;
+            }
         }
 
         const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd));
         if (file) {
-            file.execute({ client, msg, args, prefix });
+            file.execute({ atizap, msg, args, prefix });
         }
     })
 }

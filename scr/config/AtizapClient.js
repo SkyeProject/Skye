@@ -1,6 +1,4 @@
-const venom = require("venom-bot");
 const Collection = require("object-collection");
-
 const glob = require("glob");
 const path = require("path");
 
@@ -8,7 +6,6 @@ module.exports = class AtizapClient {
     constructor(options) {
         this.commands = new Collection();
         this.aliases = new Collection();
-        this.venom = venom
     }
 
     loadEvents(options) {

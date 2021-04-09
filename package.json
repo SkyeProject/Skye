@@ -18,12 +18,13 @@
   },
   "homepage": "https://github.com/oMrRexD/atizap#readme",
   "dependencies": {
-    "fluent-ffmpeg": "^2.1.2",
+    "@open-wa/wa-automate": "^3.10.11",
+    "@open-wa/wa-decrypt": "^3.1.0",
     "glob": "^7.1.6",
-    "mkdirp": "^1.0.4",
     "moment-timezone": "^0.5.33",
     "object-collection": "^1.1.0",
-    "superagent": "^6.1.0",
-    "venom-bot": "^3.0.13"
+    "sharp": "^0.28.1",
+    "sleep-promise": "^9.1.0",
+    "superagent": "^6.1.0"
   }
 }

@@ -1,6 +1,4 @@
 const Commands = require("../config/commands");
-const moment = require("moment-timezone")
-moment.tz.setDefault('America/Sao_Paulo').locale('pt_BR')
 
 module.exports = class pingCommand extends Commands {
     constructor(zap) {
@@ -11,7 +9,11 @@ module.exports = class pingCommand extends Commands {
             ownerOnly: false
         })
     }
-    async execute({ msg }) {
-        msg.send(`${moment.duration(moment() - moment(msg.t * 1000)).asSeconds()} segundo(s).`)
+    async execute({ msg, atizap }) {
+        const oldDate = Date.now()
+        atizap.sendText(msg.from, "Pingando...").then(async m => {
+            msg.send(Date.now() - oldDate + "ms")
+            atizap.deleteMessage(msg.from, m)
+        })
     }
 }

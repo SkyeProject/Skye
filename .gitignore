@@ -106,5 +106,4 @@ dist
 config.json
 
 # extras
-tokens/
-.temp/
+session.data.json
