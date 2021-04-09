@@ -9,9 +9,9 @@ module.exports = class pingCommand extends Commands {
             ownerOnly: false
         })
     }
-    async execute({ msg, atizap }) {
+    execute({ msg, atizap }) {
         const oldDate = Date.now()
-        atizap.sendText(msg.from, "Pingando...").then(async m => {
+        atizap.sendText(msg.from, "Pingando...").then(m => {
             msg.send(Date.now() - oldDate + "ms")
             atizap.deleteMessage(msg.from, m)
         })
