@@ -36,7 +36,7 @@ async function start(atizap = new Client()) {
         msg.sendSticker = (Base64, boolean) => {
             switch (boolean) {
                 case false:
-                    atizap.sendImageAsSticker(msg.from, Base64, { author: 'Atizapbot', pack: '+55 3398530288', keepScale: true })
+                    atizap.sendImageAsSticker(msg.from, Base64, { author: '+55 3398530288', pack: 'Atizapbot', keepScale: true })
                     break;
 
                 case true:

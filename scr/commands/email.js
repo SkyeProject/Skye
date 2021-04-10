@@ -1,6 +1,6 @@
 const Commands = require("../config/commands");
 const req = require('request')
-module.exports = class emailCommand extends Commands {
+module.exports = class EmailCommand extends Commands {
     constructor(zap) {
         super(zap, {
             name: 'email',

@@ -11,6 +11,6 @@ module.exports = class HelpCommand extends Commands {
     }
     execute({ msg, prefix }) {
      
-        msg.send(`ATIZAP COMMANDS\n\n${prefix}Oi: Irei te responder (?)\n\n${prefix}sticker, figurinha, s: Cria uma figurinha com o conteudo desejado.\nEx.: ${prefix}sticker Hello World! ou !sticker (foto)\n\n${prefix}neko, kwaii, gata: Busca uma neko pra você :3\n\n\${prefix}ping, ms: Calcula a latência (Demetrius é burro e n ta conseguindo funcionar direito)\n\n${prefix}everyone, mentionall: Menciona todos os membros de um grupo\n\n${prefix}calcular, calculator: Calcula dois valores que voce desejar`)
+        msg.send(`SCHWAP COMMANDS\n\n${prefix}Oi: Irei te responder (?)\n\n${prefix}sticker, figurinha, s: Cria uma figurinha com o conteudo desejado.\nEx.: ${prefix}sticker Hello World! ou !sticker (foto)\n\n${prefix}neko, kwaii, gata: Busca uma neko pra você :3\n\n\ ${prefix}ping, ms: Calcula a latência\n\n${prefix}everyone, mentionall: Menciona todos os membros de um grupo\n\n${prefix}calcular, math, c: Calcula dois valores que voce desejar`)
     }
 }
