@@ -10,7 +10,7 @@ async function start(atizap = new Client()) {
         if (!msg.content)
             return;
 
-        const prefix = config.prefix;
+        const prefix = config.bot.prefix;
         if (!msg.content.toLowerCase().startsWith(prefix))
             return;
 
@@ -36,11 +36,11 @@ async function start(atizap = new Client()) {
         msg.sendSticker = (Base64, boolean) => {
             switch (boolean) {
                 case false:
-                    atizap.sendImageAsSticker(msg.from, Base64, { author: '+55 3398530288', pack: 'Atizapbot', keepScale: true })
+                    atizap.sendImageAsSticker(msg.from, Base64, { author: "+" + msg.to.replace("@c.us", ""), pack: config.bot.name, keepScale: true })
                     break;
 
                 case true:
-                    atizap.sendMp4AsSticker(msg.from, Base64, null, { author: '+55 3398530288', pack: 'Atizapbot' })
+                    atizap.sendMp4AsSticker(msg.from, Base64, null, { author: "+" + msg.to.replace("@c.us", ""), pack: config.bot.name })
                     break;
             }
         }
