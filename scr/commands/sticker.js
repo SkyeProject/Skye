@@ -14,7 +14,7 @@ module.exports = class StickerCommand extends Commands {
         if (msg.isMedia === false) return msg.send("Oops, mande a imagem/gif que tu quer e escreva no texto \"!s\"")
         const mediaData = await decryptMedia(msg)
         const Base64 = `data:${msg.mimetype};base64,${mediaData.toString('base64')}`
-        msg.send("Seu sticker está caminho!!!")
+        msg.send("Seu sticker está a caminho!!!")
         return msg.sendSticker(Base64, msg.mimetype === "image/jpeg" ? false : true)
     }
 };
