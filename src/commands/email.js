@@ -20,12 +20,11 @@ ${prefix}email yudibomdiaecia@yahoo.com.br / Yuudi me da play 2 / mano é meu so
             uri: `https://videfikri.com/api/spamemail/?email=${email}&subjek=${subject}&pesan=${contents}`,
             method: 'GET'
         }, (e, r, b) => {
-            if (!b[0])
-                return msg.send(`*Seu email foi enviado!*
+            if (JSON.parse(b).result.status === "404") return msg.send("Ops, algum erro aconteceu. Verifique sua ortografia e tente novamente.")
+            msg.send(`*Seu email foi enviado!*
 📧: ${email}
 🗣: ${subject}
 ✍️: ${contents}`)
-            else msg.send("Ops, algum erro aconteceu. Verifique sua ortografia e tente novamente.")
         });
     }
 }

@@ -1,6 +1,6 @@
 const { create, Client } = require("@open-wa/wa-automate");
 const { zap, config } = require("../index");
-const sleep = require ("sleep-promise")
+const sleep = require("sleep-promise")
 create().then((client) => start(client));
 
 async function start(atizap = new Client()) {
@@ -20,6 +20,8 @@ async function start(atizap = new Client()) {
         if (!zap.commands.has(cmd) && !zap.aliases.has(cmd))
             return;
 
+        const botContact = await atizap.getMe()
+
         msg.send = async (message, deleteMessage) => {
             atizap.reply(msg.from, message, msg.id).then(async m => {
                 if (deleteMessage) {
@@ -36,11 +38,11 @@ async function start(atizap = new Client()) {
         msg.sendSticker = (Base64, boolean) => {
             switch (boolean) {
                 case false:
-                    atizap.sendImageAsSticker(msg.from, Base64, { author: "+" + msg.to.replace("@c.us", ""), pack: config.bot.name, keepScale: true })
+                    atizap.sendImageAsSticker(msg.from, Base64, { author: "+" + botContact.me.user, pack: botContact.pushname, keepScale: true })
                     break;
 
                 case true:
-                    atizap.sendMp4AsSticker(msg.from, Base64, null, { author: "+" + msg.to.replace("@c.us", ""), pack: config.bot.name })
+                    atizap.sendMp4AsSticker(msg.from, Base64, null, { author: "+" + botContact.me.user, pack: botContact.pushname })
                     break;
             }
         }
