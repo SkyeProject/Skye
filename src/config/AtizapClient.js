@@ -3,7 +3,8 @@ const glob = require("glob");
 const path = require("path");
 
 module.exports = class AtizapClient {
-    constructor(options) {
+    constructor(atizap) {
+        this.atizap = atizap
         this.commands = new Collection();
         this.aliases = new Collection();
     }
