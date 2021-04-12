@@ -5,7 +5,7 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "nodemon --ignore session.data.json",
-    "start": "node index.js",
+    "start": "node ./src/index.js",
     "lint": "eslint --ext .js --ignore-path .gitignore .",
     "lintfix": "eslint --ext .js --ignore-path .gitignore --fix ."
   },
