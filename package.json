@@ -5,14 +5,16 @@
   "main": "./src/index.js",
   "scripts": {
     "test": "nodemon --ignore session.data.json",
-    "start": "node index.js"
+    "start": "node index.js",
+    "lint": "eslint --ext .js --ignore-path .gitignore .",
+    "lintfix": "eslint --ext .js --ignore-path .gitignore --fix ."
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/oMrRexD/atizap.git"
   },
   "author": "MrRexD",
-  "license": "GPLv3",
+  "license": "GPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/oMrRexD/atizap/issues"
   },
@@ -29,5 +31,11 @@
     "sleep-promise": "^9.1.0",
     "spinnies": "^0.5.1",
     "superagent": "^6.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^7.24.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0"
   }
 }
