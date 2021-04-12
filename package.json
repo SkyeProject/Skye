@@ -27,6 +27,7 @@
     "object-collection": "^1.1.0",
     "sharp": "^0.28.1",
     "sleep-promise": "^9.1.0",
+    "spinnies": "^0.5.1",
     "superagent": "^6.1.0"
   }
 }

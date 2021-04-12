@@ -1,6 +1,8 @@
 const Collection = require("object-collection");
 const glob = require("glob");
 const path = require("path");
+const Spinnies = require("spinnies")
+const spinnies = new Spinnies({ color: 'red', succeedColor: 'blue' });
 
 module.exports = class AtizapClient {
     constructor(atizap) {
@@ -9,27 +11,36 @@ module.exports = class AtizapClient {
         this.aliases = new Collection();
     }
 
-    loadEvents(options) {
-        glob(options, function (err, files) {
-            if (err) console.warn(err)
+    start({ events, commands }) {
+        spinnies.add('starting', { text: 'Iniciando o bot...' });
+
+        glob(events, (err, files) => {
+            spinnies.add('events', { text: 'Carregando eventos...' })
+            if (err) spinnies.fail('events', { text: err })
             files.forEach((file, i) => {
                 require(path.resolve(file));
-                if (i === 0) console.log(`Carregando todos os eventos...`)
-                console.log(i + 1, `| Evento ${file} carregado!`)
+                spinnies.update('events', { text: `Evento ${file} carregado!` })
+                i++
+                if (files.length === i) spinnies.succeed('events', { text: `${i} Eventos foram carregados` })
             });
         })
-    }
 
-    loadCommands(options) {
-        glob.sync(options).forEach((file, i) => {
-            const cmds = require(path.resolve(file))
-            const cmd = new cmds(this)
-            this.commands.set(cmd.config.name, cmd)
-            if (i === 0) console.log(`Carregando todos os comandos...`)
-            console.log(i + 1, `| Comando ${cmd.config.name} carregado!`)
-            cmd.config.aliases.forEach(alias => {
-                this.aliases.set(alias, cmd.config.name)
-            });
+        glob(commands, (err, files) => {
+            spinnies.add('commands', { text: 'Carregando comandos...' })
+            if (err) spinnies.fail('commands', { text: err })
+            files.forEach((file, i) => {
+                const cm = require(path.resolve(file))
+                const cmd = new cm(this)
+                this.commands.set(cmd.config.name, cmd)
+                cmd.config.aliases.forEach(alias => {
+                    this.aliases.set(alias, cmd.config.name)
+                });
+                i++
+                if (files.length === i) {
+                    spinnies.succeed('commands', { text: `${i} Comandos foram carregados` })
+                    spinnies.succeed('starting', { text: `Bot está pronto` })
+                }
+            })
         })
     }
 }

@@ -2,7 +2,6 @@ const { zap, config } = require("../index");
 const sleep = require("sleep-promise")
 
 zap.atizap.onMessage(async (msg) => {
-
     msg.content = msg.caption || msg.body;
     if (!msg.content)
         return;
