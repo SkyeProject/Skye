@@ -39,10 +39,12 @@ zap.atizap.onMessage(async (msg) => {
         break
     }
   }
-
+  msg.getSenderNumber = () => {
+    return msg.author ? msg.author.replace('@c.us', '') : msg.from.replace('@c.us', '')
+  }
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
-    if (file.config.ownerOnly && msg.from.replace('@c.us', '') !== config.dev.number) return
+    if (file.config.ownerOnly && msg.getSenderNumber() !== config.dev.number) return
     file.execute({ msg, args, prefix })
   }
 })
