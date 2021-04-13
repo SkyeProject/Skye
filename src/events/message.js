@@ -42,6 +42,7 @@ zap.atizap.onMessage(async (msg) => {
 
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
+    if (file.config.ownerOnly && msg.from.replace('@c.us', '') !== config.dev.number) return
     file.execute({ msg, args, prefix })
   }
 })

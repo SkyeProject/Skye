@@ -23,10 +23,10 @@
     "@babel/runtime": "^7.13.10",
     "@open-wa/wa-automate": "^3.10.14",
     "@open-wa/wa-decrypt": "^3.1.0",
+    "canvas": "^2.7.0",
     "glob": "^7.1.6",
     "mathjs": "^9.3.2",
     "moment-timezone": "^0.5.33",
-    "object-collection": "^1.1.0",
     "sharp": "^0.28.1",
     "sleep-promise": "^9.1.0",
     "spinnies": "^0.5.1",
@@ -36,6 +36,7 @@
     "eslint": "^7.24.0",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-node": "^11.1.0"
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^5.1.0"
   }
 }

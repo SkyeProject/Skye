@@ -1,4 +1,4 @@
-const Collection = require('object-collection')
+const { Collection } = require('@open-wa/wa-automate/dist/structures/Collector')
 const glob = require('glob')
 const path = require('path')
 const Spinnies = require('spinnies')
