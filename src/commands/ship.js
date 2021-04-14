@@ -23,13 +23,13 @@ module.exports = class ShipCommand extends Commands {
         10: 'Xiii... Vai rolar não...',
         20: 'Sei não heim, as chances são mínimas.',
         30: 'Olha...... Vou deixar pra vocês decidirem kk',
-        40: 'Se rolar uma conversa vai*',
+        40: 'Se rolar uma conversa vai',
         50: 'Se eles tiverem um empurrãozinho vai..',
         60: 'Eh, até que vai...',
         70: 'Eles já estão juntos faz tempo!',
         80: 'Umas bitoquinhas podem rolar',
         90: 'Nasceram pra morrer juntos!',
-        100: '*Já eram pra ser casal faz cota!'
+        100: 'Já eram pra ser casal faz cota!'
       }
     }
     const randomName = (name) => {
@@ -45,11 +45,11 @@ module.exports = class ShipCommand extends Commands {
     for (const levels in texts.loveLevel) {
       if (approxeq(loveXP, levels)) {
         loveText = texts.loveLevel[levels]
-        if (levels < 10) loveEmote = 'https://cdn.discordapp.com/emojis/749338180058349669.png'
-        if (levels > 80) loveEmote = 'https://cdn.discordapp.com/emojis/749325027656073318.png'
-        if (levels < 30 && levels > 10) loveEmote = 'https://cdn.discordapp.com/emojis/760132301731790878.png'
-        if (levels > 50 && levels < 80) loveEmote = 'https://cdn.discordapp.com/emojis/760132761519652884.png'
-        if (levels < 50 && levels > 30) loveEmote = 'https://cdn.discordapp.com/emojis/760142847352897556.png'
+        if (loveXP < 10) loveEmote = 'https://cdn.discordapp.com/emojis/749338180058349669.png'
+        if (loveXP > 80) loveEmote = 'https://cdn.discordapp.com/emojis/749325027656073318.png'
+        if (loveXP < 30 && loveXP > 10) loveEmote = 'https://cdn.discordapp.com/emojis/760132301731790878.png'
+        if (loveXP > 50 && loveXP < 80) loveEmote = 'https://cdn.discordapp.com/emojis/760132761519652884.png'
+        if (loveXP < 50 && loveXP > 30) loveEmote = 'https://cdn.discordapp.com/emojis/760142847352897556.png'
         break
       }
     }
