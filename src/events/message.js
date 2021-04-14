@@ -42,6 +42,28 @@ zap.atizap.onMessage(async (msg) => {
   msg.getSenderNumber = () => {
     return msg.author ? msg.author.replace('@c.us', '') : msg.from.replace('@c.us', '')
   }
+
+  msg.getContact = async (number) => {
+    const contact = await zap.atizap.getContact(number)
+    const noPic = 'https://cdn.discordapp.com/attachments/685501923314368513/831934776948555826/nopic.png'
+    if (!contact) {
+      const alternative = {
+        username: number.replace('@c.us', ''),
+        avatar: noPic
+      }
+      return alternative
+    }
+    const contactPic = await zap.atizap.getProfilePicFromServer(number) || noPic
+    const user = {
+      username: contact.pushname || contact.formattedName,
+      number: contact.id,
+      avatar: contactPic,
+      isMe: contact.isMe,
+      isMyContact: contact.isMyContact
+    }
+    return user
+  }
+
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
     if (file.config.ownerOnly && msg.getSenderNumber() !== config.dev.number) return
