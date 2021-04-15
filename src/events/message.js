@@ -3,15 +3,15 @@ const { zap, config } = require('../index')
 
 zap.atizap.onMessage(async (msg) => {
   msg.content = msg.caption || msg.body
-  if (!msg.content) { return }
+  if (!msg.content) return
 
   const { prefix } = config.bot
-  if (!msg.content.toLowerCase().startsWith(prefix)) { return }
+  if (!msg.content.toLowerCase().startsWith(prefix)) return
 
   const args = msg.content.slice(prefix.length).trim().split(/ +/)
   const cmd = args.shift().toLowerCase()
 
-  if (!zap.commands.has(cmd) && !zap.aliases.has(cmd)) { return }
+  if (!zap.commands.has(cmd) && !zap.aliases.has(cmd)) return
 
   const botContact = await zap.atizap.getMe()
 
@@ -35,10 +35,11 @@ zap.atizap.onMessage(async (msg) => {
         break
 
       case true:
-        zap.atizap.sendMp4AsSticker(msg.from, Base64, null, { author: `+${botContact.me.user}`, pack: botContact.pushname })
+        zap.atizap.sendMp4AsSticker(msg.from, Base64, null, { author: `+${botContact.me.user}`, pack: botContact.pushname, startTime: '00:00:00.0', endTime: '00:00:06.0' })
         break
     }
   }
+
   msg.getSenderNumber = () => {
     return msg.author ? msg.author.replace('@c.us', '') : msg.from.replace('@c.us', '')
   }

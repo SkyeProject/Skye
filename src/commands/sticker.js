@@ -12,10 +12,11 @@ module.exports = class StickerCommand extends Commands {
   }
 
   async execute ({ msg }) {
-    if (msg.isMedia === false) return msg.send('Oops, mande a imagem/gif que tu quer e escreva no texto "!s"')
-    const mediaData = await decryptMedia(msg)
-    const Base64 = `data:${msg.mimetype};base64,${mediaData.toString('base64')}`
+    if (msg.isMedia === false && !msg.quotedMsg) return msg.send('Oops, mencione ou mande a imagem/gif/vídeo que tu quer e escreva no texto "!s"')
+    const msgcrypt = msg.quotedMsg || msg
+    const mediaData = await decryptMedia(msgcrypt)
+    const Base64 = `data:${msgcrypt.mimetype};base64,${mediaData.toString('base64')}`
     msg.send('Seu sticker está a caminho!!!')
-    return msg.sendSticker(Base64, msg.mimetype !== 'image/jpeg')
+    return msg.sendSticker(Base64, msgcrypt.mimetype !== 'image/jpeg')
   }
 }
