@@ -61,6 +61,7 @@ zap.atizap.onMessage(async (msg) => {
       isMe: contact.isMe,
       isMyContact: contact.isMyContact
     }
+    if (user.isMe) user.username = botContact.pushname
     return user
   }
 

@@ -32,13 +32,17 @@ module.exports = class ShipCommand extends Commands {
         100: 'Já eram pra ser casal faz cota!'
       }
     }
-    const randomName = (name) => {
-      return name.slice(0, Math.random() * name.length + 1)
+    const randomName = (nameOne, nameTwo) => {
+      nameOne = nameOne.slice(0, Math.random() * (nameOne.length - 2) + 2)
+      nameTwo = nameTwo.slice(0, Math.random() * (nameTwo.length - 2) + 2)
+      if ((Math.random() * (10 - 5) + 5) > 7) return nameTwo + nameOne.split('').reverse().join('')
+      if ((Math.random() * (14 - 3) + 5) < 5) return nameOne + nameTwo.split('').reverse().join('')
+      return nameOne + nameTwo
     }
     const approxeq = (a, b) => {
       return a - b < 10 && a - b >= 0
     }
-    const coupleName = randomName(shipOne.username) + randomName(shipTwo.username) + ' ❤'
+    const coupleName = randomName(shipOne.username, shipTwo.username) + ' ❤'
     const loveXP = Math.floor(Math.random() * 100)
     let loveText
     let loveEmote
