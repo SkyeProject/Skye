@@ -15,7 +15,6 @@ module.exports = class ReloadCommand extends Commands {
     const cmdfind = args[0].toLowerCase()
     try {
       const cmdreload = this.zap.commands.get(cmdfind)
-      cmdreload = this.zap.commands.fun.get(cmdfind)
       delete require.cache[require.resolve(`./${cmdreload.config.name}.js`)]
       this.zap.commands.delete(cmdfind)
       const Cmd = require(`./${cmdreload.config.name}.js`)
