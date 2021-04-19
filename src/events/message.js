@@ -68,7 +68,7 @@ zap.atizap.onMessage(async (msg) => {
 
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
-    if (file.config.ownerOnly && msg.getSenderNumber() !== config.dev.number) return
+    if (file.config.ownerOnly && !config.dev.numbers.includes(msg.getSenderNumber())) return
     file.execute({ msg, args, prefix })
   }
 })
