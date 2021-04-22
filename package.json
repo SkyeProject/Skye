@@ -21,7 +21,7 @@
   "homepage": "https://github.com/oMrRexD/atizap#readme",
   "dependencies": {
     "@babel/runtime": "^7.13.17",
-    "@open-wa/wa-automate": "^3.11.3",
+    "@open-wa/wa-automate": "^3.11.4",
     "@open-wa/wa-decrypt": "^3.1.0",
     "canvacord": "^5.1.0",
     "canvas": "^2.7.0",
