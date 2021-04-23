@@ -58,7 +58,7 @@ Schwap 😎`)
       await msg.send(`*_SCHWAP COMMANDS_*
 
 
-Use *${prefix}help fun ou ${prefix}diversao* para ter acesso a meus comandos de entreterimento.
+Use *${prefix}help fun ou diversao* para ter acesso a meus comandos de entreterimento.
 Use *${prefix}help utils ou util* para ter acesso a meus comandos utils.
 Use *${prefix}help grupo ou adm* para ter acesso a meus comandos de administrador (grupo).
 Use *${prefix}help dev* para ter acesso a comandos para os meus desenvolvedores!
