@@ -5,7 +5,7 @@ module.exports = class CommandSay extends Commands {
     super(zap, {
       name: 'hi',
       aliases: ['oi'],
-      category: 'test',
+      category: 'fun',
       ownerOnly: false
     })
   }

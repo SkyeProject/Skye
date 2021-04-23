@@ -4,7 +4,7 @@ module.exports = class AmongusCommand extends Commands {
   constructor (zap) {
     super(zap, {
       name: 'amongus',
-      aliases: ['impostor, among'],
+      aliases: ['impostor', 'among'],
       category: 'fun',
       ownerOnly: false
     })
