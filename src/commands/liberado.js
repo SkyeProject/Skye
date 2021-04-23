@@ -12,7 +12,7 @@ module.exports = class LiberadoCommand extends Commands {
 
     async execute({ msg, args }) {
         let argss = args.join(' ')
-        const quest = ["Sim", 'Não']
+        const quest = ['Sim', 'Não', 'Claro', 'Obvio', 'Claro que não', 'Melhor não', 'Talvez sim', 'Talvez não']
         const randomText = quest[Math.floor((Math.random() * quest.length))]
         if (!argss) {
             await msg.send('Não sei se ta liberado, até porquê você não colocou nada (!liberado mensagem)')
