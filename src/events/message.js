@@ -33,17 +33,14 @@ zap.atizap.onMessage(async (msg) => {
     switch (boolean) {
       case false:
         zap.atizap.sendImageAsSticker(msg.from, Base64, { author: `+${botContact.me.user}`, pack: botContact.pushname, keepScale: true })
-          .catch(handleError(errortext))
+          .catch(() => { msg.send(errortext) })
         break
 
       case true:
         zap.atizap.sendMp4AsSticker(msg.from, Base64, null, { author: `+${botContact.me.user}`, pack: botContact.pushname, startTime: '00:00:00.0', endTime: '00:00:06.0' })
-          .catch(handleError(errortext))
+          .catch(() => { msg.send(errortext) })
         break
     }
-  }
-  const handleError = (reason) => {
-    throw reason
   }
 
   msg.getSenderNumber = () => {
