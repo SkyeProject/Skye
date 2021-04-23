@@ -9,9 +9,10 @@ module.exports = class HelpCommand extends Commands {
       ownerOnly: false
     })
   }
-    async execute ({ msg, prefix, args }) {
-    let argss = args[0]
-    if(argss === 'fun' || argss === 'diversao' || argss === 'diversão'){
+
+  async execute ({ msg, prefix, args }) {
+    const argss = args[0]
+    if (argss === 'fun' || argss === 'diversao' || argss === 'diversão') {
       await msg.send(`*_SCHWAP COMMANDS: FUN_*
       
 
@@ -26,7 +27,7 @@ ${prefix}ship, amor: Calcula o amor de duas pessoas. ≧﹏≦
 
 
 Schwap 😎`)
-    }else if(argss === 'utils' || argss === 'util'){
+    } else if (argss === 'utils' || argss === 'util') {
       await msg.send(`*_SCHWAP COMMANDS: UTILS_*
       
 
@@ -38,7 +39,7 @@ ${prefix}sugestao, ideia, sug: Mande uma sugestão que pode ajudar no desenvolvi
 
 
 Schwap 😎`)
-    }else if(argss === 'grupo' || argss === 'mod'){
+    } else if (argss === 'grupo' || argss === 'adm') {
       await msg.send(`*_SCHWAP COMMANDS: MOD_*
       
 
@@ -46,7 +47,7 @@ ${prefix}everyone, all, mention, mentionall: Menciona todos de um grupo.
 
 (Em breve mais comando, tem uma ideia? Não deixe de nos contar no !sugestao (mensagem))
 Schwap 😎`)
-    }else if(argss === 'dev'){
+    } else if (argss === 'dev') {
       await msg.send(`*_SCHWAP COMMANDS: DEV_*
       
 

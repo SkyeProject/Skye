@@ -29,15 +29,21 @@ zap.atizap.onMessage(async (msg) => {
   }
 
   msg.sendSticker = (Base64, boolean) => {
+    const errortext = 'Não foi possível transformar o arquivo por um sticker. Se por acaso você estiver enviando um vídeo, na hora de enviar selecione a opção "gif".\nhttps://is.gd/aJNpv7'
     switch (boolean) {
       case false:
         zap.atizap.sendImageAsSticker(msg.from, Base64, { author: `+${botContact.me.user}`, pack: botContact.pushname, keepScale: true })
+          .catch(handleError(errortext))
         break
 
       case true:
         zap.atizap.sendMp4AsSticker(msg.from, Base64, null, { author: `+${botContact.me.user}`, pack: botContact.pushname, startTime: '00:00:00.0', endTime: '00:00:06.0' })
+          .catch(handleError(errortext))
         break
     }
+  }
+  const handleError = (reason) => {
+    throw reason
   }
 
   msg.getSenderNumber = () => {
@@ -69,6 +75,9 @@ zap.atizap.onMessage(async (msg) => {
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
     if (file.config.ownerOnly && !config.dev.numbers.includes(msg.getSenderNumber())) return
-    file.execute({ msg, args, prefix })
+    file.execute({ msg, args, prefix }).catch(err => {
+      console.error(`Ooops, rolou um erro no cmd ${file.config.name}\n` + err)
+      msg.send(`Ops, algum erro aconteceu!\n\n\`\`\`${err}\`\`\``)
+    })
   }
 })

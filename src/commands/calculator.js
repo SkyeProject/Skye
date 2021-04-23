@@ -25,7 +25,7 @@ Utilize "*%*" para porcentagem`)
       c = c.includes('x') ? c.replace(/x/g, '*') : c
       c = c.includes('÷') ? c.replace(/÷/g, '/') : c
       c = c.includes('×') ? c.replace(/×/g, '*') : c
-      msg.send(`${ c } = ${math.evaluate(c)}`)
+      msg.send(`${c} = ${math.evaluate(c)}`)
     } catch (err) {
       msg.send(`Eu não consegui entender o seu cálculo 😥\nTente novamente!\n\nLog: \`\`\`${err}\`\`\``)
     }
