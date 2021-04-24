@@ -4,5 +4,8 @@
     },
     "dev": {
         "numbers":["551140028922", "553389224001"]
+    },
+    "discord": {
+        "webhookUrl": "Discord webhook URL"  
     }
 }

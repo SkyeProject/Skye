@@ -14,6 +14,8 @@ module.exports = class RollCommand extends Commands {
     try {
       let firstNumber = 1
       let secondNumber = 6
+      if (args[0] && !args[1] && Number(args[0])) secondNumber = Number(args[0])
+
       if (args[1]) {
         removeItem(args, 'a')
         firstNumber = Number(args[0]) ? firstNumber = Number(args[0]) : firstNumber
