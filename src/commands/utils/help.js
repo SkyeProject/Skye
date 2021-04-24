@@ -51,14 +51,6 @@ ${prefix}everyone, all, mention, mentionall: Menciona todos de um grupo.
 
 (Em breve mais comando, tem uma ideia? Não deixe de nos contar no !sugestao (mensagem))
 Schwap 😎`)
-      } else if (argss === 'dev') {
-        await msg.send(`*_SCHWAP COMMANDS: DEV_*
-      
-
-${prefix}reload, r, reiniciar: Reinicia um comando. (Somente os desenvolvedores do bot pode usar)
-
-
-Schwap 😎`)
       } else {
         await msg.send(`*_SCHWAP COMMANDS_*
 
@@ -66,7 +58,6 @@ Schwap 😎`)
 Use *${prefix}help fun ou diversao* para ter acesso a meus comandos de entreterimento.
 Use *${prefix}help utils ou util* para ter acesso a meus comandos utils.
 Use *${prefix}help grupo ou adm* para ter acesso a meus comandos de administrador (grupo).
-Use *${prefix}help dev* para ter acesso a comandos para os meus desenvolvedores!
 
 
 

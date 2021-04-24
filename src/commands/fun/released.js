@@ -15,13 +15,9 @@ module.exports = class ReleasedCommand extends Commands {
       const argss = args.join(' ')
       const quest = ['Sim', 'Não', 'Claro', 'Obvio', 'Claro que não', 'Melhor não', 'Talvez sim', 'Talvez não']
       const randomText = quest[Math.floor((Math.random() * quest.length))]
-      if (!argss) {
-        await msg.send('Não sei se ta liberado, até porquê você não colocou nada (!liberado mensagem)')
-      } if (!msg.isGroupMsg) {
-        await msg.send(`Ta liberado *${argss}* no pv?\n\nA Resposta é: *${randomText}*!`)
-      } else {
-        await msg.send(`Ta liberado *${argss}* no grupo?\n\nA Resposta é: *${randomText}*!`)
-      }
+      if (!argss) return msg.send('Não sei se ta liberado, até porquê você não colocou nada (!liberado mensagem)')
+      if (!msg.isGroupMsg) msg.send(`Ta liberado *${argss}* no pv?\n\nA Resposta é: *${randomText}*!`)
+      else msg.send(`Ta liberado *${argss}* no grupo?\n\nA Resposta é: *${randomText}*!`)
     } catch (err) {
       msg.zapFail(err)
     }
