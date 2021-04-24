@@ -33,12 +33,12 @@ zap.atizap.onMessage(async (msg) => {
     switch (boolean) {
       case false:
         zap.atizap.sendImageAsSticker(msg.from, Base64, { author: `+${botContact.me.user}`, pack: botContact.pushname, keepScale: true })
-          .catch(() => { msg.send(errortext) })
+          .catch(e => { msg.zapFail(errortext + '\n\n' + e) })
         break
 
       case true:
         zap.atizap.sendMp4AsSticker(msg.from, Base64, null, { author: `+${botContact.me.user}`, pack: botContact.pushname, startTime: '00:00:00.0', endTime: '00:00:06.0' })
-          .catch(() => { msg.send(errortext) })
+          .catch(e => { msg.zapFail(errortext + '\n\n' + e) })
         break
     }
   }
@@ -69,12 +69,14 @@ zap.atizap.onMessage(async (msg) => {
     return user
   }
 
+  msg.zapFail = (err) => {
+    msg.send(`Ops, algum erro aconteceu!\n\n\`\`\`${err}\`\`\``)
+    throw new Error(`Ooops, rolou um erro no comando: ${file.config.name}.\n` + err)
+  }
+
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
     if (file.config.ownerOnly && !config.dev.numbers.includes(msg.getSenderNumber())) return
-    file.execute({ msg, args, prefix }).catch(err => {
-      console.error(`Ooops, rolou um erro no cmd ${file.config.name}\n` + err)
-      msg.send(`Ops, algum erro aconteceu!\n\n\`\`\`${err}\`\`\``)
-    })
+    file.execute({ msg, args, prefix })
   }
 })

@@ -1,4 +1,7 @@
-const Commands = require('../config/commands')
+/*
+ Ae Demetrius, agr tá fácil pra tu automatizar isso ai kkkkkk
+*/
+const Commands = require('../../config/commands')
 
 module.exports = class HelpCommand extends Commands {
   constructor (zap) {
@@ -11,9 +14,10 @@ module.exports = class HelpCommand extends Commands {
   }
 
   async execute ({ msg, prefix, args }) {
-    const argss = args[0]
-    if (argss === 'fun' || argss === 'diversao' || argss === 'diversão') {
-      await msg.send(`*_SCHWAP COMMANDS: FUN_*
+    try {
+      const argss = args[0]
+      if (argss === 'fun' || argss === 'diversao' || argss === 'diversão') {
+        await msg.send(`*_SCHWAP COMMANDS: FUN_*
       
 
 ${prefix}amongus, among, impostor: Quem é o impostor?
@@ -27,8 +31,8 @@ ${prefix}ship, amor: Calcula o amor de duas pessoas. ≧﹏≦
 
 
 Schwap 😎`)
-    } else if (argss === 'utils' || argss === 'util') {
-      await msg.send(`*_SCHWAP COMMANDS: UTILS_*
+      } else if (argss === 'utils' || argss === 'util') {
+        await msg.send(`*_SCHWAP COMMANDS: UTILS_*
       
 
 ${prefix}help, ajuda: Lista dos meus comandos.
@@ -39,24 +43,24 @@ ${prefix}sugestao, ideia, sug: Mande uma sugestão que pode ajudar no desenvolvi
 
 
 Schwap 😎`)
-    } else if (argss === 'grupo' || argss === 'adm') {
-      await msg.send(`*_SCHWAP COMMANDS: MOD_*
+      } else if (argss === 'grupo' || argss === 'adm') {
+        await msg.send(`*_SCHWAP COMMANDS: MOD_*
       
 
 ${prefix}everyone, all, mention, mentionall: Menciona todos de um grupo.
 
 (Em breve mais comando, tem uma ideia? Não deixe de nos contar no !sugestao (mensagem))
 Schwap 😎`)
-    } else if (argss === 'dev') {
-      await msg.send(`*_SCHWAP COMMANDS: DEV_*
+      } else if (argss === 'dev') {
+        await msg.send(`*_SCHWAP COMMANDS: DEV_*
       
 
 ${prefix}reload, r, reiniciar: Reinicia um comando. (Somente os desenvolvedores do bot pode usar)
 
 
 Schwap 😎`)
-    } else {
-      await msg.send(`*_SCHWAP COMMANDS_*
+      } else {
+        await msg.send(`*_SCHWAP COMMANDS_*
 
 
 Use *${prefix}help fun ou diversao* para ter acesso a meus comandos de entreterimento.
@@ -67,6 +71,9 @@ Use *${prefix}help dev* para ter acesso a comandos para os meus desenvolvedores!
 
 
 Schwap 😎`)
+      }
+    } catch (err) {
+      msg.zapFail(err)
     }
   }
 }

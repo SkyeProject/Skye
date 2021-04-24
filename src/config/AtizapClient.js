@@ -30,6 +30,7 @@ module.exports = class AtizapClient {
       spinnies.add('commands', { text: 'Carregando comandos...' })
       if (err) spinnies.fail('commands', { text: err })
       files.forEach((file, i) => {
+        if (file === './src/commands/template.js') return
         const Cm = require(path.resolve(file))
         const cmd = new Cm(this)
         this.commands.set(cmd.config.name, cmd)
@@ -38,7 +39,7 @@ module.exports = class AtizapClient {
         })
         i++
         if (files.length === i) {
-          spinnies.succeed('commands', { text: `${i} Comandos foram carregados` })
+          spinnies.succeed('commands', { text: `${i - 1} Comandos foram carregados` })
           spinnies.succeed('starting', { text: 'Bot está pronto' })
         }
       })
