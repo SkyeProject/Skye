@@ -6,6 +6,11 @@ module.exports = class SuggestionCommand extends Commands {
       name: 'suggestion',
       aliases: ['sugestao', 'sug', 'ideia', 'sugestão'],
       category: 'utils',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

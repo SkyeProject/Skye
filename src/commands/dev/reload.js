@@ -6,6 +6,11 @@ module.exports = class ReloadCommand extends Commands {
       name: 'reload',
       aliases: ['r', 'reiniciar'],
       category: 'dev',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: true
     })
   }

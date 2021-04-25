@@ -6,6 +6,11 @@ module.exports = class RollCommand extends Commands {
       name: 'roll',
       aliases: ['dado', 'dados'],
       category: 'misc',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

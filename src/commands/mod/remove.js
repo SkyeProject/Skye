@@ -4,25 +4,28 @@ module.exports = class RemoveCommand extends Commands {
   constructor (zap) {
     super(zap, {
       name: 'remove',
-      aliases: ['kick', 'expulsar', 'ban'],
+      aliases: ['ban', 'expulsar', 'remover', 'kick'],
       category: 'mod',
+      onlyGroup: true,
+      groupAdmPermission: {
+        bot: true,
+        user: true
+      },
       ownerOnly: false
     })
   }
 
   async execute ({ msg, args }) {
     try {
-      const adms = await this.zap.atizap.getGroupAdmins(msg.chat.groupMetadata.id)
-      if (!args[0]) return msg.send('Mencione alguem que queira banir/expulsar!')
-      if (!msg.isGroupMsg) await msg.send('Este comando só funciona em grupo.')
-      if (!adms.includes(msg.sender.id)) await msg.send('Você não é adm do grupo, que pena!')
-      if (!adms.includes(msg.botContact.me.user + '@c.us')) {
-        msg.send('Eu preciso ser administradora do grupo para executar esse comando, alias, não sou magica.')
-      } else {
-        const contact = await msg.getContact(args[0].replace('@', '') + '@c.us')
-        await this.zap.atizap.removeParticipant(msg.from, contact.number)
-        msg.send(`Usuario ${contact.username} foi expulso do grupo.`)
-      }
+      if (!args[0]) return msg.send('Mencione a pessoa que está badernando!')
+      const contact = await msg.getContact(args[0].replace('@', ''))
+      const member = msg.findUserInGroup(contact.number)
+      if (contact.number === `${args[0]}@c.us`) return msg.send('Se tu quer se banir, é melhor sair do servidor por si mesmo!')
+      if (contact.isMe) return msg.send('Poxa, por que me banir? Eu sou tão adorável! 😣😢😢')
+      if (!member) return msg.send('Esta pessoa não está no grupo ou eu não consegui encontrá-la!')
+      if (member.isSuperAdmin) return msg.send('Tá maluco? Acha que eu tenho poder de banir logo o dono do grupo? Quem dera se eu tivesse... 😈')
+      await msg.kick(contact.number)
+      msg.send(`Beleza, ${contact.username} foi pra vala.`)
     } catch (err) {
       msg.zapFail(err)
     }

@@ -7,6 +7,11 @@ module.exports = class EmailCommand extends Commands {
       name: 'email',
       aliases: ['e'],
       category: 'fun',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

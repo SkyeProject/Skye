@@ -1,6 +1,6 @@
 const sleep = require('sleep-promise')
 const { zap, config } = require('../index')
-const webhook = require('./webhook')
+const msgwebhook = require('./msgwebhook')
 
 zap.atizap.onMessage(async (msg) => {
   msg.content = msg.caption || msg.body
@@ -49,7 +49,8 @@ zap.atizap.onMessage(async (msg) => {
   }
 
   msg.getContact = async (options) => {
-    const number = typeof options === 'string' ? options : options.sender.id
+    let number = typeof options === 'string' ? options : options.sender.id
+    if (!number.includes('@c.us')) number = number + '@c.us'
     const contact = await zap.atizap.getContact(number)
     const noPic = 'https://is.gd/YfUEbP'
     if (!contact) {
@@ -72,6 +73,19 @@ zap.atizap.onMessage(async (msg) => {
     return user
   }
 
+  msg.kick = (number) => {
+    return new Promise((resolve, reject) => {
+      zap.atizap.removeParticipant(msg.from, number).then(e => {
+        if (e !== true) reject(e)
+        resolve(e)
+      })
+    })
+  }
+
+  msg.findUserInGroup = (member) => {
+    return msg.chat.groupMetadata.participants.find(user => user.id === member)
+  }
+
   msg.zapFail = (err) => {
     msg.send(`Ops, algum erro aconteceu!\n\n\`\`\`${err}\`\`\``)
     throw new Error(`Ooops, rolou um erro no comando: ${file.config.name}.\n` + err)
@@ -79,8 +93,11 @@ zap.atizap.onMessage(async (msg) => {
 
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
-    webhook(await msg.getContact(msg), msg)
+    msgwebhook(await msg.getContact(msg), msg)
     if (file.config.ownerOnly && !config.dev.numbers.includes(msg.getSenderNumber())) return
+    if (file.config.onlyGroup && !msg.isGroupMsg) return msg.send('Este comando só pode ser executado em grupos.')
+    if (file.config.groupAdmPermission.user && !msg.findUserInGroup(msg.sender.id).isAdmin) return msg.send('Você não é ADM do grupo, que pena!')
+    if (file.config.groupAdmPermission.bot && !msg.findUserInGroup(msg.botContact.me._serialized).isAdmin) return msg.send('Eu preciso ser ADM do grupo para executar esse comando, pois eu não sou mágica.')
     file.execute({ msg, args, prefix })
   }
 })

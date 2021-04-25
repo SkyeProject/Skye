@@ -9,6 +9,11 @@ module.exports = class HelpCommand extends Commands {
       name: 'help',
       aliases: ['ajuda'],
       category: 'utils',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

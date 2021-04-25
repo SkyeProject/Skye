@@ -6,6 +6,11 @@ module.exports = class ReleasedCommand extends Commands {
       name: 'liberado',
       aliases: ['pode', 'podenogrupo'],
       category: 'fun',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

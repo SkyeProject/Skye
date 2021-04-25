@@ -7,6 +7,11 @@ module.exports = class StickerCommand extends Commands {
       name: 'sticker',
       aliases: ['s', 'figurinha'],
       category: 'utils',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

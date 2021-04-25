@@ -6,13 +6,17 @@ module.exports = class AmongusCommand extends Commands {
       name: 'amongus',
       aliases: ['impostor', 'among'],
       category: 'fun',
+      onlyGroup: true,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }
 
   async execute ({ msg }) {
     try {
-      if (!msg.isGroupMsg) return msg.send('Esse comando só funciona em grupo')
       const members = await this.zap.atizap.getGroupMembers(msg.chat.groupMetadata.id)
 
       const math = []

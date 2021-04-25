@@ -7,6 +7,11 @@ module.exports = class ShipCommand extends Commands {
       name: 'ship',
       aliases: ['amor'],
       category: 'fun',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

@@ -6,6 +6,11 @@ module.exports = class CommandSay extends Commands {
       name: 'hi',
       aliases: ['oi'],
       category: 'misc',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

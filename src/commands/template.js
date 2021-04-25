@@ -6,15 +6,20 @@ module.exports = class TemplateCommand extends Commands {
       name: 'template', // nome do comando
       aliases: ['t'], // aliases dele
       category: 'categoriaTop', // categoria
+      onlyGroup: false, // comando funciona somente para grupo?
+      groupAdmPermission: { // pelamor, não invente de marcar true em alguma dessas 2 opções abaixo sem marcar o onlyGroup como true.
+        bot: false, // o bot precisa de ADM no grupo?
+        user: false // o usuário precisa de ADM no grupo?
+      },
       ownerOnly: false // somente para dev?
     })
   }
 
   execute ({ msg }) {
     try {
-    // codigo dele aqui...
+    // codigo do comando...
     } catch (err) {
-      msg.zapFail(err)
+      msg.zapFail(err) // caso der pau o comando, o bot já vai logo avisar pro usuário que algo de errado aconteceu, e ja vai retornar um erro no seu console.
     }
   }
 }

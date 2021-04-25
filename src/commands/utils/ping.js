@@ -6,6 +6,11 @@ module.exports = class PingCommand extends Commands {
       name: 'ping',
       aliases: ['ms'],
       category: 'utils',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

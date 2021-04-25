@@ -6,6 +6,11 @@ module.exports = class CanvasCommand extends Commands {
       name: 'rainbow',
       aliases: ['lgbt', 'gay'],
       category: 'fun',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }

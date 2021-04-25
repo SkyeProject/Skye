@@ -7,6 +7,11 @@ module.exports = class CalculatorCommand extends Commands {
       name: 'calcular',
       aliases: ['math', 'c', 'calculator', 'calculadora'],
       category: 'utils',
+      onlyGroup: false,
+      groupAdmPermission: {
+        bot: false,
+        user: false
+      },
       ownerOnly: false
     })
   }
