@@ -52,6 +52,7 @@ Schwap 😎`)
         await msg.send(`*_SCHWAP COMMANDS: MOD_*
       
 
+${prefix}ban, remover, remove, kick, 'expulsar', 'kick': Bane o engraçadinho do seu grupo.
 ${prefix}everyone, all, mention, mentionall: Menciona todos de um grupo.
 
 (Em breve mais comando, tem uma ideia? Não deixe de nos contar no !sugestao (mensagem))
