@@ -23,7 +23,7 @@ module.exports = class SuggestionCommand extends Commands {
         msg.send('Você enviou uma sugestão, espera, acho que não... ')
       } else {
         msg.send('Sugestão enviada!')
-        await this.zap.atizap.sendText('5511953532681-1619128440@g.us', `Opa! Sugestão nova: *${message}*\n\nSugestão enviada de: ${name}`)
+        await this.zap.atizap.sendText('5511953532681-1619372110@g.us', `Opa! Sugestão nova: *${message}*\n\nSugestão enviada de: ${name}`)
       }
     } catch (err) {
       msg.zapFail(err)

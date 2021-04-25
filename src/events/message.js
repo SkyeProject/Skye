@@ -26,7 +26,7 @@ zap.atizap.onMessage(async (msg) => {
   }
 
   msg.sendImage = (image, message) => {
-    zap.atizap.sendImage(msg.from, image, 'file', message)
+    zap.atizap.sendFileFromUrl(msg.from, image, 'file', message)
   }
 
   msg.sendSticker = (Base64, boolean) => {
@@ -38,7 +38,7 @@ zap.atizap.onMessage(async (msg) => {
         break
 
       case true:
-        zap.atizap.sendMp4AsSticker(msg.from, Base64, null, { author: `+${msg.botContact.me.user}`, pack: msg.botContact.pushname, startTime: '00:00:00.0', endTime: '00:00:06.0' })
+        zap.atizap.sendMp4AsSticker(msg.from, Base64, null, { author: `+${msg.botContact.me.user}`, pack: msg.botContact.pushname })
           .catch(e => { msg.zapFail(errortext + '\n\n' + e) })
         break
     }
