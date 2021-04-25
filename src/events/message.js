@@ -1,6 +1,6 @@
 const sleep = require('sleep-promise')
 const { zap, config } = require('../index')
-const msgwebhook = require('./msgwebhook')
+const catchcommand = require('./catchcommand')
 
 zap.atizap.onMessage(async (msg) => {
   msg.content = msg.caption || msg.body
@@ -93,7 +93,7 @@ zap.atizap.onMessage(async (msg) => {
 
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
-    msgwebhook(await msg.getContact(msg), msg)
+    catchcommand(await msg.getContact(msg), msg)
     if (file.config.ownerOnly && !config.dev.numbers.includes(msg.getSenderNumber())) return
     if (file.config.onlyGroup && !msg.isGroupMsg) return msg.send('Este comando só pode ser executado em grupos.')
     if (file.config.groupAdmPermission.user && !msg.findUserInGroup(msg.sender.id).isAdmin) return msg.send('Você não é ADM do grupo, que pena!')

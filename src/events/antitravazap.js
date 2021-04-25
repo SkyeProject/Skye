@@ -12,7 +12,6 @@ zap.atizap.onMessage(async (msg) => {
     if (user.number === msg.from) {
       const t = Date.now()
       if (t - user.t <= 3000 && msg.content.length >= 100) user.warns++
-      console.log(delay)
       user.t = t
       if (user.warns === 4) {
         const zapNumber = []
