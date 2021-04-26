@@ -1,6 +1,6 @@
-const Commands = require('../../config/commands')
+const Command = require('../../config/Command')
 
-module.exports = class RollCommand extends Commands {
+module.exports = class RollCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'roll',
@@ -22,7 +22,7 @@ module.exports = class RollCommand extends Commands {
       if (args[0] && !args[1] && Number(args[0])) secondNumber = Number(args[0])
 
       if (args[1]) {
-        removeItem(args, 'a')
+        this.removeItem(args, 'a')
         firstNumber = Number(args[0]) ? firstNumber = Number(args[0]) : firstNumber
         secondNumber = Number(args[1]) ? secondNumber = Number(args[1]) : secondNumber
         if (!Number(args[0]) || !Number(args[1])) msg.send('Você disse algum número inválido, então irei sortear o padrão normal do dado.')
@@ -33,12 +33,4 @@ module.exports = class RollCommand extends Commands {
       msg.zapFail(err)
     }
   }
-}
-
-const removeItem = (arr, value) => {
-  const index = arr.indexOf(value)
-  if (index > -1) {
-    arr.splice(index, 1)
-  }
-  return arr
 }

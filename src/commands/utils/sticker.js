@@ -1,7 +1,7 @@
 const { decryptMedia } = require('@open-wa/wa-decrypt')
-const Commands = require('../../config/commands')
+const Command = require('../../config/Command')
 
-module.exports = class StickerCommand extends Commands {
+module.exports = class StickerCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'sticker',

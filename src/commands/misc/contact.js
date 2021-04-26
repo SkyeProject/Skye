@@ -3,8 +3,8 @@ const Command = require('../../config/Command')
 module.exports = class CommandSay extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'hi',
-      aliases: ['oi'],
+      name: 'contact',
+      aliases: ['contato', 'owners', 'donos', 'numeros', 'contatos'],
       category: 'misc',
       onlyGroup: false,
       groupAdmPermission: {
@@ -15,9 +15,11 @@ module.exports = class CommandSay extends Command {
     })
   }
 
-  execute ({ msg }) {
+  async execute ({ msg }) {
     try {
-      msg.send('Oi')
+      msg.send(`*Aqui vai o contato dos meus criadores lindos :)*
+
+${msg.developers.join('\n')}`)
     } catch (err) {
       msg.zapFail(err)
     }

@@ -1,6 +1,6 @@
-const Commands = require('../../config/commands') // não esqueça de tacar o cmd na pasta de alguma categoria, se não vai dar pau aqui
+const Command = require('../../config/command') // não esqueça de tacar o cmd na pasta de alguma categoria, se não vai dar pau aqui
 
-module.exports = class TemplateCommand extends Commands {
+module.exports = class TemplateCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'template', // nome do comando

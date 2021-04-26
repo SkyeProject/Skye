@@ -1,6 +1,6 @@
-const Commands = require('../../config/commands')
+const Command = require('../../config/Command')
 
-module.exports = class TodCommand extends Commands {
+module.exports = class TodCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'tod',
@@ -17,26 +17,12 @@ module.exports = class TodCommand extends Commands {
 
   async execute ({ msg }) {
     try {
-      const members = msg.chat.groupMetadata.participants
-      const RandomNumber = getRandomInt(0, (members.length > 0 ? members.length - 1 : members.length))
-      let RandomNumberTwo = getRandomInt(0, (members.length > 0 ? members.length - 1 : members.length))
-      while (RandomNumber === RandomNumberTwo) {
-        RandomNumberTwo = getRandomInt(0, members.length)
-      }
-
-      const memberOne = members[RandomNumber]
-      const memberTwo = members[RandomNumberTwo]
-      const a = `@${memberOne.id.replace(/@c.us/g, '')}`
-      const b = `@${memberTwo.id.replace(/@c.us/g, '')}`
+      const membros = this.getAllMembersNumbers(msg, true)
+      const randomMembers = this.getRandomValueInArray(membros, 2)
       msg.send('Girando a garrafa...')
-      this.zap.atizap.sendTextWithMentions(msg.from, `Vejamos, *${a}* pergunta para *${b}*!\n\nEai, vamos brincar de verdade ou desafio? 😈`)
+      this.zap.atizap.sendTextWithMentions(msg.from, `Vejamos, *@${randomMembers[0]}* pergunta para *@${randomMembers[1]}*!\n\nEai, vamos brincar de verdade ou desafio? 😈`)
     } catch (err) {
       msg.zapFail(err)
     }
   }
-}
-function getRandomInt (min, max) {
-  min = Math.ceil(min)
-  max = Math.floor(max)
-  return Math.floor(Math.random() * (max - min)) + min
 }

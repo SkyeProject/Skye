@@ -1,9 +1,9 @@
 /*
  Ae Demetrius, agr tá fácil pra tu automatizar isso ai kkkkkk
 */
-const Commands = require('../../config/commands')
+const Command = require('../../config/Command')
 
-module.exports = class HelpCommand extends Commands {
+module.exports = class HelpCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'help',
@@ -44,7 +44,9 @@ Schwap 😎`)
 
 ${prefix}help, ajuda: Lista dos meus comandos.
 ${prefix}calcular, math, c, calculator, calculadora: Resolve uma conta MATEMATICA.
-${prefix}ping, ms: Pong! Mostra o ping do bot.
+${prefix}botinfo, infobot: vê mais informações sobre mim.
+${prefix}contato, contact: pegue o contato dos meus desenvolvedores!
+${prefix}ping, ms: Pong! Mostra o meu ping atual.
 ${prefix}sticker, s, figurinha: Faz uma figurinha com a foto/gif/video desejado.
 ${prefix}sugestao, ideia, sug: Mande uma sugestão que pode ajudar no desenvolvimento do bot, sem gracinha. (ban)
 

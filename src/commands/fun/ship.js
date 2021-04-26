@@ -1,7 +1,7 @@
-const Commands = require('../../config/commands')
+const Command = require('../../config/Command')
 const { createCanvas, loadImage } = require('canvas')
 
-module.exports = class ShipCommand extends Commands {
+module.exports = class ShipCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'ship',

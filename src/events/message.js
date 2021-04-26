@@ -91,6 +91,9 @@ zap.atizap.onMessage(async (msg) => {
     throw new Error(`Ooops, rolou um erro no comando: ${file.config.name}.\n` + err)
   }
 
+  msg.developers = []
+  config.dev.numbers.forEach(e => msg.developers.push(`wa.me/${e}`))
+
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
     catchcommand(await msg.getContact(msg), msg)

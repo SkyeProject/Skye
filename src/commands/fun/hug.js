@@ -1,7 +1,7 @@
 const superagent = require('superagent')
-const Commands = require('../../config/commands')
+const Command = require('../../config/Command')
 
-module.exports = class HugCommand extends Commands {
+module.exports = class HugCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'hug',

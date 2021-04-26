@@ -1,7 +1,7 @@
 const math = require('mathjs')
-const Commands = require('../../config/commands')
+const Command = require('../../config/Command')
 
-module.exports = class CalculatorCommand extends Commands {
+module.exports = class CalculatorCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'calcular',

@@ -1,6 +1,7 @@
-const Commands = require('../../config/commands')
+const Command = require('../../config/Command')
 const Canvacord = require('canvacord')
-module.exports = class CanvasCommand extends Commands {
+
+module.exports = class CanvasCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'rainbow',

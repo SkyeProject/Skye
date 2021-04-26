@@ -1,6 +1,6 @@
-const Commands = require('../../config/commands')
+const Command = require('../../config/Command')
 
-module.exports = class SuggestionCommand extends Commands {
+module.exports = class SuggestionCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'suggestion',
