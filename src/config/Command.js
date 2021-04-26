@@ -12,6 +12,7 @@ module.exports = class Commands {
       },
       ownerOnly: options.ownerOnly || false
     }
+    this.amountTimes = 0
   }
 
   uptime () {

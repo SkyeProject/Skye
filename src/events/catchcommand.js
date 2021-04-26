@@ -8,7 +8,7 @@ module.exports = async (user, msg) => {
     .setAuthor(`${user.username} | ${user.number.replace('@c.us', '')}`, user.avatar)
     .setTitle('Usou o comando:')
     .setDescription(msg.content)
-    .setColor('RANDOM')
+    .setColor('#94bae0')
     .setFooter(groupName, groupPic)
     .setTimestamp()
     .send()

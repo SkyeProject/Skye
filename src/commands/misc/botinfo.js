@@ -17,6 +17,14 @@ module.exports = class CommandSay extends Command {
 
   async execute ({ msg }) {
     try {
+      const mostUsedCommands = []
+      this.zap.commands.forEach(command => {
+        mostUsedCommands.push({
+          name: command.config.name,
+          used: command.amountTimes
+        })
+      })
+      mostUsedCommands.sort((a, b) => b.used - a.used)
       const allGroups = await this.zap.atizap.getAllGroups()
       const allUsers = []
       allGroups.forEach(group => {
@@ -30,7 +38,9 @@ module.exports = class CommandSay extends Command {
 🔋 | Bateria restante: *${await this.zap.atizap.getBatteryLevel()}%*
 💻 | Versão do Node.js: *${process.version}*
 👩🏼‍💻 | WA-VERSION: *${await this.zap.atizap.getWAVersion()}*
-😴 | Acordado à: *${this.uptime()}*`)
+🌟 | Comando mais ultilizado desde o último restart: *${mostUsedCommands[0].name}*
+✉️ | Já foram executados *${mostUsedCommands.reduce((a, b) => a + b.used, 0)}* comandos a hora que eu acordei!
+😴 | Acordada à: *${this.uptime()}*`)
     } catch (err) {
       msg.zapFail(err)
     }
