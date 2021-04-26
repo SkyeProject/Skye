@@ -10,5 +10,6 @@ module.exports = async (user, msg) => {
     .setDescription(msg.content)
     .setColor('RANDOM')
     .setFooter(groupName, groupPic)
+    .setTimestamp()
     .send()
 }

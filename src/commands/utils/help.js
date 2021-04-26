@@ -33,6 +33,8 @@ ${prefix}neko, kwaii, gata: Mando uma neko pra você. ≧ω≦
 ${prefix}rainbow, lgbt, gay: Que tal dar uma colorida na sua foto?
 ${prefix}roll, dado: Sorteio um numéro aleatorio.
 ${prefix}ship, amor: Calcula o amor de duas pessoas. ≧﹏≦ 
+${prefix}hug, abraco, abracar: Abrace alguem!
+${prefix}tod, vddoudsf, verdadeoudesafio: Verdade ou desafio? Jogue com seus amigos!
 
 
 Schwap 😎`)
