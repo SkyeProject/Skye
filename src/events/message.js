@@ -1,4 +1,3 @@
-const sleep = require('sleep-promise')
 const { zap, config } = require('../index')
 const catchcommand = require('./catchcommand')
 
@@ -16,13 +15,15 @@ zap.atizap.onMessage(async (msg) => {
 
   msg.botContact = await zap.atizap.getMe()
 
-  msg.send = async (message, deleteMessage) => {
-    zap.atizap.reply(msg.from, message, msg.id).then(async (m) => {
-      if (deleteMessage) {
-        await sleep(deleteMessage)
-        zap.atizap.deleteMessage(msg.from, [m])
-      }
-    })
+  msg.send = async (message, ...args) => {
+    let from = msg.from
+    args = args[0]
+    if (args) {
+      if (args.from) from = args.from
+      if (args.reply) return await zap.atizap.reply(from, message, msg.id)
+      if (args.mention) return await zap.atizap.sendTextWithMentions(from, message)
+    }
+    return await zap.atizap.sendText(from, message)
   }
 
   msg.sendImage = (image, message) => {
@@ -92,12 +93,20 @@ zap.atizap.onMessage(async (msg) => {
   }
 
   msg.developers = []
-  config.dev.numbers.forEach(e => msg.developers.push(`wa.me/${e}`))
+  const devsNumbers = []
+  Object.entries(config.devs.contacts).forEach(dev => {
+    msg.developers.push({
+      name: dev[0],
+      number: dev[1],
+      url: `wa.me/${dev[1]}`
+    })
+    devsNumbers.push(dev[1])
+  })
 
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
     catchcommand(await msg.getContact(msg), msg)
-    if (file.config.ownerOnly && !config.dev.numbers.includes(msg.getSenderNumber())) return
+    if (file.config.ownerOnly && !devsNumbers.includes(msg.getSenderNumber())) return
     if (file.config.onlyGroup && !msg.isGroupMsg) return msg.send('Este comando só pode ser executado em grupos.')
     if (file.config.groupAdmPermission.user && !msg.findUserInGroup(msg.sender.id).isAdmin) return msg.send('Você não é ADM do grupo, que pena!')
     if (file.config.groupAdmPermission.bot && !msg.findUserInGroup(msg.botContact.me._serialized).isAdmin) return msg.send('Eu preciso ser ADM do grupo para executar esse comando, pois eu não sou mágica.')

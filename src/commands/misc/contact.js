@@ -17,9 +17,12 @@ module.exports = class CommandSay extends Command {
 
   async execute ({ msg }) {
     try {
-      msg.send(`*Aqui vai o contato dos meus criadores lindos :)*
-
-${msg.developers.join('\n')}`)
+      let message = '*Aqui vai o contato dos meus criadores lindos :) ❤*\n\n'
+      msg.developers.forEach(dev => {
+        if (dev.name.toLowerCase() === 'mrrexd') message += `${dev.name}: ${dev.url} (cola pv gatas)\n`
+        else message += `${dev.name}: ${dev.url}\n`
+      })
+      msg.send(message)
     } catch (err) {
       msg.zapFail(err)
     }

@@ -18,12 +18,12 @@ module.exports = class SuggestionCommand extends Command {
   async execute ({ msg, args }) {
     try {
       const message = args.join(' ')
-      const name = msg.sender.pushname
+      const user = await msg.getContact(msg.sender.id)
       if (!message) {
         msg.send('Você enviou uma sugestão, espera, acho que não... ')
       } else {
-        msg.send('Sugestão enviada!')
-        await this.zap.atizap.sendText('5511953532681-1619372110@g.us', `Opa! Sugestão nova: *${message}*\n\nSugestão enviada de: ${name}`)
+        msg.send('Sugestão enviada!', { reply: true })
+        msg.send(`Opa! Sugestão nova: *${message}*\n\nSugestão enviada de: ${user.username}`, { from: '5511953532681-1619372110@g.us' })
       }
     } catch (err) {
       msg.zapFail(err)

@@ -40,7 +40,7 @@ module.exports = class CommandSay extends Command {
 👩🏼‍💻 | WA-VERSION: *${await this.zap.atizap.getWAVersion()}*
 🌟 | Comando mais ultilizado desde o último restart: *${mostUsedCommands[0].name}*
 ✉️ | Já foram executados *${mostUsedCommands.reduce((a, b) => a + b.used, 0)}* comandos desde a hora que eu acordei!
-😴 | Acordada à: *${this.uptime()}*`)
+😴 | Acordada à: *${this.uptime()}*`, { reply: true })
     } catch (err) {
       msg.zapFail(err)
     }

@@ -23,7 +23,7 @@ module.exports = class EveryoneCommand extends Command {
       for (let i = 0; i < members.length; i++) everyoneMessage += `- @${members[i].id.replace(/@c.us/g, '')} -\n`
       everyoneMessage += '\n------------BOT SCHWAP 😎------------'
 
-      this.zap.atizap.sendTextWithMentions(msg.from, everyoneMessage)
+      msg.send(everyoneMessage, { mention: true })
     } catch (err) {
       msg.zapFail(err)
     }
