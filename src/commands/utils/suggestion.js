@@ -20,7 +20,7 @@ module.exports = class SuggestionCommand extends Command {
       const message = args.join(' ')
       const user = await msg.getContact(msg.sender.id)
       if (!message) {
-        msg.send('Você enviou uma sugestão, espera, acho que não... ')
+        msg.send('Este comando só funciona se voce colocar uma mensagem. !sugestao (sua sugestao)', { reply: true })
       } else {
         msg.send('Sugestão enviada!', { reply: true })
         msg.send(`Opa! Sugestão nova: *${message}*\n\nSugestão enviada de: ${user.username}`, { from: '5511953532681-1619372110@g.us' })

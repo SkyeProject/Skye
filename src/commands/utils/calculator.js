@@ -24,13 +24,13 @@ Utilize "*+*" para somar
 Utilize "*-*" para subtrair
 Utilize "***" para multiplicar
 Utilize "*/*" para dividir
-Utilize "*%*" para porcentagem`)
+Utilize "*%*" para porcentagem`, { reply: true })
       }
       let c = args.join('')
       c = c.includes('x') ? c.replace(/x/g, '*') : c
       c = c.includes('÷') ? c.replace(/÷/g, '/') : c
       c = c.includes('×') ? c.replace(/×/g, '*') : c
-      msg.send(`${c} = ${math.evaluate(c)}`)
+      msg.send(`${c} = ${math.evaluate(c)}`, { reply: true })
     } catch (err) {
       msg.zapFail(err)
     }

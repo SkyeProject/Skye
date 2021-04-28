@@ -2,9 +2,9 @@ name: atizap
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 jobs:
   atizap:
     runs-on: ${{ matrix.os }}
@@ -23,9 +23,12 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
+      - name: Copy config 📓
+        run: echo ${{secrets.CONFIG}} > config.json
+      - name: Copy API_KEY 🎲
+        run: echo ${{secrets.API_KEY}} > session.data.json
+
       - name: Install dependencies 👨🏻‍💻
         run: npm i
-      - name: Copy config example 📓
-        run: cp config.example.json config.json
       - name: Run Linter ✏️
         run: npm run lint

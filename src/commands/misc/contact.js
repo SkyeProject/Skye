@@ -22,7 +22,7 @@ module.exports = class CommandSay extends Command {
         if (dev.name.toLowerCase() === 'mrrexd') message += `${dev.name}: ${dev.url} (cola pv gatas)\n`
         else message += `${dev.name}: ${dev.url}\n`
       })
-      msg.send(message)
+      msg.send(message, { reply: true })
     } catch (err) {
       msg.zapFail(err)
     }

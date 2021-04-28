@@ -1,11 +1,12 @@
 // fiz esse comando em 3 minutos pq o demetrius pediu, então não sei se ta funfando pq eu não cheguei a testar só fiz mesmo e lancei
-const Command = require('../../config/command')
+const { config } = require('../..')
+const Command = require('../../config/Command')
 
-module.exports = class TemplateCommand extends Command {
+module.exports = class AlertCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'alert',
-      aliases: [],
+      aliases: ['alerta'],
       category: 'dev',
       onlyGroup: false,
       groupAdmPermission: {
@@ -18,9 +19,14 @@ module.exports = class TemplateCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
+      if (!args[0]) return await msg.send('Você não disse nada pra enviar.')
       const allGroups = await this.zap.atizap.getAllGroups()
+      await msg.send(`Enviando: \n\n❗ *| ${args.join(' ')}*`)
       allGroups.forEach(async group => {
-        await msg.send(`❗ *| ${args.join(' ')}*`, { from: group.id })
+        const groupdoc = await this.zap.mongo.Groups.findById(group.id)
+        if (!groupdoc || (groupdoc && groupdoc.options.alert)) {
+          await msg.send(`❗ *| ${args.join(' ')}*\n\nPara desativar os alertas, use *${groupdoc ? groupdoc.prefix : config.bot.prefix}desativar-alerta*`, { from: group.id })
+        }
       })
     } catch (err) {
       msg.zapFail(err)

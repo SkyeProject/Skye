@@ -19,7 +19,7 @@ module.exports = class TodCommand extends Command {
     try {
       const membros = this.getAllMembersNumbers(msg, true)
       const randomMembers = this.getRandomValueInArray(membros, 2)
-      msg.send('Girando a garrafa...')
+      msg.send('Girando a garrafa...', { reply: true })
       this.zap.atizap.sendTextWithMentions(msg.from, `Vejamos, *@${randomMembers[0]}* pergunta para *@${randomMembers[1]}*!\n\nEai, vamos brincar de verdade ou desafio? 😈`)
     } catch (err) {
       msg.zapFail(err)

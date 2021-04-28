@@ -28,6 +28,7 @@
     "glob": "^7.1.6",
     "mathjs": "^9.3.2",
     "moment-timezone": "^0.5.33",
+    "mongoose": "^5.12.6",
     "node-fetch": "^2.6.1",
     "sharp": "^0.28.1",
     "sleep-promise": "^9.1.0",

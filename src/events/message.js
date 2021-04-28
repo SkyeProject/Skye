@@ -1,17 +1,27 @@
 const { zap, config } = require('../index')
-const catchcommand = require('./catchcommand')
+const catchcommand = require('../config/modules/catchcommand')
+const mongocreate = require('../config/modules/database/mongocreate')
 
 zap.atizap.onMessage(async (msg) => {
   msg.content = msg.caption || msg.body
   if (!msg.content) return
 
-  const { prefix } = config.bot
+  let doc = await zap.mongo.Groups.findById(msg.from) || await zap.mongo.Users.findById(msg.from)
+
+  if (!doc && msg.isGroupMsg) doc = mongocreate.createGroupDoc(msg.from)
+  if (!doc) doc = mongocreate.createUserDoc(msg.from)
+  const prefix = doc.prefix || config.bot.prefix
   if (!msg.content.toLowerCase().startsWith(prefix)) return
 
   const args = msg.content.slice(prefix.length).trim().split(/ +/)
   const cmd = args.shift().toLowerCase()
 
   if (!zap.commands.has(cmd) && !zap.aliases.has(cmd)) return
+
+  let docUser = doc
+  if (msg.isGroupMsg) {
+    docUser = await zap.mongo.Users.findById(msg.sender.id)
+  }
 
   msg.botContact = await zap.atizap.getMe()
 
@@ -25,6 +35,8 @@ zap.atizap.onMessage(async (msg) => {
     }
     return await zap.atizap.sendText(from, message)
   }
+
+  if (docUser && docUser.status.isBanned) return msg.send(`❗ | Você está banido de me usar!\n\nMotivo: *${docUser.status.reason}*`)
 
   msg.sendImage = (image, message) => {
     zap.atizap.sendImage(msg.from, image, 'file', message)
@@ -51,6 +63,7 @@ zap.atizap.onMessage(async (msg) => {
 
   msg.getContact = async (options) => {
     let number = typeof options === 'string' ? options : options.sender.id
+    if (number.startsWith('@')) number = number.replace('@', '')
     if (!number.includes('@c.us')) number = number + '@c.us'
     const contact = await zap.atizap.getContact(number)
     const noPic = 'https://is.gd/YfUEbP'
@@ -111,6 +124,6 @@ zap.atizap.onMessage(async (msg) => {
     if (file.config.groupAdmPermission.user && !msg.findUserInGroup(msg.sender.id).isAdmin) return msg.send('Você não é ADM do grupo, que pena!')
     if (file.config.groupAdmPermission.bot && !msg.findUserInGroup(msg.botContact.me._serialized).isAdmin) return msg.send('Eu preciso ser ADM do grupo para executar esse comando, pois eu não sou mágica.')
     file.amountTimes++
-    file.execute({ msg, args, prefix })
+    file.execute({ msg, args, prefix, doc })
   }
 })

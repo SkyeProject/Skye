@@ -24,17 +24,17 @@ module.exports = class EmailCommand extends Command {
       const contents = emailInfo[2]
       if (!email || !subject || !contents) {
         return msg.send(`*Para enviar um email use: ${prefix}email <email da pessoa: / <assunto> / <conteúdo do email.> Exemplo:*
-${prefix}email yudibomdiaecia@yahoo.com.br / Yuudi me da play 2 / mano é meu sonho ter um ps2 me da pfvpfv mano :(`)
+${prefix}email yudibomdiaecia@yahoo.com.br / Yuudi me da play 2 / mano é meu sonho ter um ps2 me da pfvpfv mano :(`, { reply: true })
       }
       req({
         uri: `https://videfikri.com/api/spamemail/?email=${email}&subjek=${subject}&pesan=${contents}`,
         method: 'GET'
       }, (e, r, b) => {
-        if (JSON.parse(b).result.status === '404') return msg.send('Ops, algum erro aconteceu. Verifique sua ortografia e tente novamente.')
+        if (JSON.parse(b).result.status === '404') return msg.send('Ops, algum erro aconteceu. Verifique sua ortografia e tente novamente.', { reply: true })
         msg.send(`*Seu email foi enviado!*
 📧: ${email}
 🗣: ${subject}
-✍️: ${contents}`)
+✍️: ${contents}`, { reply: true })
       })
     } catch (err) {
       msg.zapFail(err)

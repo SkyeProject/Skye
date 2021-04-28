@@ -19,7 +19,7 @@ module.exports = class PingCommand extends Command {
     try {
       const oldDate = Date.now()
       this.zap.atizap.sendText(msg.from, 'Pingando...').then((m) => {
-        msg.send(`${Date.now() - oldDate}ms`)
+        msg.send(`${Date.now() - oldDate}ms`, { reply: true })
         this.zap.atizap.deleteMessage(msg.from, m)
       })
     } catch (err) {

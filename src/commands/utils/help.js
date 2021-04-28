@@ -35,43 +35,51 @@ ${prefix}roll, dado: Sorteio um numéro aleatorio.
 ${prefix}ship, amor: Calcula o amor de duas pessoas. ≧﹏≦ 
 ${prefix}hug, abraco, abracar: Abrace alguem!
 ${prefix}tod, vddoudsf, verdadeoudesafio: Verdade ou desafio? Jogue com seus amigos!
+${prefix}vidente, pergunta: Faça uma pergunta pro Afonso, o vidente.
+${prefix}tot, thisorthat, issoouaquilo, ioa, aquiloououtro, aquilo: Sorteio isso, ou aquilo
 
 
-Schwap 😎`)
+Schwap 😎`, { reply: true })
       } else if (argss === 'utils' || argss === 'util') {
         await msg.send(`*_SCHWAP COMMANDS: UTILS_*
       
 
 ${prefix}help, ajuda: Lista dos meus comandos.
 ${prefix}calcular, math, c, calculator, calculadora: Resolve uma conta MATEMATICA.
-${prefix}botinfo, infobot: vê mais informações sobre mim.
+${prefix}botinfo, infobot, bot: vê mais informações sobre mim.
 ${prefix}contato, contact: pegue o contato dos meus desenvolvedores!
 ${prefix}ping, ms: Pong! Mostra o meu ping atual.
 ${prefix}sticker, s, figurinha: Faz uma figurinha com a foto/gif/video desejado.
+${prefix}prefix, prefixo: Muda o prefixo do bot no seu grupo. (Muda a forma de chamar, para mentes abertas)
 ${prefix}sugestao, ideia, sug: Mande uma sugestão que pode ajudar no desenvolvimento do bot, sem gracinha. (ban)
 
 
-Schwap 😎`)
-      } else if (argss === 'grupo' || argss === 'adm') {
+Schwap 😎`, { reply: true })
+      } else if (argss === 'grupo' || argss === 'mod') {
         await msg.send(`*_SCHWAP COMMANDS: MOD_*
       
 
 ${prefix}ban, remover, remove, kick, 'expulsar', 'kick': Bane o engraçadinho do seu grupo.
 ${prefix}everyone, all, mention, mentionall: Menciona todos de um grupo.
+${prefix}alert-disable, desativar-alerta: Desativa os alertas do seu servidor.
+${prefix}alert-enable, ativar-alerta: Ativa os alertas do seu servidor.
+${prefix}memberjoin, entrada: Sistema de boas vindas.
+${prefix}memberleave, saida: Sistema de saida.
+${prefix}panel, painel: Mostra os sistemas do bot.
+
 
 (Em breve mais comando, tem uma ideia? Não deixe de nos contar no !sugestao (mensagem))
-Schwap 😎`)
+Schwap 😎`, { reply: true })
       } else {
         await msg.send(`*_SCHWAP COMMANDS_*
 
 
 Use *${prefix}help fun ou diversao* para ter acesso a meus comandos de entreterimento.
 Use *${prefix}help utils ou util* para ter acesso a meus comandos utils.
-Use *${prefix}help grupo ou adm* para ter acesso a meus comandos de administrador (grupo).
+Use *${prefix}help grupo ou mod* para ter acesso a meus comandos de administrador (grupo).
 
 
-
-Schwap 😎`)
+Schwap 😎`, { reply: true })
       }
     } catch (err) {
       msg.zapFail(err)

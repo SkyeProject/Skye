@@ -17,7 +17,7 @@ module.exports = class CommandSay extends Command {
 
   execute ({ msg }) {
     try {
-      msg.send('Oi')
+      msg.send('Oi', { reply: true })
     } catch (err) {
       msg.zapFail(err)
     }

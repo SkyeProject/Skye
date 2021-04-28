@@ -3,11 +3,11 @@
 */
 
 const fetch = require('node-fetch')
-const config = require('./../../config')
 
 module.exports = class DiscordEmbed {
   constructor (options = {}) {
     this.EmbedBuilder = options
+    this._webhook = options.webhook || null
     this._title = options.title || null
     this._description = options.description || null
     this._fields = options.fields || []
@@ -17,6 +17,11 @@ module.exports = class DiscordEmbed {
     this._image = options.image || null
     this._author = options.author || null
     this._timestamp = options.timestamp || null
+  }
+
+  setWebhook (url) {
+    this._webhook = url
+    return this
   }
 
   setTitle (title) {
@@ -98,6 +103,6 @@ module.exports = class DiscordEmbed {
         }
       ]
     }
-    fetch(config.discord.webhookUrl, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(embed) })
+    fetch(this._webhook, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(embed) })
   }
 }

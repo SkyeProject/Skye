@@ -2,12 +2,15 @@ const { Collection } = require('@open-wa/wa-automate/dist/structures/Collector')
 const glob = require('glob')
 const path = require('path')
 const Spinnies = require('spinnies')
+const MongoDB = require('./modules/database/Mongodb')
+const { mongouri } = require('../../config.json')
 
 const spinnies = new Spinnies({ color: 'red', succeedColor: 'blue' })
 
 module.exports = class AtizapClient {
   constructor (atizap) {
     this.atizap = atizap
+    this.mongo = new MongoDB(mongouri)
     this.commands = new Collection()
     this.aliases = new Collection()
   }

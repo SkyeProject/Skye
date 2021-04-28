@@ -9,6 +9,8 @@
         }
     },
     "discord": {
-        "webhookUrl": "Discord webhook URL"  
-    }
+        "webhookUrlforCommands": "Discord webhook URL",
+        "webhookUrlforGroups": "Discord webhook URL 2"
+    },
+    "mongouri": "Mongo URI"
 }
