@@ -1,11 +1,11 @@
 const { zap, config } = require('../index')
 const DiscordEmbed = require('../config/modules/DiscordEmbedHook')
-const mongocreate = require('../config/modules/database/mongocreate')
+// const mongocreate = require('../config/modules/database/mongocreate')
 
 zap.atizap.onAddedToGroup(async (group) => {
   await zap.atizap.sendText(group.id, `🤗 | Olaa, muito obrigado por me adicionar! Utilize *${config.bot.prefix}help* para saber os meus comandos!!!`)
-  const doc = mongocreate.createGroupDoc(group.id)
-  await doc.save()
+  // const doc = mongocreate.createGroupDoc(group.id)
+  // await doc.save()
 
   const groupPic = await zap.atizap.getProfilePicFromServer(group.id)
   const owner = await zap.atizap.getContact(group.groupMetadata.owner)

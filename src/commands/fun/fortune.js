@@ -1,10 +1,10 @@
 const Command = require('../../config/Command')
 
-module.exports = class VidenteCommand extends Command {
+module.exports = class FortuneCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'vidente',
-      aliases: ['pergunta'],
+      name: 'fortune',
+      aliases: ['vidente', 'pergunta', 'psychic', 'fortuneteller'],
       category: 'fun',
       onlyGroup: false,
       groupAdmPermission: {
@@ -17,21 +17,10 @@ module.exports = class VidenteCommand extends Command {
 
   execute ({ msg, args }) {
     try {
-      const answer = ['Sim',
-        'Não',
-        'Talvez',
-        'Claro',
-        'Obvio!',
-        'Nunca',
-        'Jamais',
-        'Sei não em... Me parece marmelada',
-        'Melhor não',
-        'Claro que sim!',
-        'Obviamente Óbvio'
-      ]
+      const answer = require('../../config/games/fortune.json')
       if (!args[0]) return msg.send('Eita, você não fez nenhuma pergunta meu caro amigo!', { reply: true })
       const quest = args.join(' ')
-      const randomAnswer = answer[Math.floor((Math.random() * answer.length))]
+      const randomAnswer = answer[this.getRandomInt(0, Object.keys(answer).length)]
       msg.send(`_Pergunta_: *${quest}*\n_Resposta_: *${randomAnswer}*\n\n🔮 | Afonso, o vidente.`, { reply: true })
     } catch (err) {
       msg.zapFail(err)
