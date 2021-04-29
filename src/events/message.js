@@ -120,7 +120,7 @@ zap.atizap.onMessage(async (msg) => {
 
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
-    if (cooldown.has(msg.sender.id || msg.from)) return await msg.send('Aguarde um momento para usar outro comando!')
+    for (const set of cooldown) if (set.name === msg.sender.id || msg.from) return await msg.send(`Aguarde *${Math.floor((set.t - Date.now()) / 1000)}* segundos para poder executar outro comando!`)
     catchcommand(await msg.getContact(msg), msg)
     if (file.config.ownerOnly && !devsNumbers.includes(msg.getSenderNumber())) return
     if (file.config.onlyGroup && !msg.isGroupMsg) return await msg.send('Este comando só pode ser executado em grupos.')
@@ -128,8 +128,11 @@ zap.atizap.onMessage(async (msg) => {
     if (file.config.groupAdmPermission.bot && !msg.findUserInGroup(msg.botContact.me._serialized).isAdmin) return await msg.send('Eu preciso ser ADM do grupo para executar esse comando, pois eu não sou mágica.')
     file.amountTimes++
     file.execute({ msg, args, prefix, doc })
-    cooldown.add(msg.sender.id || msg.from)
+    cooldown.add({
+      name: msg.sender.id || msg.from,
+      t: Date.now() + 5000
+    })
     await sleep(5000)
-    cooldown.delete(msg.sender.id || msg.from)
+    cooldown.forEach(n => n.name === msg.sender.id || msg.from ? cooldown.delete(n) : n)
   }
 })

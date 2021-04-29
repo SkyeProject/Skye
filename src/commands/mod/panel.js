@@ -1,11 +1,13 @@
 const Command = require('../../config/Command')
 
-module.exports = class EveryoneCommand extends Command {
+module.exports = class PanelCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'panel',
       aliases: ['painel', 'sistemas', 'systems'],
       category: 'mod',
+      description: 'Veja as minhas configurações para o seu servidor!',
+      example: 'painel',
       onlyGroup: true,
       groupAdmPermission: {
         bot: false,
@@ -19,11 +21,18 @@ module.exports = class EveryoneCommand extends Command {
     try {
       return await msg.send(`Painel do bot
 
+
 Sistema de entrada: ${doc.welcome.activate ? '*ativado.*' : '*desativado.*'}
 mensagem: \`\`\`${doc.welcome.message}\`\`\`
 
 Sistema de saída: ${doc.byebye.activate ? '*ativado.*' : '*desativado.*'}
 mensagem: \`\`\`${doc.byebye.message}\`\`\`
+
+Prefixo atual: *${prefix}*
+Utilize *${prefix}prefix <novoprefixo>* para alterar o prefixo.
+
+Alertas: ${doc.options.alert ? '*ativado.*' : '*desativado.*'}
+
 
 Parâmetros: *{member}* (Menciona o usuário), 
 *{group}* (Diz o nome do grupo), 

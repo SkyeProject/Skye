@@ -1,11 +1,13 @@
 const Command = require('../../config/Command')
 
-module.exports = class EveryoneCommand extends Command {
+module.exports = class MemberJoinCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'memberjoin',
       aliases: ['entrada', 'boasvindas', 'bemvindo', 'bem-vindo', 'join', 'welcome'],
       category: 'mod',
+      description: 'Defina uma mensagem para que eu possa saudar novos membros!',
+      example: 'entrada',
       onlyGroup: true,
       groupAdmPermission: {
         bot: false,

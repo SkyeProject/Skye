@@ -6,6 +6,8 @@ module.exports = class TemplateCommand extends Command {
       name: 'template', // nome do comando
       aliases: ['t'], // aliases dele
       category: 'categoriaTop', // categoria
+      description: 'uma descrição bem daora aqui',
+      example: 'exemplo de como usa o bot',
       onlyGroup: false, // comando funciona somente para grupo?
       groupAdmPermission: { // pelamor, não invente de marcar true em alguma dessas 2 opções abaixo sem marcar o onlyGroup como true.
         bot: false, // o bot precisa de ADM no grupo?

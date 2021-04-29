@@ -4,8 +4,10 @@ module.exports = class RemoveCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'remove',
-      aliases: ['ban', 'expulsar', 'remover', 'kick'],
+      aliases: ['expulsar', 'ban', 'remover', 'kick', 'expulse'],
       category: 'mod',
+      description: 'Expulse alguém do grupo!',
+      example: 'expulsar @Demetrius',
       onlyGroup: true,
       groupAdmPermission: {
         bot: true,

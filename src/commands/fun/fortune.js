@@ -6,6 +6,8 @@ module.exports = class FortuneCommand extends Command {
       name: 'fortune',
       aliases: ['vidente', 'pergunta', 'psychic', 'fortuneteller'],
       category: 'fun',
+      description: 'Faça uma pergunta e o Afonso irá te responder!',
+      example: 'vidente vou ganhar na mega sena amanhã?',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

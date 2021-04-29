@@ -5,8 +5,10 @@ module.exports = class CanvasCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'rainbow',
-      aliases: ['lgbt', 'gay'],
+      aliases: ['lgbt', 'gay', 'arcoiris', 'arco-íris'],
       category: 'fun',
+      description: 'Deixe eu botar um filtro de arco-íris na sua foto ou do seu amigo!',
+      example: 'lgbt @Demetrius',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

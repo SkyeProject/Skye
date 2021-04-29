@@ -6,6 +6,8 @@ module.exports = class SuggestionCommand extends Command {
       name: 'suggestion',
       aliases: ['sugestao', 'sug', 'ideia', 'sugestão'],
       category: 'utils',
+      description: 'Mande uma sugestão para os nossos devs!',
+      example: 'sugestão Faz comando de ship ai admirrrrrrr!',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

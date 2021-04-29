@@ -6,6 +6,8 @@ module.exports = class AmongusCommand extends Command {
       name: 'amongus',
       aliases: ['impostor', 'among'],
       category: 'fun',
+      description: 'Quem é o impostor? Use o comando e eu irei descobrir quem é o impostor do grupo!',
+      example: 'amongus',
       onlyGroup: true,
       groupAdmPermission: {
         bot: false,

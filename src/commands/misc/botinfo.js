@@ -4,8 +4,10 @@ module.exports = class CommandSay extends Command {
   constructor (zap) {
     super(zap, {
       name: 'botinfo',
-      aliases: ['infobot', 'bot', 'info', 'sobreobot'],
+      aliases: ['sobreobot', 'bot', 'info', 'infobot'],
       category: 'misc',
+      description: 'Vê algumas informações técnicas sobre mim.',
+      example: 'botinfo',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

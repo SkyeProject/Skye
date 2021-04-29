@@ -6,6 +6,8 @@ module.exports = class DevPardonCommand extends Command {
       name: 'devpardon',
       aliases: ['devunban'],
       category: 'dev',
+      description: 'Comando utilizado para desbanir algum usuário do bot.',
+      example: 'devpardon 551140028922@c.us>',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,
@@ -18,15 +20,18 @@ module.exports = class DevPardonCommand extends Command {
   async execute ({ msg, args }) {
     try {
       if (!args[0]) return msg.send('Seu burro, vou desbanir quem?')
-      const exfdpUser = await msg.getContact(args[0])
-      const exfdp = await this.zap.mongo.Users.findById(exfdpUser.number)
-      if (!exfdp) return await msg.send('Este cara nem está no meu banco de dados, imagina banido então')
-      if (!exfdp.status.isBanned) return msg.send('Seu animal, este cara não está banido!')
-      exfdp.status.isBanned = false
-      exfdp.status.reason = undefined
-      await exfdp.save()
-      await this.zap.atizap.contactUnblock(exfdp._id)
-      await msg.send('Você foi desbanido e está livre pra me usar de volta!!! :))', { from: exfdp._id })
+      const user = await msg.getContact(args[0])
+
+      const docUser = await this.zap.mongo.Users.findById(user.number)
+      if (!docUser) return await msg.send('Este cara nem está no meu banco de dados, imagina banido então')
+      if (!docUser.status.isBanned) return msg.send('Seu animal, este cara não está banido!')
+
+      docUser.status.isBanned = false
+      docUser.status.reason = undefined
+
+      await docUser.save()
+      await this.zap.atizap.contactUnblock(docUser._id)
+      await msg.send('Você foi desbanido e está livre pra me usar de volta!!! :))', { from: docUser._id })
       msg.send('Beleza, ele foi desbanido!')
     } catch (err) {
       msg.zapFail(err)

@@ -7,8 +7,10 @@ module.exports = class HelpCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'help',
-      aliases: ['ajuda'],
+      aliases: ['ajuda', 'menu'],
       category: 'utils',
+      description: 'Descubra os comando do bot!',
+      example: 'ajuda',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,
@@ -20,67 +22,44 @@ module.exports = class HelpCommand extends Command {
 
   async execute ({ msg, prefix, args }) {
     try {
-      const argss = args[0]
-      if (argss === 'fun' || argss === 'diversao' || argss === 'diversão') {
-        await msg.send(`*_SCHWAP COMMANDS: FUN_*
-      
+      let helpText = `Menu de ajuda da *${msg.botContact.pushname}*!!\n\n`
+      if (!args[0]) helpText += 'Categorias:\n\n'
 
-${prefix}amongus, among, impostor: Quem é o impostor?
-${prefix}email, e: Mande um email anonimo pra alguem.
-${prefix}hi, oi: Vou mandar um oi pra você. :3
-${prefix}liberado, pode, podenogrupo: Isso está liberado no grupo/pv?
-${prefix}neko, kwaii, gata: Mando uma neko pra você. ≧ω≦ 
-${prefix}rainbow, lgbt, gay: Que tal dar uma colorida na sua foto?
-${prefix}roll, dado: Sorteio um numéro aleatorio.
-${prefix}ship, amor: Calcula o amor de duas pessoas. ≧﹏≦ 
-${prefix}hug, abraco, abracar: Abrace alguem!
-${prefix}tod, vddoudsf, verdadeoudesafio: Verdade ou desafio? Jogue com seus amigos!
-${prefix}vidente, pergunta: Faça uma pergunta pro Afonso, o vidente.
-${prefix}tot, thisorthat, issoouaquilo, ioa, aquiloououtro, aquilo: Sorteio isso, ou aquilo
+      this.zap.commands.forEach(cmd => {
+        if (args[0] && cmd.config.category !== 'dev') {
+          const param = args[0].toLowerCase()
+          if (param === cmd.config.category) {
+            helpText += `${prefix}${cmd.config.aliases[0]}\n`
+          }
+          if (param === cmd.config.name || cmd.config.aliases.includes(param)) {
+            helpText += `=========================
+Comando de *${cmd.config.name}*
 
+Descrição: *${cmd.config.description}*
 
-Schwap 😎`, { reply: true })
-      } else if (argss === 'utils' || argss === 'util') {
-        await msg.send(`*_SCHWAP COMMANDS: UTILS_*
-      
+Exemplo de uso: *${prefix}${cmd.config.example}*
 
-${prefix}help, ajuda: Lista dos meus comandos.
-${prefix}calcular, math, c, calculator, calculadora: Resolve uma conta MATEMATICA.
-${prefix}botinfo, infobot, bot: vê mais informações sobre mim.
-${prefix}contato, contact: pegue o contato dos meus desenvolvedores!
-${prefix}ping, ms: Pong! Mostra o meu ping atual.
-${prefix}sticker, s, figurinha: Faz uma figurinha com a foto/gif/video desejado.
-${prefix}prefix, prefixo: Muda o prefixo do bot no seu grupo. (Muda a forma de chamar, para mentes abertas)
-${prefix}sugestao, ideia, sug: Mande uma sugestão que pode ajudar no desenvolvimento do bot, sem gracinha. (ban)
+Funciona somente para grupo: ${cmd.config.onlyGroup ? '*Sim*' : '*Não*'}
 
+O bot precisa de ADM: ${cmd.config.groupAdmPermission.bot ? '*Sim*' : '*Não*'}
+E o usuário, precisa de ADM: ${cmd.config.groupAdmPermission.user ? '*Sim*' : '*Não*'}
 
-Schwap 😎`, { reply: true })
-      } else if (argss === 'grupo' || argss === 'mod') {
-        await msg.send(`*_SCHWAP COMMANDS: MOD_*
-      
-
-${prefix}ban, remover, remove, kick, 'expulsar', 'kick': Bane o engraçadinho do seu grupo.
-${prefix}everyone, all, mention, mentionall: Menciona todos de um grupo.
-${prefix}alert-disable, desativar-alerta: Desativa os alertas do seu servidor.
-${prefix}alert-enable, ativar-alerta: Ativa os alertas do seu servidor.
-${prefix}memberjoin, entrada: Sistema de boas vindas.
-${prefix}memberleave, saida: Sistema de saida.
-${prefix}panel, painel: Mostra os sistemas do bot.
-
-
-(Em breve mais comando, tem uma ideia? Não deixe de nos contar no !sugestao (mensagem))
-Schwap 😎`, { reply: true })
-      } else {
-        await msg.send(`*_SCHWAP COMMANDS_*
-
-
-Use *${prefix}help fun ou diversao* para ter acesso a meus comandos de entreterimento.
-Use *${prefix}help utils ou util* para ter acesso a meus comandos utils.
-Use *${prefix}help grupo ou mod* para ter acesso a meus comandos de administrador (grupo).
-
-
-Schwap 😎`, { reply: true })
-      }
+Outras formas de chamar o comando:
+*${cmd.config.name + ', ' + cmd.config.aliases.join(', ')}*
+=========================`
+          }
+          if (param === 'geral' || param === 'all') {
+            if (!helpText.includes(cmd.config.category)) helpText += `===============\n*Comandos da categoria: ${cmd.config.category}*\n===============\n`
+            helpText += `${prefix}${cmd.config.aliases[0]}\n`
+          }
+        } else if (!helpText.includes(cmd.config.category) && cmd.config.category !== 'dev') {
+          helpText += `${prefix}ajuda *${cmd.config.category}*\n`
+        }
+      })
+      if (helpText === `Menu de ajuda da *${msg.botContact.pushname}*!!\n\n`) helpText += `Não obtive nenhum resultado com o parâmetro *${args[0]}*.\n`
+      helpText += `\nUse *${prefix}ajuda <nome do comando>* para mais detalhes sobre ele.\n`
+      helpText += `\nPara visualizar todos os comandos, use *${prefix}ajuda geral*`
+      await msg.send(helpText, { reply: true })
     } catch (err) {
       msg.zapFail(err)
     }

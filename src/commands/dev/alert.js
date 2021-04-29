@@ -1,4 +1,3 @@
-// fiz esse comando em 3 minutos pq o demetrius pediu, então não sei se ta funfando pq eu não cheguei a testar só fiz mesmo e lancei
 const { config } = require('../..')
 const Command = require('../../config/Command')
 
@@ -8,6 +7,8 @@ module.exports = class AlertCommand extends Command {
       name: 'alert',
       aliases: ['alerta'],
       category: 'dev',
+      description: 'Comando usado para mandar um alerta para todos os grupo.',
+      example: 'alerta alo alo alo tão me ouvindo?',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

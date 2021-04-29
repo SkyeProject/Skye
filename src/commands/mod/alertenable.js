@@ -1,11 +1,13 @@
 const Command = require('../../config/Command')
 
-module.exports = class EveryoneCommand extends Command {
+module.exports = class AlertEnableCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'alert-enable',
       aliases: ['ativar-alerta', 'enable-alert', 'alertenable', 'enablealert', 'alertaativar'],
       category: 'mod',
+      description: 'Ative o alerta novamente caso tenha desativado.',
+      example: 'ativar-alerta',
       onlyGroup: true,
       groupAdmPermission: {
         bot: false,

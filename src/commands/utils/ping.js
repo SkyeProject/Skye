@@ -4,8 +4,10 @@ module.exports = class PingCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'ping',
-      aliases: ['ms'],
+      aliases: ['pingbot', 'ms'],
       category: 'utils',
+      description: 'Veja o ping do bot.',
+      example: 'ping',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

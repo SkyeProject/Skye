@@ -4,9 +4,11 @@ const Command = require('../../config/Command')
 module.exports = class CalculatorCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'calcular',
-      aliases: ['math', 'c', 'calculator', 'calculadora'],
+      name: 'calculator',
+      aliases: ['calcular', 'math', 'c', 'calculator', 'calculadora'],
       category: 'utils',
+      description: 'Faça cálculos simples! (Cálculos complexos não são suportados!)',
+      example: '20 x 30',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

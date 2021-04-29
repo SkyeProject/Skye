@@ -7,6 +7,8 @@ module.exports = class PatCommand extends Command {
       name: 'pat',
       aliases: ['carinho', 'acariciar'],
       category: 'fun',
+      description: 'Dê um carinho bem fofinho em alguém!',
+      example: 'carinho @MrRexD',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

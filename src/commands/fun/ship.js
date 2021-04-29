@@ -5,8 +5,10 @@ module.exports = class ShipCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'ship',
-      aliases: ['amor'],
+      aliases: ['casal', 'amor'],
       category: 'fun',
+      description: 'Deixe eu calcular o amor de duas pessoas que você mencionar e ver se dá um casal perfeito!',
+      example: 'ship @MrRexD @Demetrius',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

@@ -4,8 +4,10 @@ module.exports = class PrefixCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'prefix',
-      aliases: ['setprefix', 'prefixo', 'prefixset', 'setprefixo'],
+      aliases: ['prefixo', 'setprefix', 'prefixset', 'setprefixo'],
       category: 'utils',
+      description: 'Veja ou mude o prefixo do bot em seu servidor.',
+      example: 'prefix $',
       onlyGroup: true,
       groupAdmPermission: {
         bot: false,

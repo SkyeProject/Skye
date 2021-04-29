@@ -7,6 +7,8 @@ module.exports = class DevBanCommand extends Command {
       name: 'devban',
       aliases: [],
       category: 'dev',
+      description: 'Comando usar para banir usuários indesejados do bot.',
+      example: 'devban 551140028922@c.us>',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,
@@ -19,21 +21,21 @@ module.exports = class DevBanCommand extends Command {
   async execute ({ msg, args }) {
     try {
       if (!args[0]) return await msg.send('Seu burro, vou banir quem?')
-      const fdpUser = await msg.getContact(args[0])
+      const user = await msg.getContact(args[0])
 
-      let fdp = await this.zap.mongo.Users.findById(fdpUser.number)
-      if (!fdp) fdp = mongocreate.createUserDoc(fdpUser.number)
+      let docUser = await this.zap.mongo.Users.findById(user.number)
+      if (!docUser) docUser = mongocreate.createUserDoc(user.number)
+      if (docUser.status.isBanned) return await msg.send(`Você já baniu ele por este motivo:\n\n*${docUser.status.reason}*`)
 
-      if (fdp.status.isBanned) return await msg.send(`Você já baniu ele por este motivo:\n\n*${fdp.status.reason}*`)
       this.removeItem(args, args[0])
       const reason = args[0] ? args.join(' ') : 'Motivo não especificado.'
 
-      fdp.status.isBanned = true
-      fdp.status.reason = reason
+      docUser.status.isBanned = true
+      docUser.status.reason = reason
 
-      await fdp.save()
-      await msg.send(`Você foi banido de me usar!\n\nMotivo: *${reason}*`, { from: fdp._id })
-      await this.zap.atizap.contactBlock(fdp._id)
+      await docUser.save()
+      await docUser.send(`Você foi banido de me usar!\n\nMotivo: *${reason}*`, { from: docUser._id })
+      await this.zap.atizap.contactBlock(docUser._id)
       await msg.send('Beleza, ele foi banido!')
     } catch (err) {
       msg.zapFail(err)

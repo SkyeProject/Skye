@@ -4,8 +4,10 @@ module.exports = class EveryoneCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'everyone',
-      aliases: ['all', 'mention', 'mentionall'],
+      aliases: ['todos', 'mention', 'mentionall', 'allmention'],
       category: 'mod',
+      description: 'Marque todo mundo do seu grupo!',
+      example: 'todos',
       onlyGroup: true,
       groupAdmPermission: {
         bot: false,

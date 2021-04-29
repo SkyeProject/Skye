@@ -5,8 +5,10 @@ module.exports = class StickerCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'sticker',
-      aliases: ['s', 'figurinha'],
+      aliases: ['figurinha', 's'],
       category: 'utils',
+      description: 'Deixe-me fazer um sticker com alguma foto/gif/vídeo que tu me mandar! (As vezes pode bugar!)',
+      example: 'sticker <arquivo>',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

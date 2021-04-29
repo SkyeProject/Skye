@@ -5,6 +5,8 @@ module.exports = class Commands {
       name: options.name || null,
       aliases: options.aliases || [],
       category: options.category || null,
+      description: options.description || null,
+      example: options.example || null,
       onlyGroup: options.onlyGroup || false,
       groupAdmPermission: {
         bot: options.groupAdmPermission.bot || false,

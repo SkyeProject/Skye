@@ -6,6 +6,8 @@ module.exports = class TodCommand extends Command {
       name: 'tod',
       aliases: ['vddoudsf', 'verdadeoudesafio'],
       category: 'fun',
+      description: 'Verdade ou desafio? Jogue com seus amigos!',
+      example: 'vddoudsf',
       onlyGroup: true,
       groupAdmPermission: {
         bot: false,

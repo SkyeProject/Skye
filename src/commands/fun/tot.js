@@ -4,8 +4,10 @@ module.exports = class TotCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'tot',
-      aliases: ['thisorthat', 'issoouaquilo', 'ioa', 'aquiloououtro', 'aquilo'],
+      aliases: ['issoouaquilo', 'thisorthat', 'ioa', 'aquiloououtro', 'aquilo'],
       category: 'fun',
+      description: 'Diga duas coisas e eu irei sortear um para você!',
+      example: 'issoouaquilo gato cachorro',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,

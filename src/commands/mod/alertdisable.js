@@ -1,11 +1,13 @@
 const Command = require('../../config/Command')
 
-module.exports = class EveryoneCommand extends Command {
+module.exports = class AlertDisableCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'alert-disable',
       aliases: ['desativar-alerta', 'disable-alert', 'alertdisable', 'disablealert', 'alertadesativar'],
       category: 'mod',
+      description: 'Desative o alerta caso não queira mais receber notas de atualizações no seu servidor.',
+      example: 'desativar-alerta',
       onlyGroup: true,
       groupAdmPermission: {
         bot: false,
