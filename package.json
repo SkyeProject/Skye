@@ -26,6 +26,7 @@
     "canvacord": "^5.2.0",
     "canvas": "^2.7.0",
     "glob": "^7.1.6",
+    "google-it": "^1.6.2",
     "mathjs": "^9.3.2",
     "moment-timezone": "^0.5.33",
     "mongoose": "^5.12.7",
