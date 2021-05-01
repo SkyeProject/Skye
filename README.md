@@ -37,7 +37,7 @@ $ npm install
 $ node .
 ```
 ## Contribuições
-- Você está livre para fazer novos comandos para a Skye, para isso exite um [template](https://github.com/SkyeProject/Skye/blob/main/src/commands/template.js) para você entender melhor como funciona.
+- Você está livre para fazer novos comandos para a Skye, para isso existe um [template](https://github.com/SkyeProject/Skye/blob/main/src/commands/template.js) para você entender melhor como funciona.
 - Caso você encontre uma falha ou algo que possa ser melhorado, não hesite em melhorar e nos mandar um **pull request**! 
 Nós estamos sempre buscando por melhorias e estabilidade para a Skye.
 

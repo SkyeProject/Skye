@@ -24,8 +24,7 @@ zap.atizap.onMessage(async (msg) => {
 você foi bloqueado por suspeitas de travazap, se o block foi injusto, favor contatar um dos nossos donos.\n\n` + zapNumber.join('\n'))
         await zap.atizap.contactBlock(msg.from)
         await zap.atizap.deleteChat(msg.from)
-        let doc = await zap.mongo.Users.findById(msg.from)
-        if (!doc) doc = await mongocreate.createUserDoc()
+        const doc = await zap.mongo.Users.findById(msg.from) || mongocreate.createUserDoc(msg.from)
         doc.status.isBanned = true
         doc.status.reason = 'Tentou me mandar trava.'
         await doc.save()
