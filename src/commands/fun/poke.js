@@ -23,8 +23,8 @@ module.exports = class PokeCommand extends Command {
       const pokeimage = (await superagent.get('https://nekos.life/api/v2/img/poke')).body
       const me = await msg.getContact(msg.sender.id)
       if (!args[0]) {
-        msg.send(`${me.username} se cutucou!`, { reply: true })
-        return await msg.sendSticker(pokeimage.url, null)
+        msg.send(`Cutuquei o ${me.username}`, { reply: true })
+        return await msg.sendSticker(pokeimage.url, false)
       } else {
         const mentioned = await msg.getContact(args[0].replace('@', ''))
         msg.send(`${me.username} cutucou ${mentioned.username}!`, { reply: true })
