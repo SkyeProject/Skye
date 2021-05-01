@@ -19,15 +19,13 @@ module.exports = class EveryoneCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
-      const members = await this.zap.atizap.getGroupMembers(msg.chat.groupMetadata.id)
+      const members = this.getAllMembersNumbers(msg, true)
       let everyoneMessage = args[0] ? `${args.join(' ')}\n\n` : `Marcando todos a pedido de: @${msg.sender.id}` + '\n\n'
-
-      for (let i = 0; i < members.length; i++) everyoneMessage += `- @${members[i].id.replace(/@c.us/g, '')} -\n`
-      everyoneMessage += '\n------------BOT SCHWAP 😎------------'
-
-      msg.send(everyoneMessage, { mention: true })
+      for (let i = 0; i < members.length; i++) everyoneMessage += `- @${members[i]} -\n`
+      everyoneMessage += `\n------------ ${msg.botContact.pushname} 😎 ------------`
+      await msg.send(everyoneMessage, { mention: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

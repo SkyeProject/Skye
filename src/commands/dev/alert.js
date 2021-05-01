@@ -30,7 +30,7 @@ module.exports = class AlertCommand extends Command {
         }
       })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

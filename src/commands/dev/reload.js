@@ -19,7 +19,7 @@ module.exports = class ReloadCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
-      if (!args[0]) return msg.send('Você não disse o comando burro', { reply: true })
+      if (!args[0]) return await msg.send('Você não disse o comando burro', { reply: true })
       const cmdfind = args[0].toLowerCase()
 
       const cmdreload = this.zap.commands.get(cmdfind) || this.zap.commands.get(this.zap.aliases.get(cmdfind))
@@ -29,9 +29,9 @@ module.exports = class ReloadCommand extends Command {
       const Cmd = require(`../${cmdreload.config.category}/${cmdreload.config.name}.js`)
       const newcmd = new Cmd(this.zap)
       this.zap.commands.set(newcmd.config.name, newcmd)
-      msg.send(`O comando *${newcmd.config.name}* foi atualizado com sucesso!`, { reply: true })
+      await msg.send(`O comando *${newcmd.config.name}* foi atualizado com sucesso!`, { reply: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

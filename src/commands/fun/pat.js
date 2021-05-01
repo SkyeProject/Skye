@@ -23,15 +23,15 @@ module.exports = class PatCommand extends Command {
       const patGif = (await superagent.get('https://nekos.life/api/v2/img/pat')).body
       const me = msg.sender.pushname
       if (!args[0]) {
-        msg.send(`Quer carinho ${me}? Eu dou! ❤️`, { reply: true })
-        return this.zap.atizap.sendImageAsSticker(msg.from, patGif.url, null)
+        await msg.send(`Quer carinho ${me}? Eu dou! ❤️`, { reply: true })
+        return await msg.sendSticker(patGif.url, false)
       } else {
-        const args0 = await msg.getContact(args[0].replace('@', ''))
-        msg.send(`${me} deu aquele carinho fofinho em ${args0.username}! :3`, { reply: true })
-        this.zap.atizap.sendImageAsSticker(msg.from, patGif.url, null)
+        const mentioned = await msg.getContact(args[0].replace('@', ''))
+        await msg.send(`${me} deu aquele carinho fofinho em ${mentioned.username}! :3`, { reply: true })
+        await msg.sendSticker(patGif.url, false)
       }
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

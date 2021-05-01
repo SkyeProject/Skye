@@ -2,7 +2,7 @@ const { create, Client } = require('@open-wa/wa-automate')
 const AtizapClient = require('./config/AtizapClient')
 const config = require('../config.json')
 
-create().then((atizap) => start(atizap))
+create(config.bot.settings).then((atizap) => start(atizap))
 
 const start = async (atizap = new Client()) => {
   const zap = new AtizapClient(atizap)

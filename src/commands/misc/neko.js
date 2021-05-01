@@ -22,9 +22,9 @@ module.exports = class NekoCommand extends Command {
     try {
       const nekoimage = (await superagent.get('https://nekos.life/api/v2/img/neko')).body
       const nekotext = (await superagent.get('https://nekos.life/api/v2/cat')).body
-      msg.sendImage(nekoimage.url, nekotext.cat)
+      await msg.sendImage(nekoimage.url, nekotext.cat)
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

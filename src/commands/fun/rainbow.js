@@ -24,9 +24,9 @@ module.exports = class CanvasCommand extends Command {
       if (args[0]) usernumber = args[0].replace('@', '') + '@c.us'
       const user = await msg.getContact(usernumber)
       const rainbow = await Canvacord.Canvas.rainbow(user.avatar)
-      msg.sendImage(`data:image/png;base64,${rainbow.toString('base64')}`)
+      await msg.sendImage(`data:image/png;base64,${rainbow.toString('base64')}`)
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

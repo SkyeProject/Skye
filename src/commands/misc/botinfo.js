@@ -32,7 +32,7 @@ module.exports = class CommandSay extends Command {
       allGroups.forEach(group => {
         allUsers.push(group.participantsCount - 1)
       })
-      msg.send(`*Informações sobre mim!*
+      await msg.send(`*Informações sobre mim!*
 
 😎 | Criadores: MrRexD#0620 & demetrius#0620 (digite !contato para ver o número deles)
 🌎 | Grupos: *${allGroups.length}*
@@ -44,7 +44,7 @@ module.exports = class CommandSay extends Command {
 ✉️ | Já foram executados *${mostUsedCommands.reduce((a, b) => a + b.used, 0)}* comandos desde a hora que eu acordei!
 😴 | Acordada à: *${this.uptime()}*`, { reply: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

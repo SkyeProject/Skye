@@ -1,15 +1,33 @@
 {
     "bot": {
-        "prefix": "!"
+        "prefix": "!",
+        "settings": {
+            "sessionId": "Skye",
+            "headless": true,
+            "cacheEnabled": false,
+            "useChrome": true,
+            "killProcessOnBrowserClose": true,
+            "throwErrorOnTosBlock": false,
+            "chromiumArgs": [
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--aggressive-cache-discard",
+                "--disable-cache",
+                "--disable-application-cache",
+                "--disable-offline-load-stale-cache",
+                "--disk-cache-size=0"
+            ]
+        }
     },
     "devs": {
         "contacts": {
-            "yudi" : "551140028922",
+            "yudi": "551140028922",
             "priscilla": "553389224001"
         }
     },
     "discord": {
-        "webhookUrlforCommands": "Discord webhook URL",
+        "enable": true,
+        "webhookUrlforCommands": "Discord webhook URL (Caso não for usar, marque o 'enable' e aí não precisa preencher nada aqui)",
         "webhookUrlforGroups": "Discord webhook URL 2"
     },
     "mongouri": "Mongo URI"

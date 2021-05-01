@@ -23,9 +23,9 @@ module.exports = class PrefixCommand extends Command {
       if (args[0].length > 3) return msg.send('Prefixo muito grande! Por favor, escolha até 2 caracteres.')
       doc.prefix = args[0].toLowerCase()
       await msg.send(`Muito bem, agora o meu prefixo é *${doc.prefix}* :)`)
-      doc.save()
+      await doc.save()
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

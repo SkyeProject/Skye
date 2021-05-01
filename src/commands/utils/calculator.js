@@ -18,7 +18,7 @@ module.exports = class CalculatorCommand extends Command {
     })
   }
 
-  execute ({ msg, args }) {
+  async execute ({ msg, args }) {
     try {
       if (!args[0]) {
         return msg.send(`Você não especificou uma conta matematica.\n
@@ -29,12 +29,12 @@ Utilize "*/*" para dividir
 Utilize "*%*" para porcentagem`, { reply: true })
       }
       let c = args.join('')
-      c = c.includes('x') ? c.replace(/x/g, '*') : c
-      c = c.includes('÷') ? c.replace(/÷/g, '/') : c
-      c = c.includes('×') ? c.replace(/×/g, '*') : c
-      msg.send(`${c} = ${math.evaluate(c)}`, { reply: true })
+      c = c.replace(/x/g, '*')
+      c = c.replace(/÷/g, '/')
+      c = c.replace(/×/g, '*')
+      await msg.send(`${c} = ${math.evaluate(c)}`, { reply: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

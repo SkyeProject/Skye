@@ -17,16 +17,16 @@ module.exports = class TotCommand extends Command {
     })
   }
 
-  async execute ({ msg, args }) {
+  async execute ({ msg, args, prefix }) {
     try {
-      if (!args[1]) return msg.send('Como funciona esse comando: Basicamente, você manda dois argumentos, Ex.: !tot Gato Cachorro. Eu irei sortear os dois e mandar no chat qual foi o sorteado!', { reply: true })
+      if (!args[1]) return await msg.send(`Faltou você tacar 2 argumentos!\n\nEx: *${prefix}tot Gato Cachorro*. Eu irei sortear os dois e mandar no chat qual foi o sorteado!`, { reply: true })
       this.removeItem(args, '+')
       this.removeItem(args, 'e')
       this.removeItem(args, 'ou')
       const that = this.getRandomValueInArray(args, 1)
-      msg.send(`Entre *${args[0]}* e *${args[1]}*, eu escolho ${that}!`, { reply: true })
+      await msg.send(`Entre *${args[0]}* e *${args[1]}*, eu escolho ${that}!`, { reply: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

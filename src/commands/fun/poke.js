@@ -24,14 +24,14 @@ module.exports = class PokeCommand extends Command {
       const me = await msg.getContact(msg.sender.id)
       if (!args[0]) {
         msg.send(`${me.username} se cutucou!`, { reply: true })
-        return this.zap.atizap.sendImageAsSticker(msg.from, pokeimage.url, null)
+        return await msg.sendSticker(pokeimage.url, null)
       } else {
-        const args0 = await msg.getContact(args[0].replace('@', ''))
-        msg.send(`${me.username} cutucou ${args0.username}!`, { reply: true })
-        this.zap.atizap.sendImageAsSticker(msg.from, pokeimage.url, null)
+        const mentioned = await msg.getContact(args[0].replace('@', ''))
+        msg.send(`${me.username} cutucou ${mentioned.username}!`, { reply: true })
+        await msg.sendSticker(pokeimage.url, false)
       }
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

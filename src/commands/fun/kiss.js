@@ -24,14 +24,14 @@ module.exports = class KissCommand extends Command {
       const me = await msg.getContact(msg.sender.id)
       if (!args[0]) {
         msg.send(`Um beijão para o/a ${me.username}! ❤️`, { reply: true })
-        return this.zap.atizap.sendImageAsSticker(msg.from, kissimage.url, null)
+        return await msg.sendSticker(kissimage.url, false)
       } else {
-        const args0 = await msg.getContact(args[0].replace('@', ''))
-        msg.send(`${me.username} deu aquele beijão no ${args0.username}`, { reply: true })
-        this.zap.atizap.sendImageAsSticker(msg.from, kissimage.url, null)
+        const mentioned = await msg.getContact(args[0].replace('@', ''))
+        msg.send(`${me.username} deu aquele beijão no ${mentioned.username}`, { reply: true })
+        return await msg.sendSticker(kissimage.url, false)
       }
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

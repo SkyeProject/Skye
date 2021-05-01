@@ -17,15 +17,15 @@ module.exports = class PingCommand extends Command {
     })
   }
 
-  execute ({ msg }) {
+  async execute ({ msg }) {
     try {
       const oldDate = Date.now()
-      this.zap.atizap.sendText(msg.from, 'Pingando...').then((m) => {
-        msg.send(`${Date.now() - oldDate}ms`, { reply: true })
-        this.zap.atizap.deleteMessage(msg.from, m)
+      this.zap.atizap.sendText(msg.from, 'Pingando...').then(async (m) => {
+        await msg.send(`${Date.now() - oldDate}ms`, { reply: true })
+        await this.zap.atizap.deleteMessage(msg.from, m)
       })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

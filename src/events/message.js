@@ -12,8 +12,13 @@ zap.atizap.onMessage(async (msg) => {
 
   if (!doc && msg.isGroupMsg) doc = mongocreate.createGroupDoc(msg.from)
   if (!doc) doc = mongocreate.createUserDoc(msg.from)
+
   const prefix = doc.prefix || config.bot.prefix
-  if (!msg.content.toLowerCase().startsWith(prefix)) return
+
+  if (!msg.content.toLowerCase().startsWith(prefix)) {
+    if (!msg.isGroupMsg) return await zap.atizap.sendText(msg.from, `Olaa :) Use ${prefix}ajuda para saber os meus comandos!`)
+    return
+  }
 
   const args = msg.content.slice(prefix.length).trim().split(/ +/)
   const cmd = args.shift().toLowerCase()
@@ -34,6 +39,7 @@ zap.atizap.onMessage(async (msg) => {
       if (args.from) from = args.from
       if (args.reply) return await zap.atizap.reply(from, message, msg.id)
       if (args.mention) return await zap.atizap.sendTextWithMentions(from, message)
+      if (args.youtube) return await zap.atizap.sendYoutubeLink(from, message)
     }
     return await zap.atizap.sendText(from, message)
   }
@@ -45,7 +51,7 @@ zap.atizap.onMessage(async (msg) => {
   }
 
   msg.sendSticker = (Base64, boolean) => {
-    const errortext = 'Não foi possível transformar o arquivo por um sticker. Se por acaso você estiver enviando um vídeo, na hora de enviar selecione a opção "gif".\nhttps://is.gd/aJNpv7'
+    const errortext = 'Não foi possível transformar o arquivo em um sticker. Se por acaso você estiver enviando um vídeo, na hora de enviar selecione a opção "gif".\nhttps://is.gd/aJNpv7'
     switch (boolean) {
       case false:
         zap.atizap.sendImageAsSticker(msg.from, Base64, { author: `+${msg.botContact.me.user}`, pack: msg.botContact.pushname, keepScale: true })
@@ -53,7 +59,7 @@ zap.atizap.onMessage(async (msg) => {
         break
 
       case true:
-        zap.atizap.sendMp4AsSticker(msg.from, Base64, null, { author: `+${msg.botContact.me.user}`, pack: msg.botContact.pushname, startTime: '00:00:00.0', endTime: '00:00:06.0' })
+        zap.atizap.sendMp4AsSticker(msg.from, Base64, null, { stickerMetadata: true, author: `+${msg.botContact.me.user}`, pack: msg.botContact.pushname, startTime: '00:00:00.0', endTime: '00:00:06.0' })
           .catch(e => { msg.zapFail(errortext + '\n\n' + e) })
         break
     }
@@ -121,7 +127,7 @@ zap.atizap.onMessage(async (msg) => {
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
     // for (const set of cooldown) if (set.name === msg.sender.id || msg.from) return await msg.send(`Aguarde *${Math.floor((set.t - Date.now()) / 1000)}* segundos para poder executar outro comando!`)
-    catchcommand(await msg.getContact(msg), msg)
+    if (config.discord.enable) catchcommand(await msg.getContact(msg), msg)
     if (file.config.ownerOnly && !devsNumbers.includes(msg.getSenderNumber())) return
     if (file.config.onlyGroup && !msg.isGroupMsg) return await msg.send('Este comando só pode ser executado em grupos.')
     if (file.config.groupAdmPermission.user && !msg.findUserInGroup(msg.sender.id).isAdmin) return await msg.send('Você não é ADM do grupo, que pena!')
@@ -136,14 +142,5 @@ zap.atizap.onMessage(async (msg) => {
     await sleep(5000)
     cooldown.forEach(n => n.name === msg.sender.id || msg.from ? cooldown.delete(n) : n)
     */
-  }
-  msg.sendYoutube = async (message, ...args) => {
-    let from = msg.from
-    args = args[0]
-    if (args) {
-      if (args.from) from = args.from
-      if (args.reply) return await zap.atizap.reply(from, message, msg.id)
-    }
-    return await zap.atizap.sendYoutubeLink(from, message)
   }
 })

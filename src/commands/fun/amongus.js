@@ -27,9 +27,9 @@ module.exports = class AmongusCommand extends Command {
       let randomText = text[this.getRandomInt(0, Object.keys(text).length)]
       randomText = randomText.replace(/{a}/g, '@' + a)
       randomText = randomText.replace(/{b}/g, '@' + b)
-      this.zap.atizap.sendTextWithMentions(msg.from, randomText)
+      await msg.send(randomText, { mention: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

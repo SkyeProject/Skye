@@ -24,14 +24,14 @@ module.exports = class SlapCommand extends Command {
       const me = await msg.getContact(msg.sender.id)
       if (!args[0]) {
         msg.send(`${me.username} se bateu! :(`, { reply: true })
-        return this.zap.atizap.sendImageAsSticker(msg.from, slapimage.url, null)
+        return await msg.sendSticker(slapimage.url, false)
       } else {
         const args0 = await msg.getContact(args[0].replace('@', ''))
         msg.send(`${me.username} deu um tapão no ${args0.username}! Essa doeu...`, { reply: true })
-        this.zap.atizap.sendImageAsSticker(msg.from, slapimage.url, null)
+        await msg.sendSticker(slapimage.url, false)
       }
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

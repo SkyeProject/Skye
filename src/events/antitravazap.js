@@ -9,6 +9,7 @@ const mongocreate = require('../config/modules/database/mongocreate')
 zap.atizap.onMessage(async (msg) => {
   if (msg.isGroupMsg) return
   msg.content = msg.caption || msg.body
+  if (!msg.content) return
   for (const user of delay) {
     if (user.number === msg.from) {
       const t = Date.now()

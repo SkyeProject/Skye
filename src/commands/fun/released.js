@@ -22,11 +22,11 @@ module.exports = class ReleasedCommand extends Command {
       const message = args.join(' ')
       const text = require('../../config/games/released.json')
       const randomText = text[this.getRandomInt(0, Object.keys(text).length)]
-      if (!message) return msg.send('Não sei se ta liberado, até porquê você não colocou nada (!liberado mensagem)', { reply: true })
-      if (!msg.isGroupMsg) msg.send(`Ta liberado *${message}* no pv?\n\nA Resposta é: *${randomText}*!`, { reply: true })
-      else msg.send(`Ta liberado *${message}* no grupo?\n\nA Resposta é: *${randomText}*!`, { reply: true })
+      if (!message) return await msg.send('Não sei se ta liberado, até porquê você não colocou nada (!liberado mensagem)', { reply: true })
+      if (!msg.isGroupMsg) await msg.send(`Ta liberado *${message}* no pv?\n\nA Resposta é: *${randomText}*!`, { reply: true })
+      else await msg.send(`Ta liberado *${message}* no grupo?\n\nA Resposta é: *${randomText}*!`, { reply: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

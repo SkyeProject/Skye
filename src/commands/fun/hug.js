@@ -21,17 +21,17 @@ module.exports = class HugCommand extends Command {
   async execute ({ msg, args }) {
     try {
       const nekoimage = (await superagent.get('https://nekos.life/api/v2/img/hug')).body
-      const me = msg.sender.pushname
+      const me = (await msg.getContact(msg.sender.id)).username
       if (!args[0]) {
-        msg.send(`Abracei bem forte o ${me}! ❤️`, { reply: true })
-        return this.zap.atizap.sendImageAsSticker(msg.from, nekoimage.url, null)
+        await msg.send(`Abraçei bem forte o ${me}! ❤️`, { reply: true })
+        return await msg.sendSticker(nekoimage.url, false)
       } else {
-        const args0 = await msg.getContact(args[0].replace('@', ''))
-        msg.send(`${me} deu aquele abraço em ${args0.username}`, { reply: true })
-        this.zap.atizap.sendImageAsSticker(msg.from, nekoimage.url, null)
+        const mentioned = await msg.getContact(args[0].replace('@', ''))
+        await msg.send(`${me} deu aquele abraço em ${mentioned.username}`, { reply: true })
+        await msg.sendSticker(nekoimage.url, false)
       }
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

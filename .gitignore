@@ -108,3 +108,5 @@ config.json
 
 # extras
 session.data.json
+Skye.data.json
+.node-persist/

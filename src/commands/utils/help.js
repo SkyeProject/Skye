@@ -1,6 +1,3 @@
-/*
- Ae Demetrius, agr tá fácil pra tu automatizar isso ai kkkkkk
-*/
 const Command = require('../../config/Command')
 
 module.exports = class HelpCommand extends Command {
@@ -29,7 +26,7 @@ module.exports = class HelpCommand extends Command {
         if (args[0] && cmd.config.category !== 'dev') {
           const param = args[0].toLowerCase()
           if (param === cmd.config.category) {
-            helpText += `${prefix}${cmd.config.aliases[0]}\n`
+            helpText += `-> *${prefix}${cmd.config.aliases[0]}*\n`
           }
           if (param === cmd.config.name || cmd.config.aliases.includes(param)) {
             helpText += `=========================
@@ -50,7 +47,7 @@ Outras formas de chamar o comando:
           }
           if (param === 'geral' || param === 'all') {
             if (!helpText.includes(cmd.config.category)) helpText += `===============\n*Comandos da categoria: ${cmd.config.category}*\n===============\n`
-            helpText += `${prefix}${cmd.config.aliases[0]}\n`
+            helpText += `-> *${prefix}${cmd.config.aliases[0]}*\n`
           }
         } else if (!helpText.includes(cmd.config.category) && cmd.config.category !== 'dev') {
           helpText += `${prefix}ajuda *${cmd.config.category}*\n`
@@ -61,7 +58,7 @@ Outras formas de chamar o comando:
       helpText += `\nPara visualizar todos os comandos, use *${prefix}ajuda geral*`
       await msg.send(helpText, { reply: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

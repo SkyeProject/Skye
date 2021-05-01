@@ -1,27 +1,34 @@
-const Command = require('../../config/Command') // não esqueça de tacar o cmd na pasta de alguma categoria, se não vai dar pau aqui
+/*
+*       Olá para você que chegou aqui! Bem, se tiver alguma dúvida, pode me chamar no zapzap https://wa.me/553398530288
+*       Só vou avisando logo q eu vo ir atrás das pessoas que catarem os meus códigos e não derem os devidos créditos >_>
+*
+*       Skye desenvolvido por MrRexD & Demetrius.
+*/
+const Command = require('../../config/Command') // Antes de tudo, escolha a categoria do comando e taque na pasta respectiva a ele.
 
 module.exports = class TemplateCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'template', // nome do comando
-      aliases: ['t'], // aliases dele
-      category: 'categoriaTop', // categoria
+      name: 'nome_bem_legal_pro_comando_iuhul',
+      aliases: ['outras', 'formas', 'de', 'chamar', 'o', 'comando', ':)'], // Ah, a primeira aliase sempre deve ser em português! De resto pode ser qualquer lingua que tu quiser
+      category: 'categoriaTop', // dev, fun, misc, mod, utils
       description: 'uma descrição bem daora aqui',
-      example: 'exemplo de como usa o bot',
-      onlyGroup: false, // comando funciona somente para grupo?
-      groupAdmPermission: { // pelamor, não invente de marcar true em alguma dessas 2 opções abaixo sem marcar o onlyGroup como true.
-        bot: false, // o bot precisa de ADM no grupo?
-        user: false // o usuário precisa de ADM no grupo?
+      example: 'exemplo de como usa o comando',
+      onlyGroup: false, // marque true caso o comando for para grupo
+      groupAdmPermission: {
+        bot: false, // caso o bot precisa de adm, marque como true
+        user: false // ou se o usuário precisar de adm, marque como true tbm
       },
-      ownerOnly: false // somente para dev?
+      ownerOnly: false // somente para os dev do bot? Se sim marca true
     })
   }
 
-  execute ({ msg }) {
+  async execute ({ msg, args, prefix }) {
     try {
-    // codigo do comando...
+    // Seu código aqui...
+      return await msg.send('Olá :)')
     } catch (err) {
-      msg.zapFail(err) // caso der pau o comando, o bot já vai logo avisar pro usuário que algo de errado aconteceu, e ja vai retornar um erro no seu console.
+      await msg.zapFail(err) // Caso der erro, o bot já irá avisar ao usuário.
     }
   }
 }

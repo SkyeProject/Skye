@@ -38,7 +38,7 @@ module.exports = class DevBanCommand extends Command {
       await this.zap.atizap.contactBlock(docUser._id)
       await msg.send('Beleza, ele foi banido!')
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

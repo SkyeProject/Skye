@@ -27,12 +27,12 @@ module.exports = class RollCommand extends Command {
         this.removeItem(args, 'a')
         firstNumber = Number(args[0]) ? firstNumber = Number(args[0]) : firstNumber
         secondNumber = Number(args[1]) ? secondNumber = Number(args[1]) : secondNumber
-        if (!Number(args[0]) || !Number(args[1])) msg.send('Você disse algum número inválido, então irei sortear o padrão normal do dado.', { reply: true })
+        if (!Number(args[0]) || !Number(args[1])) await msg.send('Você disse algum número inválido, então irei sortear o padrão normal do dado.', { reply: true })
       }
       const dice = Math.floor(Math.random() * (secondNumber + 1 - firstNumber) + firstNumber)
-      msg.send(`Sorteando um numero de ${firstNumber} a ${secondNumber}\n\nO NUMERO SORTEADO É: ${dice}`, { reply: true })
+      await msg.send(`Sorteando um numero de ${firstNumber} a ${secondNumber}\n\nO NUMERO SORTEADO É: ${dice}`, { reply: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

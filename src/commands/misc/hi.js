@@ -17,11 +17,11 @@ module.exports = class HiCommand extends Command {
     })
   }
 
-  execute ({ msg }) {
+  async execute ({ msg }) {
     try {
-      msg.send('Oi', { reply: true })
+      await msg.send('Oi', { reply: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

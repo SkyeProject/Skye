@@ -121,9 +121,9 @@ module.exports = class ShipCommand extends Command {
       ctx.drawImage(shipTwoAvatar, 796, 99, 375, 375)
 
       // E por fim irá enviar a imagem pro remetente.
-      msg.sendImage(`data:image/png;base64,${canvas.toBuffer().toString('base64')}`, coupleName)
+      await msg.sendImage(`data:image/png;base64,${canvas.toBuffer().toString('base64')}`, coupleName)
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

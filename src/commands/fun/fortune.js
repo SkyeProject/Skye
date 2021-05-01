@@ -17,15 +17,15 @@ module.exports = class FortuneCommand extends Command {
     })
   }
 
-  execute ({ msg, args }) {
+  async execute ({ msg, args }) {
     try {
       const answer = require('../../config/games/fortune.json')
-      if (!args[0]) return msg.send('Eita, você não fez nenhuma pergunta meu caro amigo!', { reply: true })
+      if (!args[0]) return await msg.send('Eita, você não fez nenhuma pergunta meu caro amigo!', { reply: true })
       const quest = args.join(' ')
       const randomAnswer = answer[this.getRandomInt(0, Object.keys(answer).length)]
-      msg.send(`_Pergunta_: *${quest}*\n_Resposta_: *${randomAnswer}*\n\n🔮 | Afonso, o vidente.`, { reply: true })
+      await msg.send(`_Pergunta_: *${quest}*\n_Resposta_: *${randomAnswer}*\n\n🔮 | Afonso, o vidente.`, { reply: true })
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }
