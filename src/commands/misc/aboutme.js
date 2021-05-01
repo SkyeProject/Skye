@@ -1,6 +1,6 @@
 const Command = require('../../config/Command')
 
-module.exports = class RollCommand extends Command {
+module.exports = class AboutmeCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'aboutme',

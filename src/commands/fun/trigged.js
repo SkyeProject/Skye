@@ -1,14 +1,14 @@
 const Command = require('../../config/Command')
 const Canvacord = require('canvacord')
 
-module.exports = class RainbowCommand extends Command {
+module.exports = class TriggedCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'rainbow',
-      aliases: ['lgbt', 'gay', 'arcoiris', 'arco-íris'],
+      name: 'trigged',
+      aliases: ['bolado', 'puto', 'raiva', 'grrrrr'],
       category: 'fun',
-      description: 'Deixe eu botar um filtro de arco-íris na sua foto ou do seu amigo!',
-      example: 'lgbt @Demetrius',
+      description: 'Está puto? Deixe eu fazer umas alterações em sua foto então.',
+      example: 'bolado @demetrius',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,
@@ -21,8 +21,8 @@ module.exports = class RainbowCommand extends Command {
   async execute ({ msg, args }) {
     try {
       const user = await msg.getContact(args[0] || msg.sender.id)
-      const rainbow = await Canvacord.Canvas.rainbow(user.avatar)
-      await msg.sendImage(`data:image/png;base64,${rainbow.toString('base64')}`)
+      const trigger = await Canvacord.Canvas.trigger(user.avatar)
+      await msg.sendImage(`data:image/png;base64,${trigger.toString('base64')}`)
     } catch (err) {
       await msg.zapFail(err)
     }

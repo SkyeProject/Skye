@@ -79,7 +79,8 @@ zap.atizap.onMessage(async (msg) => {
       const alternative = {
         username: number.replace('@c.us', ''),
         number: number,
-        avatar: noPic
+        avatar: noPic,
+        found: false
       }
       return alternative
     }
@@ -89,7 +90,8 @@ zap.atizap.onMessage(async (msg) => {
       number: contact.id,
       avatar: contactPic,
       isMe: contact.isMe,
-      isMyContact: contact.isMyContact
+      isMyContact: contact.isMyContact,
+      found: true
     }
     if (user.isMe) user.username = msg.botContact.pushname
     return user
