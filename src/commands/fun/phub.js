@@ -1,14 +1,14 @@
 const Command = require('../../config/Command')
 const Canvacord = require('canvacord')
 
-module.exports = class CommentCommand extends Command {
+module.exports = class PhubCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'comment',
-      aliases: ['comentario', 'comentário', 'youtubecomentario', 'comentárioyoutube'],
+      name: 'phub',
+      aliases: ['pornhub', 'comentariosexy'],
       category: 'fun',
-      description: 'Faça algum comentário famoso no youtube!',
-      example: 'comentario @MrRexD Fala galera beleza?',
+      description: 'Faça um comentário no Porn Hub ( ͡° ͜ʖ ͡°)',
+      example: 'pornhub Ai que vídeo divertido!',
       onlyGroup: false,
       groupAdmPermission: {
         bot: false,
@@ -26,7 +26,7 @@ module.exports = class CommentCommand extends Command {
       if (!user.found) user = await msg.getContact(msg.sender.id)
       else this.removeItem(args, args[0])
 
-      const comment = await Canvacord.Canvas.youtube({ username: user.username, content: args.join(' '), avatar: user.avatar, dark: true })
+      const comment = await Canvacord.Canvas.phub({ username: user.username, message: args.join(' '), image: user.avatar })
       await msg.sendImage(`data:image/png;base64,${comment.toString('base64')}`)
     } catch (err) {
       await msg.zapFail(err)

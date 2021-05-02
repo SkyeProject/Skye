@@ -30,7 +30,7 @@ module.exports = class HelpCommand extends Command {
           }
           if (param === cmd.config.name || cmd.config.aliases.includes(param)) {
             helpText += `=========================
-Comando de *${cmd.config.name}*
+Comando: *${cmd.config.name}*
 
 Descrição: *${cmd.config.description}*
 

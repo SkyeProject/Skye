@@ -1,4 +1,5 @@
 const Command = require('../../config/Command')
+const { version } = require('../../../package.json')
 
 module.exports = class CommandSay extends Command {
   constructor (zap) {
@@ -35,6 +36,7 @@ module.exports = class CommandSay extends Command {
       await msg.send(`*Informações sobre mim!*
 
 😎 | Criadores: MrRexD#0620 & demetrius#0620 (digite !contato para ver o número deles)
+👾 | Versão: *${version}*
 🌎 | Grupos: *${allGroups.length}*
 🙌 | Usuários: *${allUsers.reduce((a, b) => a + b)}*
 🔋 | Bateria restante: *${await this.zap.atizap.getBatteryLevel()}%*
@@ -42,7 +44,8 @@ module.exports = class CommandSay extends Command {
 👩🏼‍💻 | WA-VERSION: *${await this.zap.atizap.getWAVersion()}*
 🌟 | Comando mais utilizado desde o último restart: *${mostUsedCommands[0].name}*
 ✉️ | Já foram executados *${mostUsedCommands.reduce((a, b) => a + b.used, 0)}* comandos desde a hora que eu acordei!
-😴 | Acordada à: *${this.uptime()}*`, { reply: true })
+😴 | Acordada à: *${this.uptime()}*
+😁 | Meu GitHub: https://github.com/SkyeProject/Skye`, { reply: true })
     } catch (err) {
       await msg.zapFail(err)
     }

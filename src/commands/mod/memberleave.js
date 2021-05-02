@@ -20,7 +20,7 @@ module.exports = class MemberLeaveCommand extends Command {
   async execute ({ msg, args, doc, prefix }) {
     try {
       if (!args[0]) {
-        return msg.send(`Sistema de saída!
+        return await msg.send(`Sistema de saída!
 
 Atualmente está: ${doc.byebye.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.byebye.message}\`\`\`\n\nPara desativar use: *${prefix}saida desativar*` : `*Desativado*\n\nPara ativar use: *${prefix}saida ativar*`}
 `)
@@ -51,30 +51,18 @@ Atualmente está: ${doc.byebye.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.by
 
       switch (args[0]) {
         case 'ativar':
-          await activate()
-          break
-
         case 'activate':
           await activate()
           break
 
         case 'desativar':
-          await disable()
-          break
-
         case 'disable':
           await disable()
           break
 
-        case 'msg':
-          await message()
-          break
-
         case 'mensagem':
-          await message()
-          break
-
         case 'message':
+        case 'msg':
           await message()
           break
 
@@ -82,7 +70,7 @@ Atualmente está: ${doc.byebye.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.by
           return await msg.send(`Argumento inválido! Use *${prefix}saida* para saber mais.`)
       }
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

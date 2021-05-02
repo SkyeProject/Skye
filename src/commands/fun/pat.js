@@ -1,5 +1,6 @@
 const superagent = require('superagent')
 const Command = require('../../config/Command')
+const { config } = require('../..')
 
 module.exports = class PatCommand extends Command {
   constructor (zap) {
@@ -20,16 +21,12 @@ module.exports = class PatCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
-      const patGif = (await superagent.get('https://nekos.life/api/v2/img/pat')).body
-      const me = msg.sender.pushname
-      if (!args[0]) {
-        await msg.send(`Quer carinho ${me}? Eu dou! ❤️`, { reply: true })
-        return await msg.sendSticker(patGif.url, false)
-      } else {
-        const mentioned = await msg.getContact(args[0].replace('@', ''))
-        await msg.send(`${me} deu aquele carinho fofinho em ${mentioned.username}! :3`, { reply: true })
-        await msg.sendSticker(patGif.url, false)
-      }
+      const gif = (await superagent.get('https://nekos.life/api/v2/img/pat')).body.url
+      const video = (await superagent.post(`https://im2.io/${config.imageOptim}/format=h264/${gif}`)).body.toString('base64')
+      const user = await msg.getContact(msg.sender.id)
+      if (!args[0]) return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'carinhu', `Quer carinho *${user.username}*? Eu dou! ❤️`)
+      const mentioned = await msg.getContact(args[0])
+      return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'carinhu', `*${user.username}* fez carinho em *${mentioned.username}*! ❤️`)
     } catch (err) {
       await msg.zapFail(err)
     }

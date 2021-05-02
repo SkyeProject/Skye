@@ -20,7 +20,7 @@ module.exports = class MemberJoinCommand extends Command {
   async execute ({ msg, args, doc, prefix }) {
     try {
       if (!args[0]) {
-        return msg.send(`Sistema de boas vindas!
+        return await msg.send(`Sistema de boas vindas!
 
 Atualmente está: ${doc.welcome.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.welcome.message}\`\`\`\n\nPara desativar use: *${prefix}entrada desativar*` : `*Desativado*\n\nPara ativar use: *${prefix}entrada ativar*`}
 `)
@@ -51,30 +51,18 @@ Atualmente está: ${doc.welcome.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.w
 
       switch (args[0]) {
         case 'ativar':
-          await activate()
-          break
-
         case 'activate':
           await activate()
           break
 
         case 'desativar':
-          await disable()
-          break
-
         case 'disable':
           await disable()
           break
 
-        case 'msg':
-          await message()
-          break
-
         case 'mensagem':
-          await message()
-          break
-
         case 'message':
+        case 'msg':
           await message()
           break
 
@@ -82,7 +70,7 @@ Atualmente está: ${doc.welcome.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.w
           return await msg.send(`Argumento inválido! Use *${prefix}entrada* para saber mais.`)
       }
     } catch (err) {
-      msg.zapFail(err)
+      await msg.zapFail(err)
     }
   }
 }

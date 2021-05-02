@@ -1,5 +1,6 @@
 const superagent = require('superagent')
 const Command = require('../../config/Command')
+const { config } = require('../..')
 
 module.exports = class HugCommand extends Command {
   constructor (zap) {
@@ -20,16 +21,12 @@ module.exports = class HugCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
-      const nekoimage = (await superagent.get('https://nekos.life/api/v2/img/hug')).body
-      const me = (await msg.getContact(msg.sender.id)).username
-      if (!args[0]) {
-        await msg.send(`Abraçei bem forte o ${me}! ❤️`, { reply: true })
-        return await msg.sendSticker(nekoimage.url, false)
-      } else {
-        const mentioned = await msg.getContact(args[0].replace('@', ''))
-        await msg.send(`${me} deu aquele abraço em ${mentioned.username}`, { reply: true })
-        await msg.sendSticker(nekoimage.url, false)
-      }
+      const gif = (await superagent.get('https://nekos.life/api/v2/img/hug')).body.url
+      const video = (await superagent.post(`https://im2.io/${config.imageOptim}/format=h264/${gif}`)).body.toString('base64')
+      const user = await msg.getContact(msg.sender.id)
+      if (!args[0]) return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'abraço', `*${msg.botContact.pushname}* abraçou *${user.username}*! ❤️`)
+      const mentioned = await msg.getContact(args[0])
+      return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'abraço', `*${user.username}* abraçou bem forte *${mentioned.username}*! ❤️`)
     } catch (err) {
       await msg.zapFail(err)
     }

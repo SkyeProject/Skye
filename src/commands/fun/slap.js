@@ -1,5 +1,6 @@
 const superagent = require('superagent')
 const Command = require('../../config/Command')
+const { config } = require('../..')
 
 module.exports = class SlapCommand extends Command {
   constructor (zap) {
@@ -20,16 +21,12 @@ module.exports = class SlapCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
-      const slapimage = (await superagent.get('https://nekos.life/api/v2/img/slap')).body
-      const me = await msg.getContact(msg.sender.id)
-      if (!args[0]) {
-        msg.send(`${me.username} se bateu! :(`, { reply: true })
-        return await msg.sendSticker(slapimage.url, false)
-      } else {
-        const args0 = await msg.getContact(args[0].replace('@', ''))
-        msg.send(`${me.username} deu um tapão no ${args0.username}! Essa doeu...`, { reply: true })
-        await msg.sendSticker(slapimage.url, false)
-      }
+      const gif = (await superagent.get('https://nekos.life/api/v2/img/slap')).body.url
+      const video = (await superagent.post(`https://im2.io/${config.imageOptim}/format=h264/${gif}`)).body.toString('base64')
+      const user = await msg.getContact(msg.sender.id)
+      if (!args[0]) return await msg.send('Você não mencionou ninguém... Por acaso quer se bater?', { reply: true })
+      const mentioned = await msg.getContact(args[0])
+      return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'socão', `*${user.username}* deu um tapa em *${mentioned.username}*! 😣`)
     } catch (err) {
       await msg.zapFail(err)
     }
