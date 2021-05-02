@@ -15,6 +15,7 @@ Quer me adicionar? Tome aqui o meu número!
 - [FFmpeg](https://ffmpeg.org)
 - [Libwebp](https://developers.google.com/speed/webp/download)
 - [MongoDB](https://www.mongodb.com)
+- [ImageOptim](https://imageoptim.com/api) - Usado para converter GIF em MP4. Se não tiver, os comandos como **hug, kiss...** não irão funcionar.
 - [Google Chrome](https://www.google.com/intl/pt-BR/chrome/)
 - Dois webhooks do [Discord](https://discord.com) (Opcional, você pode desativá-los no config.json)
 - Caso você não queria usar o Mongo no seu bot, te recomendo o [Lowdb](https://github.com/typicode/lowdb),
