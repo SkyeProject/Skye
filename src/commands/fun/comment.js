@@ -21,8 +21,8 @@ module.exports = class CommentCommand extends Command {
   async execute ({ msg, args }) {
     try {
       if (!args[0]) return await msg.send('Você precisa mandar algum comentário!', { reply: true })
-
       let user = await msg.getContact(args[0])
+      if (user.found && !args[1]) return await msg.send('Você mencionou alguém mas não escreveu nenhuma mensagem!', { reply: true })
       if (!user.found) user = await msg.getContact(msg.sender.id)
       else this.removeItem(args, args[0])
 
