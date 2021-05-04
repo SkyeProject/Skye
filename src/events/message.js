@@ -83,8 +83,7 @@ zap.atizap.onMessage(async (msg) => {
       }
       return alternative
     }
-    let contactPic = msg.sender.profilePicThumbObj.eurl
-    if (number !== msg.sender.id) contactPic = await zap.atizap.getProfilePicFromServer(number) || noPic
+    const contactPic = await zap.atizap.getProfilePicFromServer(number) || noPic
     const user = {
       username: contact.pushname || contact.formattedName,
       number: contact.id,
