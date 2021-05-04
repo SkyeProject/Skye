@@ -1,6 +1,7 @@
 const Command = require('../../config/Command')
 const { Aki } = require('aki-api')
 const isPlaying = new Set()
+require('events').EventEmitter.defaultMaxListeners = 0
 
 module.exports = class AkiCommand extends Command {
   constructor (zap) {
@@ -30,7 +31,7 @@ module.exports = class AkiCommand extends Command {
 
 Duvida que eu adivinho o que você está pensando? Venha jogar comigo então e veja só!
 
-Use *${prefix}akinator iniciar*!
+Use *${prefix}akinator iniciar*
 `)
       }
       isPlaying.add(msg.from)
