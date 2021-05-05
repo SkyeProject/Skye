@@ -85,7 +85,7 @@ zap.atizap.onMessage(async (msg) => {
     }
     const contactPic = await zap.atizap.getProfilePicFromServer(number) || noPic
     const user = {
-      username: contact.pushname || contact.formattedName,
+      username: contact.verifiedName || contact.pushname || contact.formattedName,
       number: contact.id,
       avatar: contactPic,
       isMe: contact.isMe,

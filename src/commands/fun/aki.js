@@ -31,12 +31,11 @@ module.exports = class AkiCommand extends Command {
 
 Duvida que eu adivinho o que você está pensando? Venha jogar comigo então e veja só!
 
-Use *${prefix}akinator iniciar*
-`)
+Use *${prefix}akinator iniciar*`)
       }
       isPlaying.add(msg.from)
-      const aki = new Aki('pt')
 
+      const aki = new Aki('pt')
       await aki.start()
 
       const akisend = async (...args) => {
@@ -66,13 +65,13 @@ Escolha uma das opções abaixo:
 (Se por acaso eu não responder, é porque deu erro, ai é só digitar novamente o que vc tinha mandado)`)
       }
       const answers = {
-        y: [`${prefix}sim`, `${prefix}y`, `${prefix}yes`],
-        n: [`${prefix}não`, `${prefix}nao`, `${prefix}no`, `${prefix}nop`],
-        idk: [`${prefix}não sei`, `${prefix}nao sei`, `${prefix}eu nao sei`, `${prefix}eu não sei`, `${prefix}idk`, `${prefix}i do not know`],
-        probablyy: [`${prefix}provavelmente sim`, `${prefix}provavelmente s`, `${prefix}probably yes`, ` ${prefix}probably y`],
-        probablyn: [`${prefix}provavelmente não`, `${prefix}provavelmente nao`, `${prefix}provavelmente n`, `${prefix}probably not`, `${prefix}probably n`],
-        back: [`${prefix}voltar`, `${prefix}back`],
-        stop: [`${prefix}parar`, `${prefix}stop`]
+        y: [`${prefix}sim`, `${prefix}y`, `${prefix}yes`, `${prefix}1`],
+        n: [`${prefix}não`, `${prefix}nao`, `${prefix}no`, `${prefix}nop`, `${prefix}2`],
+        idk: [`${prefix}não sei`, `${prefix}nao sei`, `${prefix}n sei`, `${prefix}eu nao sei`, `${prefix}eu não sei`, `${prefix}idk`, `${prefix}i do not know`, `${prefix}3`],
+        probablyy: [`${prefix}provavelmente sim`, `${prefix}provavelmente s`, `${prefix}probably yes`, ` ${prefix}probably y`, `${prefix}4`],
+        probablyn: [`${prefix}provavelmente não`, `${prefix}provavelmente nao`, `${prefix}provavelmente n`, `${prefix}probably not`, `${prefix}probably n`, `${prefix}5`],
+        back: [`${prefix}voltar`, `${prefix}back`, `${prefix}6`],
+        stop: [`${prefix}parar`, `${prefix}stop`, `${prefix}7`]
       }
       const filter = (m) => {
         return m.sender.id === msg.sender.id
@@ -82,7 +81,8 @@ Escolha uma das opções abaixo:
       await akisend()
 
       collector.on('collect', async (message) => {
-        if (!message.content.startsWith(prefix)) return
+        if (!message.content) return
+        if (!message.content.toLowerCase().startsWith(prefix)) return
         let akiasnwer
         for (const answer in answers) {
           if (answers[answer].includes(message.content.toLowerCase())) {
@@ -122,7 +122,7 @@ Escolha uma das opções abaixo:
           await aki.win()
           await msg.sendImage(aki.answers[0].absolute_picture_path, `🔮 Akinator 🔮
 
-Eu acho que é o(a): *${aki.answers[0].name}* 😋
+Eu acho que é o(a): *${aki.answers[0].name}* ${aki.answers[0].description !== '-' ? `de *${aki.answers[0].description}* ` : ''}😋
 
 Eu acertei?
 
