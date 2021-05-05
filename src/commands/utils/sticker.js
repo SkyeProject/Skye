@@ -20,7 +20,7 @@ module.exports = class StickerCommand extends Command {
 
   async execute ({ msg }) {
     try {
-      if (msg.isMedia === false && !msg.quotedMsg) return await msg.send('Oops, mencione ou mande a imagem/gif/vídeo que tu quer e escreva no texto "!s"', { reply: true })
+      if (msg.isMedia === false && msg.quotedMsg.isMedia === false) return await msg.send('Oops, mencione ou mande a imagem/gif/vídeo que tu quer e escreva no texto "!s"', { reply: true })
       const msgcrypt = msg.quotedMsg || msg
       await msg.send('Seu sticker está a caminho!!!', { reply: true })
       const mediaData = await decryptMedia(msgcrypt)

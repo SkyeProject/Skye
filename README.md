@@ -32,10 +32,14 @@ $ git clone https://github.com/SkyeProject/Skye.git
 ```
 $ npm install
 ```
+- Instale o PM2:
+```
+$ npm install -g pm2
+```
 - Renomeie o arquivo `config.example.json` para `config.json` e preencha tudo que está lá
 - E a Skye já estará pronta para ser ligada! :)
 ```
-$ node .
+$ pm2 start .
 ```
 ## Contribuições
 - Você está livre para fazer novos comandos para a Skye, para isso existe um [template](https://github.com/SkyeProject/Skye/blob/main/src/commands/template.js) para você entender melhor como funciona.
