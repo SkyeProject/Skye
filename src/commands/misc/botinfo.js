@@ -45,7 +45,7 @@ module.exports = class CommandSay extends Command {
 🌟 | Comando mais utilizado desde o último restart: *${mostUsedCommands[0].name}*
 ✉️ | Já foram executados *${mostUsedCommands.reduce((a, b) => a + b.used, 0)}* comandos desde a hora que eu acordei!
 😴 | Acordada à: *${this.uptime()}*
-😁 | Meu GitHub: https://github.com/SkyeProject/Skye`, { reply: true })
+😁 | Meu GitHub: https://github.com/SkyeProject/Skye`, { link: true })
     } catch (err) {
       await msg.zapFail(err)
     }

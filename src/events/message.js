@@ -1,8 +1,6 @@
 const { zap, config } = require('../index')
 const catchcommand = require('../config/modules/catchcommand')
 const mongocreate = require('../config/modules/database/mongocreate')
-// const sleep = require('sleep-promise')
-// const cooldown = new Set()
 
 zap.atizap.onMessage(async (msg) => {
   msg.content = msg.caption || msg.body
@@ -40,6 +38,7 @@ zap.atizap.onMessage(async (msg) => {
       if (args.reply) return await zap.atizap.reply(from, message, msg.id)
       if (args.mention) return await zap.atizap.sendTextWithMentions(from, message)
       if (args.youtube) return await zap.atizap.sendYoutubeLink(from, message)
+      if (args.link) return await zap.atizap.sendLinkWithAutoPreview(from, message)
     }
     return await zap.atizap.sendText(from, message)
   }
@@ -86,7 +85,7 @@ zap.atizap.onMessage(async (msg) => {
     }
     const contactPic = await zap.atizap.getProfilePicFromServer(number) || noPic
     const user = {
-      username: contact.pushname || contact.formattedName,
+      username: contact.verifiedName || contact.pushname || contact.formattedName,
       number: contact.id,
       avatar: contactPic,
       isMe: contact.isMe,
@@ -128,21 +127,12 @@ zap.atizap.onMessage(async (msg) => {
 
   const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
   if (file) {
-    // for (const set of cooldown) if (set.name === msg.sender.id || msg.from) return await msg.send(`Aguarde *${Math.floor((set.t - Date.now()) / 1000)}* segundos para poder executar outro comando!`)
-    if (config.discord.enable) catchcommand(await msg.getContact(msg), msg)
+    if (config.discord.enable) catchcommand(msg)
     if (file.config.ownerOnly && !devsNumbers.includes(msg.getSenderNumber())) return
     if (file.config.onlyGroup && !msg.isGroupMsg) return await msg.send('Este comando só pode ser executado em grupos.')
     if (file.config.groupAdmPermission.user && !msg.findUserInGroup(msg.sender.id).isAdmin) return await msg.send('Você não é ADM do grupo, que pena!')
     if (file.config.groupAdmPermission.bot && !msg.findUserInGroup(msg.botContact.me._serialized).isAdmin) return await msg.send('Eu preciso ser ADM do grupo para executar esse comando, pois eu não sou mágica.')
     file.amountTimes++
     file.execute({ msg, args, prefix, doc })
-    // cooldown.add({
-    //   name: msg.sender.id || msg.from,
-    //   t: Date.now() + 5000
-    // })
-    /*
-    await sleep(5000)
-    cooldown.forEach(n => n.name === msg.sender.id || msg.from ? cooldown.delete(n) : n)
-    */
   }
 })

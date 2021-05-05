@@ -20,7 +20,7 @@ module.exports = class LyricsCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
-      const lyric = (await superagent.get(`https://some-random-api.ml/lyrics?title=${args.join('')}`)).body
+      const lyric = (await superagent.get(`https://some-random-api.ml/lyrics?title=${args.join(' ')}`)).body
       await msg.send('Pesquisando... (Isso pode demorar um pouco)', { reply: true })
       await msg.sendImage(lyric.thumbnail.genius, `Musica: *${lyric.title}* De: *${lyric.author}*\n\n${lyric.lyrics}`)
     } catch (err) {

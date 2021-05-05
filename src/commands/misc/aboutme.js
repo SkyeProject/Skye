@@ -30,7 +30,7 @@ Você pode ver meu repositório e me apoiar de alguma forma clicando neste link:
 https://github.com/SkyeProject/Skye
 
 Para ver dados técnicos sobre mim use 
-*${prefix}sobreobot*`, { reply: true })
+*${prefix}sobreobot*`, { link: true })
     } catch (err) {
       await msg.zapFail(err)
     }
