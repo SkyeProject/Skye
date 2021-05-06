@@ -60,7 +60,6 @@ Exemplo: *${prefix}saudação noite ativar*`, { reply: true })
           default: await msg.send(`Não entendi o que você quis dizer, digite *${prefix}saudação* para ver as opções!`, { reply: true })
         }
       }
-      console.log(args[0])
       switch (args[0]) {
         case 'dia':
         case 'manhã':
