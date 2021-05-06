@@ -9,7 +9,7 @@ module.exports = class ShitCommand extends Command {
       category: 'fun',
       description: 'Marque um amigo merda seu!',
       example: 'shit @demetrius',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

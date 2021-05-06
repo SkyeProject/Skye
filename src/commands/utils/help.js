@@ -8,7 +8,7 @@ module.exports = class HelpCommand extends Command {
       category: 'utils',
       description: 'Descubra os comando do bot!',
       example: 'ajuda',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

@@ -9,7 +9,7 @@ module.exports = class CommentCommand extends Command {
       category: 'fun',
       description: 'Faça algum comentário famoso no youtube!',
       example: 'comentario @MrRexD Fala galera beleza?',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

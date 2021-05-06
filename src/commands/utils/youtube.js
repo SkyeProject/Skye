@@ -9,7 +9,7 @@ module.exports = class YoutubeCommand extends Command {
       description: 'Pesquisa algo no youtube.',
       example: 'pesquisar rezeendevil traficando anão',
       category: 'utils',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

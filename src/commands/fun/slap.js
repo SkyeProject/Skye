@@ -10,7 +10,7 @@ module.exports = class SlapCommand extends Command {
       description: 'De um tapa no seu amigo que pisou na bola com você!',
       example: 'tapa @Demetrius',
       category: 'fun',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

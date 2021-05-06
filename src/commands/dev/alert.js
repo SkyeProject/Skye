@@ -9,7 +9,7 @@ module.exports = class AlertCommand extends Command {
       category: 'dev',
       description: 'Comando usado para mandar um alerta para todos os grupo.',
       example: 'alerta alo alo alo tão me ouvindo?',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

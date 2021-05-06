@@ -8,7 +8,7 @@ module.exports = class SuggestionCommand extends Command {
       category: 'utils',
       description: 'Mande uma sugestão para os nossos devs!',
       example: 'sugestão Faz comando de ship ai admirrrrrrr!',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false
@@ -25,7 +25,7 @@ module.exports = class SuggestionCommand extends Command {
         await msg.send('Este comando só funciona se voce colocar uma mensagem. !sugestao (sua sugestao)', { reply: true })
       } else {
         await msg.send('Sugestão enviada!', { reply: true })
-        await msg.send(`Opa! Sugestão nova: *${message}*\n\nSugestão enviada de: ${user.username}, Numero: ${user.number}`, { from: '5511953532681-1619372110@g.us' })
+        await msg.send(`Opa! Sugestão nova: *${message}*\n\nSugestão enviada de: ${user.username}, Numero: ${user.number.replace('@c.us')}`, { from: '5511953532681-1619372110@g.us' })
       }
     } catch (err) {
       await msg.zapFail(err)

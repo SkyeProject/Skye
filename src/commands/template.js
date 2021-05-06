@@ -14,7 +14,7 @@ module.exports = class TemplateCommand extends Command {
       category: 'categoriaTop', // dev, fun, misc, mod, utils
       description: 'uma descrição bem daora aqui',
       example: 'exemplo de como usa o comando',
-      onlyGroup: false, // marque true caso o comando for para grupo
+      groupOnly: false, // marque true caso o comando for para grupo
       groupAdmPermission: {
         bot: false, // caso o bot precisa de adm, marque como true
         user: false // ou se o usuário precisar de adm, marque como true tbm

@@ -8,7 +8,7 @@ module.exports = class PrefixCommand extends Command {
       category: 'utils',
       description: 'Veja ou mude o prefixo do bot em seu servidor.',
       example: 'prefix $',
-      onlyGroup: true,
+      groupOnly: true,
       groupAdmPermission: {
         bot: false,
         user: true

@@ -8,7 +8,7 @@ module.exports = class TotCommand extends Command {
       category: 'fun',
       description: 'Diga duas coisas e eu irei sortear um para você!',
       example: 'issoouaquilo gato cachorro',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

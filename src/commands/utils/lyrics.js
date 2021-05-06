@@ -9,7 +9,7 @@ module.exports = class LyricsCommand extends Command {
       description: 'Descubra a letra de uma musica!',
       example: 'letra rap do minecraft',
       category: 'utils',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

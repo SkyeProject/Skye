@@ -8,7 +8,7 @@ module.exports = class MemberLeaveCommand extends Command {
       category: 'mod',
       description: 'Defina uma mensagem para que eu dê tchau a uma pessoa que saiu do grupo!',
       example: 'saida',
-      onlyGroup: true,
+      groupOnly: true,
       groupAdmPermission: {
         bot: false,
         user: true

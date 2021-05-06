@@ -9,7 +9,7 @@ module.exports = class DevBanCommand extends Command {
       category: 'dev',
       description: 'Comando usar para banir usuários indesejados do bot.',
       example: 'devban 551140028922@c.us>',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

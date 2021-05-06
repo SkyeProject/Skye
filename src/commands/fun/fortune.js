@@ -8,7 +8,7 @@ module.exports = class FortuneCommand extends Command {
       category: 'fun',
       description: 'Faça uma pergunta e o Afonso irá te responder!',
       example: 'vidente vou ganhar na mega sena amanhã?',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

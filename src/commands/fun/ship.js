@@ -9,7 +9,7 @@ module.exports = class ShipCommand extends Command {
       category: 'fun',
       description: 'Deixe eu calcular o amor de duas pessoas que você mencionar e ver se dá um casal perfeito!',
       example: 'ship @MrRexD @Demetrius',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

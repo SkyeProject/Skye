@@ -129,7 +129,7 @@ zap.atizap.onMessage(async (msg) => {
   if (file) {
     if (config.discord.enable) catchcommand(msg)
     if (file.config.ownerOnly && !devsNumbers.includes(msg.getSenderNumber())) return
-    if (file.config.onlyGroup && !msg.isGroupMsg) return await msg.send('Este comando só pode ser executado em grupos.')
+    if (file.config.groupOnly && !msg.isGroupMsg) return await msg.send('Este comando só pode ser executado em grupos.')
     if (file.config.groupAdmPermission.user && !msg.findUserInGroup(msg.sender.id).isAdmin) return await msg.send('Você não é ADM do grupo, que pena!')
     if (file.config.groupAdmPermission.bot && !msg.findUserInGroup(msg.botContact.me._serialized).isAdmin) return await msg.send('Eu preciso ser ADM do grupo para executar esse comando, pois eu não sou mágica.')
     file.amountTimes++

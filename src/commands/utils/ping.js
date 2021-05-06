@@ -8,7 +8,7 @@ module.exports = class PingCommand extends Command {
       category: 'utils',
       description: 'Veja o ping do bot.',
       example: 'ping',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

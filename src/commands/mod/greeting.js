@@ -8,7 +8,7 @@ module.exports = class GreetingCommand extends Command {
       description: 'Que tão eu mandar um bom dia, ou um boa noite no seu grupo eim eim?',
       example: 'saudação dia ativar',
       category: 'mod',
-      onlyGroup: true, // por enquanto
+      groupOnly: true, // por enquanto
       groupAdmPermission: {
         bot: false,
         user: true

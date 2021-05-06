@@ -9,7 +9,7 @@ module.exports = class NekoCommand extends Command {
       category: 'misc',
       description: 'Só use o comando que tu vai ver e.e',
       example: 'neko',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

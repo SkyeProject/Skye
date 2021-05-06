@@ -8,7 +8,7 @@ module.exports = class EveryoneCommand extends Command {
       category: 'mod',
       description: 'Marque todo mundo do seu grupo!',
       example: 'todos',
-      onlyGroup: true,
+      groupOnly: true,
       groupAdmPermission: {
         bot: false,
         user: true

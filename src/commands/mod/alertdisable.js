@@ -8,7 +8,7 @@ module.exports = class AlertDisableCommand extends Command {
       category: 'mod',
       description: 'Desative o alerta caso não queira mais receber notas de atualizações no seu servidor.',
       example: 'desativar-alerta',
-      onlyGroup: true,
+      groupOnly: true,
       groupAdmPermission: {
         bot: false,
         user: true

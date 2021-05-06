@@ -9,7 +9,7 @@ module.exports = class StickerCommand extends Command {
       category: 'utils',
       description: 'Deixe-me fazer um sticker com alguma foto/gif/vídeo que tu me mandar! (As vezes pode bugar!)',
       example: 'sticker <arquivo>',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

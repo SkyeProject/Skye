@@ -8,7 +8,7 @@ module.exports = class GroupCommand extends Command {
       description: 'Entre no grupo oficial da skye!',
       example: 'grupo',
       category: 'misc',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

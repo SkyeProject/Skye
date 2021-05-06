@@ -2,8 +2,8 @@ const { zap } = require('../index')
 const CronJob = require('cron').CronJob
 
 const greetings = async (option) => {
-  const archives = require(`../config/games/${option}.json`)
-  const doc = await zap.mongo.Groups.find({})
+  const archives = require(`../config/modules/API/${option}.json`)
+  const doc = await zap.mongo.Groups.find()
 
   doc.forEach(async group => {
     let phrase
@@ -12,9 +12,13 @@ const greetings = async (option) => {
     if (option === 'night') phrase = 'Boa noite ❤'
 
     if (group.greeting && group.greeting[option] === true) {
+      const checkGroup = await zap.atizap.getGroupInfo(group._id)
+      if (typeof checkGroup !== 'object') return
+
       const randomNumber = Math.floor(Math.random() * (Object.keys(archives).length))
       const archive = archives[randomNumber]
-      if (archive.type === 'gif') await zap.atizap.sendVideoAsGif(group._id, archive.link, '❤', phrase)
+
+      if (archive.type === 'gif') await zap.atizap.sendVideoAsGif(group._id, archive.link, '❤', phrase).catch(e => {})
       else zap.atizap.sendFileFromUrl(group._id, archive.link, '❤', phrase)
     }
   })

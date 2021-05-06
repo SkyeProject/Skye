@@ -8,7 +8,7 @@ module.exports = class ReleasedCommand extends Command {
       category: 'fun',
       description: 'Está liberado no grupo???????',
       example: 'liberado hentai',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

@@ -9,7 +9,7 @@ module.exports = class TriggedCommand extends Command {
       category: 'fun',
       description: 'Está puto? Deixe eu fazer umas alterações em sua foto então.',
       example: 'bolado @demetrius',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

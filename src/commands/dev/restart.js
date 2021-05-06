@@ -10,7 +10,7 @@ module.exports = class RestartCommand extends Command {
       category: 'dev',
       description: 'Reinicie o bot.',
       example: 'restart',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

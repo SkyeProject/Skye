@@ -8,7 +8,7 @@ module.exports = class CommandSay extends Command {
       category: 'misc',
       description: 'Veja o contato dos meus desenvolvedores!',
       example: 'contato',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

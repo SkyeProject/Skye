@@ -8,7 +8,7 @@ module.exports = class RemoveCommand extends Command {
       category: 'mod',
       description: 'Expulse alguém do grupo!',
       example: 'expulsar @Demetrius',
-      onlyGroup: true,
+      groupOnly: true,
       groupAdmPermission: {
         bot: true,
         user: true

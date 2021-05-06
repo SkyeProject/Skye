@@ -8,7 +8,7 @@ module.exports = class HiCommand extends Command {
       category: 'misc',
       description: 'Me manda um oi, e eu mando de volta :)',
       example: 'oi',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

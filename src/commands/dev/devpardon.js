@@ -8,7 +8,7 @@ module.exports = class DevPardonCommand extends Command {
       category: 'dev',
       description: 'Comando utilizado para desbanir algum usuário do bot.',
       example: 'devpardon 551140028922@c.us>',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

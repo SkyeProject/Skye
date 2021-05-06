@@ -8,7 +8,7 @@ module.exports = class AlertEnableCommand extends Command {
       category: 'mod',
       description: 'Ative o alerta novamente caso tenha desativado.',
       example: 'ativar-alerta',
-      onlyGroup: true,
+      groupOnly: true,
       groupAdmPermission: {
         bot: false,
         user: true

@@ -8,7 +8,7 @@ module.exports = class ReloadCommand extends Command {
       category: 'dev',
       description: 'Comando usado para reiniciar algum comando.',
       example: 'reload ship',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

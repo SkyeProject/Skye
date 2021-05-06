@@ -10,7 +10,7 @@ module.exports = class KissCommand extends Command {
       description: 'De aquele beijo em alguem!',
       example: 'beijo @Demetrius',
       category: 'fun',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

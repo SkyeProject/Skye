@@ -9,7 +9,7 @@ module.exports = class RainbowCommand extends Command {
       category: 'fun',
       description: 'Deixe eu botar um filtro de arco-íris na sua foto ou do seu amigo!',
       example: 'lgbt @Demetrius',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

@@ -10,7 +10,7 @@ module.exports = class PatCommand extends Command {
       category: 'fun',
       description: 'Dê um carinho bem fofinho em alguém!',
       example: 'carinho @MrRexD',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

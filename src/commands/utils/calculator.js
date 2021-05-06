@@ -9,7 +9,7 @@ module.exports = class CalculatorCommand extends Command {
       category: 'utils',
       description: 'Faça cálculos simples! (Cálculos complexos não são suportados!)',
       example: '20 x 30',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

@@ -9,7 +9,7 @@ module.exports = class PhubCommand extends Command {
       category: 'fun',
       description: 'Faça um comentário no Porn Hub ( ͡° ͜ʖ ͡°)',
       example: 'pornhub Ai que vídeo divertido!',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

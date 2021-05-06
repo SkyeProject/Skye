@@ -10,7 +10,7 @@ module.exports = class HugCommand extends Command {
       category: 'fun',
       description: 'Dê um abraço bem apertado em alguém!',
       example: 'abraçar @MrRexD',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

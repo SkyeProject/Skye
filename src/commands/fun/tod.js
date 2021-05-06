@@ -8,7 +8,7 @@ module.exports = class TodCommand extends Command {
       category: 'fun',
       description: 'Verdade ou desafio? Jogue com seus amigos!',
       example: 'vddoudsf',
-      onlyGroup: true,
+      groupOnly: true,
       groupAdmPermission: {
         bot: false,
         user: false

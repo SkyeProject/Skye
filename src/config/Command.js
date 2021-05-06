@@ -7,7 +7,7 @@ module.exports = class Commands {
       category: options.category || null,
       description: options.description || null,
       example: options.example || null,
-      onlyGroup: options.onlyGroup || false,
+      groupOnly: options.groupOnly || false,
       groupAdmPermission: {
         bot: options.groupAdmPermission.bot || false,
         user: options.groupAdmPermission.user || false

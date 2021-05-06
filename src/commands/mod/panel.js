@@ -8,7 +8,7 @@ module.exports = class PanelCommand extends Command {
       category: 'mod',
       description: 'Veja as minhas configurações para o seu servidor!',
       example: 'painel',
-      onlyGroup: true,
+      groupOnly: true,
       groupAdmPermission: {
         bot: false,
         user: true

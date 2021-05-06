@@ -11,7 +11,7 @@ module.exports = class AkiCommand extends Command {
       category: 'fun',
       description: 'Bora jogar um akinator?',
       example: 'akinator iniciar',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

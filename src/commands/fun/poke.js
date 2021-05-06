@@ -10,7 +10,7 @@ module.exports = class PokeCommand extends Command {
       description: 'Irrite seu amigo com umas cutucadinhas!',
       example: 'cutucar @Demetrius',
       category: 'fun',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

@@ -9,7 +9,7 @@ module.exports = class EmailCommand extends Command {
       category: 'fun',
       description: 'Mande um email anônimo de verdade para uma pessoa!',
       example: 'email yudibomdiaecia@yahoo.com.br / Yuudi me da play 2 / mano é meu sonho ter um ps2 me da pfvpfv mano :(',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

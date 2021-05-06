@@ -8,7 +8,7 @@ module.exports = class MemberJoinCommand extends Command {
       category: 'mod',
       description: 'Defina uma mensagem para que eu possa saudar novos membros!',
       example: 'entrada',
-      onlyGroup: true,
+      groupOnly: true,
       groupAdmPermission: {
         bot: false,
         user: true

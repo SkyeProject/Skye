@@ -8,7 +8,7 @@ module.exports = class AboutmeCommand extends Command {
       category: 'misc',
       description: 'Saiba mais que eu sou :)',
       example: 'sobremim',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false

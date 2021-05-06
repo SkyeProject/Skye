@@ -8,7 +8,7 @@ module.exports = class RollCommand extends Command {
       category: 'misc',
       description: 'Gire um dado!',
       example: 'dados 1 a 10',
-      onlyGroup: false,
+      groupOnly: false,
       groupAdmPermission: {
         bot: false,
         user: false
