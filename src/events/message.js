@@ -18,8 +18,6 @@ zap.atizap.onMessage(async (msg) => {
     return
   }
 
-  if (global.restart === true) return await zap.atizap.sendText(msg.from, '❗ | Eu estou sendo reiniciada, por favor aguarde uns *30* segundinhos!')
-
   const args = msg.content.slice(prefix.length).trim().split(/ +/)
   const cmd = args.shift().toLowerCase()
 

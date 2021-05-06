@@ -4,7 +4,7 @@ module.exports = class RollCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'roll',
-      aliases: ['dados', 'dado'],
+      aliases: ['dado', 'rolar'],
       category: 'misc',
       description: 'Gire um dado!',
       example: 'dados 1 a 10',

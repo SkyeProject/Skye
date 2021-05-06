@@ -19,6 +19,11 @@ module.exports = class AtizapDB {
         activate: false,
         message: String
       },
+      greeting: {
+        morning: false,
+        afternoon: false,
+        night: false
+      },
       options: {
         alert: Boolean
       }

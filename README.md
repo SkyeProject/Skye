@@ -54,7 +54,7 @@ Você está com dificuldades de usar a Skye ou com problemas na hora da instala�
 
 ## Doações
 Quer nos ajudar a comprar biscoito? Então doe para a gente, nem que seja 1 real :C
-- [PayPal](https://www.paypal.com/donate/?business=7TYYDRX9J3RFS&currency_code=BRL)
+- [PayPal](https://www.paypal.com/donate/?business=AWFG52GGZVAES&currency_code=BRL)
 - [PicPay](https://picpay.me/victor.mateus107)
 - PIX - f444b85e-f7ae-4ab7-933a-d06ef9a89129
 
