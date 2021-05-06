@@ -34,7 +34,7 @@ module.exports = class DevBanCommand extends Command {
       docUser.status.reason = reason
 
       await docUser.save()
-      await docUser.send(`Você foi banido de me usar!\n\nMotivo: *${reason}*`, { from: docUser._id })
+      await msg.send(`Você foi banido de me usar!\n\nMotivo: *${reason}*`, { from: docUser._id })
       await this.zap.atizap.contactBlock(docUser._id)
       await msg.send('Beleza, ele foi banido!')
     } catch (err) {
