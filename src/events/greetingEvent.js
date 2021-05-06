@@ -1,16 +1,11 @@
 const { zap } = require('../index')
 const CronJob = require('cron').CronJob
 
-const greetings = async (option) => {
+const greetings = async (option, phrase) => {
   const archives = require(`../config/modules/API/${option}.json`)
   const doc = await zap.mongo.Groups.find()
 
   doc.forEach(async group => {
-    let phrase
-    if (option === 'morning') phrase = 'Bom dia ❤'
-    if (option === 'afternoon') phrase = 'Boa tarde ❤'
-    if (option === 'night') phrase = 'Boa noite ❤'
-
     if (group.greeting && group.greeting[option] === true) {
       const checkGroup = await zap.atizap.getGroupInfo(group._id)
       if (typeof checkGroup !== 'object') return
@@ -25,15 +20,15 @@ const greetings = async (option) => {
 }
 
 const day = new CronJob('0 6 * * *', () => {
-  greetings('morning')
+  greetings('morning', 'Bom dia ❤')
 }, null, true, 'America/Sao_Paulo')
 
 const evening = new CronJob('0 12 * * *', () => {
-  greetings('afternoon')
+  greetings('afternoon', 'Boa tarde ❤')
 }, null, true, 'America/Sao_Paulo')
 
 const night = new CronJob('0 18 * * *', () => {
-  greetings('night')
+  greetings('night', 'Boa noite ❤')
 }, null, true, 'America/Sao_Paulo')
 
 day.start()

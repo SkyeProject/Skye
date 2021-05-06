@@ -32,12 +32,7 @@ Para ativar qualquer um deles, você digita o comando dele no chat, e bota "ativ
 Viu como é fácil? Para desativar é a mesma coisa, só que invés de "ativar" você escreve "desativar" xD`, { reply: true })
       }
 
-      const config = async (option) => {
-        let phrase
-        if (option === 'morning') phrase = 'bom dia'
-        if (option === 'afternoon') phrase = 'boa tarde'
-        if (option === 'night') phrase = 'boa noite'
-
+      const config = async (option, phrase) => {
         if (!args[1]) {
           return await msg.send(`Olaaa, faltou você especificar se você queria *ativar* ou *desativar*! 
 
@@ -65,17 +60,17 @@ Exemplo: *${prefix}saudação noite ativar*`, { reply: true })
         case 'manhã':
         case 'day':
         case 'morning':
-          await config('morning')
+          await config('morning', 'bom dia')
           break
 
         case 'tarde':
         case 'afternoon':
-          await config('afternoon')
+          await config('afternoon', 'boa tarde')
           break
 
         case 'noite':
         case 'night':
-          await config('night')
+          await config('night', 'boa noite')
           break
 
         default: await msg.send(`Não entendi o que você quis dizer, digite *${prefix}saudação* para ver as opções!`, { reply: true })
