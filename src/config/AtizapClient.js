@@ -10,6 +10,7 @@ const spinnies = new Spinnies({ color: 'red', succeedColor: 'blue' })
 module.exports = class AtizapClient {
   constructor (atizap) {
     this.atizap = atizap
+    this.inGame = new Set()
     this.mongo = new MongoDB(mongouri)
     this.commands = new Collection()
     this.aliases = new Collection()

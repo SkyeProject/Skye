@@ -1,6 +1,7 @@
 const { zap, config } = require('../index')
 const catchcommand = require('../config/modules/catchcommand')
 const mongocreate = require('../config/modules/database/mongocreate')
+const stringSimilarity = require('string-similarity')
 
 zap.atizap.onMessage(async (msg) => {
   msg.content = msg.caption || msg.body
@@ -21,7 +22,19 @@ zap.atizap.onMessage(async (msg) => {
   const args = msg.content.slice(prefix.length).trim().split(/ +/)
   const cmd = args.shift().toLowerCase()
 
-  if (!zap.commands.has(cmd) && !zap.aliases.has(cmd)) return
+  if (zap.inGame.has(msg.sender.id)) return
+
+  if (!zap.commands.has(cmd) && !zap.aliases.has(cmd)) {
+    const allCmdsNames = []
+    zap.commands.forEach(cmd => {
+      if (cmd.config.category !== 'dev') {
+        allCmdsNames.push(cmd.config.name)
+        cmd.config.aliases.forEach(alias => allCmdsNames.push(alias))
+      }
+    })
+    const matches = stringSimilarity.findBestMatch(cmd, allCmdsNames)
+    return await zap.atizap.reply(msg.from, `*Eu não encontrei este comando!*\n\nVocê quis dizer: \`\`\`${prefix}${matches.bestMatch.target}\`\`\` ?`, msg.id)
+  }
 
   let docUser = doc
   if (msg.isGroupMsg) {

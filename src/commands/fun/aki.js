@@ -1,6 +1,6 @@
 const Command = require('../../config/Command')
 const { Aki } = require('aki-api')
-const isPlaying = new Set()
+const sleep = require('sleep-promise')
 require('events').EventEmitter.defaultMaxListeners = 0
 
 module.exports = class AkiCommand extends Command {
@@ -22,10 +22,6 @@ module.exports = class AkiCommand extends Command {
 
   async execute ({ msg, prefix, args }) {
     try {
-      if (isPlaying.has(msg.from)) {
-        return msg.send(msg.isGroupMsg ? 'Já está rolando uma partida neste grupo!' : `Você já está jogando, para cancelar use *${prefix}parar*`)
-      }
-
       if (args[0] !== 'start' && args[0] !== 'iniciar') {
         return await msg.send(`🔮 Akinator 🔮
 
@@ -33,7 +29,8 @@ Duvida que eu adivinho o que você está pensando? Venha jogar comigo então e v
 
 Use *${prefix}akinator iniciar*`)
       }
-      isPlaying.add(msg.from)
+
+      this.zap.inGame.add(msg.sender.id)
 
       const aki = new Aki('pt')
       await aki.start()
@@ -65,13 +62,13 @@ Escolha uma das opções abaixo:
 (Se por acaso eu não responder, é porque deu erro, ai é só digitar novamente o que vc tinha mandado)`)
       }
       const answers = {
-        y: [`${prefix}sim`, `${prefix}y`, `${prefix}yes`, `${prefix}1`],
-        n: [`${prefix}não`, `${prefix}nao`, `${prefix}no`, `${prefix}nop`, `${prefix}2`],
-        idk: [`${prefix}não sei`, `${prefix}nao sei`, `${prefix}n sei`, `${prefix}eu nao sei`, `${prefix}eu não sei`, `${prefix}idk`, `${prefix}i do not know`, `${prefix}3`],
+        y: [`${prefix}s`, `${prefix}sim`, `${prefix}y`, `${prefix}yes`, `${prefix}1`],
+        n: [`${prefix}n`, `${prefix}não`, `${prefix}nao`, `${prefix}no`, `${prefix}nop`, `${prefix}2`],
+        idk: [`${prefix}sei nao`, `${prefix}não sei`, `${prefix}nao sei`, `${prefix}n sei`, `${prefix}eu nao sei`, `${prefix}eu não sei`, `${prefix}idk`, `${prefix}i do not know`, `${prefix}3`],
         probablyy: [`${prefix}provavelmente sim`, `${prefix}provavelmente s`, `${prefix}probably yes`, ` ${prefix}probably y`, `${prefix}4`],
         probablyn: [`${prefix}provavelmente não`, `${prefix}provavelmente nao`, `${prefix}provavelmente n`, `${prefix}probably not`, `${prefix}probably n`, `${prefix}5`],
-        back: [`${prefix}voltar`, `${prefix}back`, `${prefix}6`],
-        stop: [`${prefix}parar`, `${prefix}stop`, `${prefix}7`]
+        back: [`${prefix}v`, `${prefix}voltar`, `${prefix}back`, `${prefix}6`],
+        stop: [`${prefix}p`, `${prefix}parar`, `${prefix}stop`, `${prefix}7`]
       }
       const filter = (m) => {
         return m.sender.id === msg.sender.id
@@ -132,7 +129,10 @@ Escolha uma das opções abaixo:
         } else await akisend()
       })
 
-      collector.on('end', () => isPlaying.delete(msg.from))
+      collector.on('end', async () => {
+        await sleep(500)
+        this.zap.inGame.delete(msg.sender.id)
+      })
     } catch (err) {
       await msg.zapFail(err)
     }
