@@ -27,7 +27,7 @@
     "canvacord": "^5.2.0",
     "canvas": "^2.7.0",
     "cron": "^1.8.2",
-    "glob": "^7.1.6",
+    "glob": "^7.1.7",
     "google-it": "^1.6.2",
     "mathjs": "^9.3.2",
     "moment-timezone": "^0.5.33",
