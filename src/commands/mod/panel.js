@@ -4,7 +4,7 @@ module.exports = class PanelCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'panel',
-      aliases: ['painel', 'sistemas', 'systems'],
+      aliases: ['painel', 'sistemas', 'systems', 'dashboard'],
       category: 'mod',
       description: 'Veja as minhas configurações para o seu servidor!',
       example: 'painel',
@@ -19,7 +19,7 @@ module.exports = class PanelCommand extends Command {
 
   async execute ({ msg, doc, prefix }) {
     try {
-      return await msg.send(`Painel do bot
+      return await msg.send(`Painel da *${msg.botContact.pushname}*!
 
 
 Sistema de entrada: ${doc.welcome.activate ? '*ativado.*' : '*desativado.*'}
@@ -33,6 +33,11 @@ Utilize *${prefix}prefix <novoprefixo>* para alterar o prefixo.
 
 Alertas: ${doc.options.alert ? '*ativado.*' : '*desativado.*'}
 
+==== Sistema de saudação ====
+Dia: ${doc.greeting && doc.greeting.morning ? '*ativado.*' : '*desativado.*'}
+Tarde: ${doc.greeting && doc.greeting.afternoon ? '*ativado.*' : '*desativado.*'}
+Noite: ${doc.greeting && doc.greeting.night ? '*ativado.*' : '*desativado.*'}
+============================
 
 Parâmetros: *{member}* (Menciona o usuário), 
 *{group}* (Diz o nome do grupo), 

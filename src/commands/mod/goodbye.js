@@ -3,8 +3,8 @@ const Command = require('../../config/Command')
 module.exports = class MemberLeaveCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'memberleave',
-      aliases: ['saida', 'saída', 'leave', 'byebye', 'goodbye', 'tchau', 'adeus', 'xau'],
+      name: 'goodbye',
+      aliases: ['saida', 'saída', 'leave', 'byebye', 'memberleave', 'tchau', 'adeus', 'xau'],
       category: 'mod',
       description: 'Defina uma mensagem para que eu dê tchau a uma pessoa que saiu do grupo!',
       example: 'saida',

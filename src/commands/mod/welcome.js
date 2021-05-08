@@ -3,8 +3,8 @@ const Command = require('../../config/Command')
 module.exports = class MemberJoinCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'memberjoin',
-      aliases: ['entrada', 'boasvindas', 'bemvindo', 'bem-vindo', 'join', 'welcome'],
+      name: 'welcome',
+      aliases: ['entrada', 'boasvindas', 'bemvindo', 'bem-vindo', 'join', 'memberjoin'],
       category: 'mod',
       description: 'Defina uma mensagem para que eu possa saudar novos membros!',
       example: 'entrada',
@@ -52,11 +52,13 @@ Atualmente está: ${doc.welcome.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.w
       switch (args[0]) {
         case 'ativar':
         case 'activate':
+        case 'true':
           await activate()
           break
 
         case 'desativar':
         case 'disable':
+        case 'false':
           await disable()
           break
 

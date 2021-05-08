@@ -17,6 +17,10 @@
                 "--disable-offline-load-stale-cache",
                 "--disk-cache-size=0"
             ]
+        },
+        "pm2": {
+            "enable": true,
+            "restartTime": 60000
         }
     },
     "devs": {

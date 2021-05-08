@@ -22,6 +22,7 @@ Quer me adicionar? Tome aqui o meu número!
 um banco de dados JSON bem simples e fácil de usar.
 
 > ⚠ **Sem essas dependências a Skye pode não funcionar!**
+> ⚠ **A Skye não é compatível com o Termux!**
 
 ## Como usar
 - Clone o repositório:
