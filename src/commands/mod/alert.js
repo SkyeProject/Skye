@@ -29,8 +29,8 @@ module.exports = class AlertDisableCommand extends Command {
       else return await msg.send(`Não entendi o seu argumento! Utilize *${prefix}alert* para saber mais!`)
 
       doc.options.alert = option
-      console.log(doc.options)
       await doc.save()
+
       await msg.send(`Ok, os alertas foram ${option === true ? 'ativados com sucesso!' : 'desativados com sucesso!'}`)
     } catch (err) {
       msg.zapFail(err)

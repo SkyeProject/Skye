@@ -1,6 +1,7 @@
 const pm2 = require('pm2')
 const { config } = require('../')
 const sleep = require('sleep-promise')
+
 if (config.bot.pm2.enable === true) {
   pm2.connect((err) => {
     if (err) throw err
