@@ -21,7 +21,7 @@ Quer me adicionar? Tome aqui o meu número!
 - Caso você não queria usar o Mongo no seu bot, te recomendo o [Lowdb](https://github.com/typicode/lowdb),
 um banco de dados JSON bem simples e fácil de usar.
 
-> ⚠ **Sem essas dependências a Skye pode não funcionar!**
+> ⚠ **Sem essas dependências a Skye pode não funcionar!**</p>
 > ⚠ **A Skye não é compatível com o Termux!**
 
 ## Como usar
