@@ -34,6 +34,9 @@
         "webhookUrlforCommands": "Discord webhook URL (Caso não for usar, marque o 'enable' e aí não precisa preencher nada aqui)",
         "webhookUrlforGroups": "Discord webhook URL 2"
     },
-    "mongouri": "Mongo URI",
-    "imageOptim": "ImageOptim API"
+    "keys": {
+        "mongouri": "Mongo URI",
+        "imageOptim": "ImageOptim API",
+        "deepAI": "deepAI api-key"
+    }
 }

@@ -1,13 +1,13 @@
-const googleIt = require('google-it')
 const Command = require('../../config/Command')
+const googleIt = require('google-it')
 
 module.exports = class YoutubeCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'youtube',
-      aliases: ['video', 'vídeo', 'videos'],
-      description: 'Pesquisa algo no youtube.',
-      example: 'pesquisar rezeendevil traficando anão',
+      name: 'google',
+      aliases: ['pesquisa', 'search', 'pesquisar'],
+      description: 'Pesquise algo no Google.',
+      example: 'google SchwiBot',
       category: 'utils',
       groupOnly: false,
       groupAdmPermission: {
@@ -22,9 +22,14 @@ module.exports = class YoutubeCommand extends Command {
     try {
       if (!args[0]) return await msg.send('Você não disse nada pra pesquisar!')
 
-      googleIt({ query: `${args.join(' ')} site:youtube.com/watch`, 'no-display': 1 }).then(async results => {
+      googleIt({ query: `${args.join(' ')}`, 'no-display': 10 }).then(async results => {
         if (!results[0]) return msg.send('Não encontrei a sua pesquisa.')
-        return await msg.send(`*${results[0].title}*\n\n*Link:* ${results[0].link}`, { youtube: true })
+        let text = '*Resultados que eu obtive:*\n\n'
+        for (const result of results) {
+          text += '*' + result.title + '*\n'
+          text += 'URL: ' + result.link + '\n\n\n'
+        }
+        return await msg.send(text, { link: true })
       })
     } catch (err) {
       await msg.zapFail(err)

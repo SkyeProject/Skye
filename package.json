@@ -1,6 +1,6 @@
 {
   "name": "skye",
-  "version": "v1.5.0",
+  "version": "v1.5.5",
   "description": "Um incrível bot pro WhatsApp.",
   "main": "./src/index.js",
   "scripts": {
@@ -28,6 +28,8 @@
     "canvacord": "^5.2.0",
     "canvas": "^2.7.0",
     "cron": "^1.8.2",
+    "deepai": "^1.0.17",
+    "g-i-s": "^2.1.6",
     "glob": "^7.1.7",
     "google-it": "^1.6.2",
     "kitsu": "^10.0.0-alpha.10",

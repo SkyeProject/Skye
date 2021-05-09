@@ -22,7 +22,7 @@ module.exports = class KissCommand extends Command {
   async execute ({ msg, args }) {
     try {
       const gif = (await superagent.get('https://nekos.life/api/v2/img/kiss')).body.url
-      const video = (await superagent.post(`https://im2.io/${config.imageOptim}/format=h264/${gif}`)).body.toString('base64')
+      const video = (await superagent.post(`https://im2.io/${config.keys.imageOptim}/format=h264/${gif}`)).body.toString('base64')
       const user = await msg.getContact(msg.sender.id)
       if (!args[0]) return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'beijão', `*${msg.botContact.pushname}* beijou *${user.username}*! ❤️`)
       const mentioned = await msg.getContact(args[0])

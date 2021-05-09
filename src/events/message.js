@@ -58,8 +58,9 @@ zap.atizap.onMessage(async (msg) => {
 
   if (docUser && docUser.status.isBanned) return msg.send(`❗ | Você está banido de me usar!\n\nMotivo: *${docUser.status.reason}*`)
 
-  msg.sendImage = (image, message) => {
-    zap.atizap.sendImage(msg.from, image, 'file', message)
+  msg.sendImage = (image, message, from) => {
+    if (!from) from = msg.from
+    zap.atizap.sendImage(from, image, 'file', message)
   }
 
   msg.sendSticker = (Base64, boolean) => {

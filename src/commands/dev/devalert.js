@@ -22,14 +22,23 @@ module.exports = class AlertCommand extends Command {
     try {
       if (!args[0]) return await msg.send('Você não disse nada pra enviar.')
       const allGroups = await this.zap.atizap.getAllGroups()
+      const option = args[0]
+      this.removeItem(args, args[0])
+      const image = args[0]
+      if (option === '-i') this.removeItem(args, args[0])
       const message = args.join(' ')
       await msg.send(`Enviando: \n\n❗ | ${message}`)
       allGroups.forEach(async group => {
         const groupdoc = await this.zap.mongo.Groups.findById(group.id)
         if (!groupdoc || (groupdoc && groupdoc.options.alert)) {
-          const prefix = groupdoc ? groupdoc.prefix : config.bot.prefix
-          const gmessage = message.replace(/{prefix}/g, prefix)
-          await msg.send(`❗ | ${gmessage}\n\nPara desativar os alertas, use *${prefix}desativar alerta*`, { from: group.id })
+          if (option === '-i') {
+            return await msg.sendImage(image, args.join(' '), group.id)
+          }
+          if (option === '-t') {
+            const prefix = groupdoc ? groupdoc.prefix : config.bot.prefix
+            const gmessage = message.replace(/{prefix}/g, prefix)
+            await msg.send(`❗ | ${gmessage}\n\nPara desativar os alertas, use *${prefix}desativar alerta*`, { from: group.id })
+          }
         }
       })
     } catch (err) {

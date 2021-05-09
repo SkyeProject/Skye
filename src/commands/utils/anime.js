@@ -36,7 +36,7 @@ Avaliação média: *${dataRes.averageRating || 'Sem avaliação média.'}*
 
 Classificação etária: *${dataRes.ageRatingGuide || 'Sem classificação etária.'}*
 
-Duração do episódio: *${dataRes.episodeCount || 'Não definido.'}*
+Quantidade de epsódios: *${dataRes.episodeCount || 'Não definido.'}*
 
 Status: *${(dataRes.status === 'current' ? 'Em lançamento.' : 'Terminado.') || 'Sem status.'}*`)
     } catch (err) {

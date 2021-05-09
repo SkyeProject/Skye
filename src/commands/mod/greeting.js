@@ -4,7 +4,7 @@ module.exports = class GreetingCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'greeting',
-      aliases: ['saudação', 'saudacao', 'saudaçao'],
+      aliases: ['saudação', 'saudacao', 'saudaçao', 'sdo'],
       description: 'Que tão eu mandar um bom dia, ou um boa noite no seu grupo eim eim?',
       example: 'saudação dia ativar',
       category: 'mod',
@@ -29,6 +29,9 @@ module.exports = class GreetingCommand extends Command {
 Para ativar qualquer um deles, você digita o comando dele no chat, e bota "ativar" no final, olha um exemplo ai:
 *${prefix}saudação tarde ativar*
 
+Ou você pode ativar todos de uma vez olha:
+*${prefix}saudação todos ativar*
+
 Viu como é fácil? Para desativar é a mesma coisa, só que invés de "ativar" você escreve "desativar" xD`, { reply: true })
       }
 
@@ -41,20 +44,41 @@ Exemplo: *${prefix}saudação noite ativar*`, { reply: true })
 
         switch (args[1]) {
           case 'ativar':
+          case 'on':
+          case 'ative':
           case 'activate':
+            if (option === 'all') {
+              doc.greeting.morning = true
+              doc.greeting.afternoon = true // depois eu refaço esse comando
+              doc.greeting.night = true
+              await doc.save()
+              return await msg.send('Ok, eu ativei todas as opções!!', { reply: true })
+            }
             doc.greeting[option] = true
             await doc.save()
             await msg.send(`Ok, todo dia eu irei dar ${phrase} então :)`, { reply: true })
             break
+
           case 'desativar':
+          case 'desative':
+          case 'off':
           case 'disable':
+            if (option === 'all') {
+              doc.greeting.morning = false
+              doc.greeting.afternoon = false
+              doc.greeting.night = false
+              await doc.save()
+              return await msg.send('Ok, eu desativei todas as opções!!', { reply: true })
+            }
             doc.greeting[option] = false
             await doc.save()
             await msg.send(`Ahhhh de boa, não irei dar ${phrase} mais então :C`, { reply: true })
             break
+
           default: await msg.send(`Não entendi o que você quis dizer, digite *${prefix}saudação* para ver as opções!`, { reply: true })
         }
       }
+
       switch (args[0]) {
         case 'dia':
         case 'manhã':
@@ -71,6 +95,12 @@ Exemplo: *${prefix}saudação noite ativar*`, { reply: true })
         case 'noite':
         case 'night':
           await config('night', 'boa noite')
+          break
+        case 'todos':
+        case 'all':
+        case 'todas':
+        case 'tudo':
+          await config('all')
           break
 
         default: await msg.send(`Não entendi o que você quis dizer, digite *${prefix}saudação* para ver as opções!`, { reply: true })

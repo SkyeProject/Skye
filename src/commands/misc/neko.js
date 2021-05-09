@@ -5,7 +5,7 @@ module.exports = class NekoCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'neko',
-      aliases: ['kwaii', 'gata'],
+      aliases: ['kwaii', 'gata', 'kwai', 'kawaii', 'kawai'],
       category: 'misc',
       description: 'Só use o comando que tu vai ver e.e',
       example: 'neko',

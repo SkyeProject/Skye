@@ -3,7 +3,8 @@ const glob = require('glob')
 const path = require('path')
 const Spinnies = require('spinnies')
 const MongoDB = require('./modules/database/Mongodb')
-const { mongouri } = require('../../config.json')
+const DeepAI = require('./modules/DeepAI')
+const { keys } = require('../../config.json')
 
 const spinnies = new Spinnies({ color: 'red', succeedColor: 'blue' })
 
@@ -11,7 +12,8 @@ module.exports = class AtizapClient {
   constructor (atizap) {
     this.atizap = atizap
     this.inGame = new Set()
-    this.mongo = new MongoDB(mongouri)
+    this.mongo = new MongoDB(keys.mongouri)
+    this.deepai = new DeepAI(keys.deepAI)
     this.commands = new Collection()
     this.aliases = new Collection()
   }

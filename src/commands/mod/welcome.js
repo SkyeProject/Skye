@@ -52,11 +52,15 @@ Atualmente está: ${doc.welcome.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.w
       switch (args[0]) {
         case 'ativar':
         case 'activate':
+        case 'ative':
+        case 'on':
         case 'true':
           await activate()
           break
 
         case 'desativar':
+        case 'desativado':
+        case 'off':
         case 'disable':
         case 'false':
           await disable()
