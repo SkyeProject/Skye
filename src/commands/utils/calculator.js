@@ -8,7 +8,7 @@ module.exports = class CalculatorCommand extends Command {
       aliases: ['calcular', 'math', 'c', 'calculator', 'calculadora'],
       category: 'utils',
       description: 'Faça cálculos simples! (Cálculos complexos não são suportados!)',
-      example: '20 x 30',
+      example: 'calcular 20 x 30',
       groupOnly: false,
       groupAdmPermission: {
         bot: false,
