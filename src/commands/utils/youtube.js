@@ -1,5 +1,5 @@
-const googleIt = require('google-it')
 const Command = require('../../config/Command')
+const googleIt = require('google-it')
 
 module.exports = class YoutubeCommand extends Command {
   constructor (zap) {

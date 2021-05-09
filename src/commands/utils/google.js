@@ -1,7 +1,7 @@
 const Command = require('../../config/Command')
 const googleIt = require('google-it')
 
-module.exports = class YoutubeCommand extends Command {
+module.exports = class GoogleCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'google',

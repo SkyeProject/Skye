@@ -1,6 +1,6 @@
 {
   "name": "skye",
-  "version": "v1.5.5",
+  "version": "v1.5.9",
   "description": "Um incrível bot pro WhatsApp.",
   "main": "./src/index.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "g-i-s": "^2.1.6",
     "glob": "^7.1.7",
     "google-it": "^1.6.2",
+    "google-tts-api": "^2.0.2",
     "kitsu": "^10.0.0-alpha.10",
     "mathjs": "^9.3.2",
     "moment-timezone": "^0.5.33",

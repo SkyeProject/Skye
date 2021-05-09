@@ -4,7 +4,7 @@ module.exports = class TutorialCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'Tutorial',
-      aliases: ['skye', 'como', 'comofunciona', 'comousar'],
+      aliases: ['comofunciona', 'como', 'comousar'],
       description: 'Tutorial de como usar a skye.',
       example: 'tutorial',
       category: 'utils',

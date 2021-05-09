@@ -1,11 +1,11 @@
 const Command = require('../../config/Command')
 const gis = require('g-i-s')
 
-module.exports = class LyricsCommand extends Command {
+module.exports = class ImageCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'image',
-      aliases: ['imagem', 'google-imagem'],
+      aliases: ['imagem', 'google-imagem', 'img'],
       description: 'Pesquise por uma imagem no Google.',
       example: 'imagem menina bonita',
       category: 'utils',
@@ -26,7 +26,7 @@ module.exports = class LyricsCommand extends Command {
         for (const result of results) {
           const res = await this.zap.deepai.callStandardApi('nsfw-detector', { image: result.url }).catch(e => {})
           if (res) {
-            if (res.output.nsfw_score >= 0.40) return await msg.send('Foi detectado conteúdo *nsfw* na imagem, portanto eu não irei mostrá-la!')
+            if (res.output.nsfw_score >= 0.40) return await msg.send('Foi detectado conteúdo *nsfw* na imagem, portanto eu não irei mostrá-la!', { reply: true })
             await msg.sendImage(result.url, '*' + args.join(' ') + '*')
             break
           }
