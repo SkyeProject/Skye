@@ -3,7 +3,7 @@ const Command = require('../../config/Command')
 module.exports = class TutorialCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'Tutorial',
+      name: 'tutorial',
       aliases: ['comofunciona', 'como', 'comousar'],
       description: 'Tutorial de como usar a skye.',
       example: 'tutorial',

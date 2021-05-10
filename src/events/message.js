@@ -22,6 +22,7 @@ zap.atizap.onMessage(async (msg) => {
   const args = msg.content.slice(prefix.length).trim().split(/ +/)
   const cmd = args.shift().toLowerCase()
 
+  if (global.restart === true) return await zap.atizap.sendText(msg.from, 'Estou sendo reiniciada, aguarde um pouquinho!!')
   if (zap.inGame.has(msg.sender.id)) return
 
   if (!zap.commands.has(cmd) && !zap.aliases.has(cmd)) {
