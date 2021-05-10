@@ -37,6 +37,7 @@ module.exports = class CommandSay extends Command {
 
 😎 | Criadores: MrRexD#0620 & demetrius#0620 (digite !contato para ver o número deles)
 👾 | Versão: *${version}*
+🐏 | RAM utilizada: *${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB*
 🌎 | Grupos: *${allGroups.length}*
 🙌 | Usuários: *${allUsers.reduce((a, b) => a + b)}*
 🔋 | Bateria restante: *${await this.zap.atizap.getBatteryLevel()}%*
