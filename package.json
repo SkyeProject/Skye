@@ -38,7 +38,7 @@
     "moment-timezone": "^0.5.33",
     "mongoose": "^5.12.8",
     "node-fetch": "^2.6.1",
-    "sharp": "^0.28.1",
+    "sharp": "^0.28.2",
     "sleep-promise": "^9.1.0",
     "spinnies": "^0.5.1",
     "string-similarity": "^4.0.4",
