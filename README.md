@@ -11,7 +11,7 @@ Quer me adicionar? Tome aqui o meu número!
 
 ### Dependências
 
-- [NodeJS](https://nodejs.org/en/)
+- [NodeJS](https://nodejs.org/en/) - Uilizar a versão Current v16!
 - [FFmpeg](https://ffmpeg.org)
 - [Libwebp](https://developers.google.com/speed/webp/download)
 - [MongoDB](https://www.mongodb.com)
