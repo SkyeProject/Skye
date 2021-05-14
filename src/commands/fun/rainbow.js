@@ -22,7 +22,8 @@ module.exports = class RainbowCommand extends Command {
     try {
       const user = await msg.getContact(args[0] || msg.sender.id)
       const rainbow = await Canvacord.Canvas.rainbow(user.avatar)
-      await msg.sendImage(`data:image/png;base64,${rainbow.toString('base64')}`)
+      const rainbowEmoji = '🌈🎇✨'
+      await msg.sendImage(`data:image/png;base64,${rainbow.toString('base64')}`, rainbowEmoji)
     } catch (err) {
       await msg.zapFail(err)
     }

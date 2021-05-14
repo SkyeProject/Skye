@@ -6,8 +6,8 @@ module.exports = class PremiumCommand extends Command {
       name: 'pro',
       aliases: ['premium', 'skyesemlag', 'doar', 'skyepremium', 'donate'],
       category: 'misc',
-      description: 'Gire um dado!',
-      example: 'dados 1 a 10',
+      description: 'Adquira a versão premium da Skye!',
+      example: '!premium',
       groupOnly: false,
       groupAdmPermission: {
         bot: false,

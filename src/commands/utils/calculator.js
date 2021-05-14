@@ -20,21 +20,19 @@ module.exports = class CalculatorCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
-      if (!args[0]) {
-        return msg.send(`Você não especificou uma conta matematica.\n
-Utilize "*+*" para somar
-Utilize "*-*" para subtrair
-Utilize "***" para multiplicar
-Utilize "*/*" para dividir
-Utilize "*%*" para porcentagem`, { reply: true })
-      }
-      let c = args.join('')
+      let c = args.join(' ')
       c = c.replace(/x/g, '*')
       c = c.replace(/÷/g, '/')
       c = c.replace(/×/g, '*')
       await msg.send(`${c} = ${math.evaluate(c)}`, { reply: true })
     } catch (err) {
-      await msg.zapFail(err)
+      const messageError = msg.send(`Você não especificou uma conta matematica.\n
+Utilize *+* para somar
+Utilize *-* para subtrair
+Utilize *** para multiplicar
+Utilize */* para dividir
+Utilize *%* para porcentagem`, { reply: true })
+      if (!args[0] || !Number) return messageError
     }
   }
 }

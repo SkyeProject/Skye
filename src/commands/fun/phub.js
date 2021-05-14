@@ -26,9 +26,9 @@ module.exports = class PhubCommand extends Command {
       if (user.found && !args[1]) return await msg.send('Você mencionou alguém mas não escreveu nenhuma mensagem!', { reply: true })
       if (!user.found) user = await msg.getContact(msg.sender.id)
       else this.removeItem(args, args[0])
-
       const comment = await Canvacord.Canvas.phub({ username: user.username, message: args.join(' '), image: user.avatar })
-      await msg.sendImage(`data:image/png;base64,${comment.toString('base64')}`)
+      const phubEmoji = '😈🔥'
+      await msg.sendImage(`data:image/png;base64,${comment.toString('base64')}`, phubEmoji)
     } catch (err) {
       await msg.zapFail(err)
     }
