@@ -36,7 +36,7 @@ Descrição: *${cmd.config.description}*
 
 Exemplo de uso: *${prefix}${cmd.config.example}*
 
-Funciona somente para grupo: ${cmd.config.onlyGroup ? '*Sim*' : '*Não*'}
+Funciona somente para grupo: ${cmd.config.groupOnly ? '*Sim*' : '*Não*'}
 
 O bot precisa de ADM: ${cmd.config.groupAdmPermission.bot ? '*Sim*' : '*Não*'}
 E o usuário, precisa de ADM: ${cmd.config.groupAdmPermission.user ? '*Sim*' : '*Não*'}
