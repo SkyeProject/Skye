@@ -34,7 +34,7 @@
     "google-it": "^1.6.2",
     "google-tts-api": "^2.0.2",
     "kitsu": "^10.0.0-alpha.10",
-    "mathjs": "^9.3.2",
+    "mathjs": "^9.4.0",
     "moment-timezone": "^0.5.33",
     "mongoose": "^5.12.9",
     "node-fetch": "^2.6.1",
