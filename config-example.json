@@ -31,7 +31,7 @@
     },
     "discord": {
         "enable": true,
-        "webhookUrlforCommands": "Discord webhook URL (Caso não for usar, marque o 'enable' e aí não precisa preencher nada aqui)",
+        "webhookUrlforCommands": "Discord webhook URL (Caso não for usar, marque o 'enable' como false)",
         "webhookUrlforGroups": "Discord webhook URL 2"
     },
     "keys": {

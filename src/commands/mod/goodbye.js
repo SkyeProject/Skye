@@ -23,6 +23,9 @@ module.exports = class MemberLeaveCommand extends Command {
         return await msg.send(`Sistema de saída!
 
 Atualmente está: ${doc.byebye.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.byebye.message}\`\`\`\n\nPara desativar use: *${prefix}saida desativar*` : `*Desativado*\n\nPara ativar use: *${prefix}saida ativar*`}
+
+Bem-vindo por imagem (Recurso premium): *Desativado*
+Adquira a Skye Premium para poder utlizar deste recurso.
 `)
       }
       const activate = async () => {

@@ -23,6 +23,9 @@ module.exports = class MemberJoinCommand extends Command {
         return await msg.send(`Sistema de boas vindas!
 
 Atualmente está: ${doc.welcome.activate ? `*Ativado*\n\nMensagem: \`\`\`${doc.welcome.message}\`\`\`\n\nPara desativar use: *${prefix}entrada desativar*` : `*Desativado*\n\nPara ativar use: *${prefix}entrada ativar*`}
+
+Bem-vindo por imagem (Recurso premium): *Desativado*
+Adquira a Skye Premium para poder utlizar deste recurso.
 `)
       }
       const activate = async () => {
