@@ -15,15 +15,15 @@ zap.atizap.onMessage(async (msg) => {
 
     const prefix = doc.prefix || config.bot.prefix
 
-    if (!msg.content.toLowerCase().startsWith(prefix)) {
-      if (!msg.isGroupMsg) return await zap.atizap.sendText(msg.from, `Olaa :) Use ${prefix}ajuda para saber os meus comandos!`).catch(e => msg.zapFail(e))
+    if (!msg.content.toLowerCase().startsWith(prefix) || msg.content.length === prefix.length) {
+      if (!msg.isGroupMsg) return await zap.atizap.sendText(msg.from, `Olaa :) Use ${prefix}ajuda para saber os meus comandos!`).catch(e => { })
       return
     }
 
     const args = msg.content.slice(prefix.length).trim().split(/ +/)
     const cmd = args.shift().toLowerCase()
 
-    if (global.restart === true) return await zap.atizap.sendText(msg.from, 'Estou sendo reiniciada, aguarde um pouquinho!!').catch(e => msg.zapFail(e))
+    if (global.restart === true) return await zap.atizap.sendText(msg.from, 'Estou sendo reiniciada, aguarde um pouquinho!!').catch(e => { })
     if (zap.inGame.has(msg.sender.id)) return
 
     if (!zap.commands.has(cmd) && !zap.aliases.has(cmd)) {
@@ -35,7 +35,7 @@ zap.atizap.onMessage(async (msg) => {
         }
       })
       const matches = stringSimilarity.findBestMatch(cmd, allCmdsNames)
-      return await zap.atizap.reply(msg.from, `*Eu não encontrei este comando!*\n\nVocê quis dizer: \`\`\`${prefix}${matches.bestMatch.target}\`\`\` ?`, msg.id).catch(e => msg.zapFail(e))
+      return await zap.atizap.reply(msg.from, `*Eu não encontrei este comando!*\n\nVocê quis dizer: \`\`\`${prefix}${matches.bestMatch.target}\`\`\` ?`, msg.id).catch(e => { })
     }
 
     let docUser = doc

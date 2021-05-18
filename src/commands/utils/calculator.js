@@ -1,11 +1,11 @@
-const math = require('mathjs')
 const Command = require('../../config/Command')
+const math = require('mathjs')
 
 module.exports = class CalculatorCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'calculator',
-      aliases: ['calcular', 'math', 'c', 'calculator', 'calculadora'],
+      aliases: ['calcular', 'math', 'c', 'calc', 'calculator', 'calculadora'],
       category: 'utils',
       description: 'Faça cálculos simples! (Cálculos complexos não são suportados!)',
       example: 'calcular 20 x 30',
@@ -20,19 +20,14 @@ module.exports = class CalculatorCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
+      if (!args[0]) return await msg.send('Você não especificou uma conta matematica.\n\nUtilize *+* para somar\nUtilize *-* para subtrair\nUtilize *** para multiplicar\nUtilize */* para dividir\nUtilize *%* para porcentagem', { reply: true })
       let c = args.join(' ')
       c = c.replace(/x/g, '*')
       c = c.replace(/÷/g, '/')
       c = c.replace(/×/g, '*')
-      await msg.send(`${c} = ${math.evaluate(c)}`, { reply: true })
+      try { await msg.send(`${c} = ${math.evaluate(c)}`, { reply: true }) } catch (err) { return await msg.send(`Não foi possível realizar o seu cálculo:\n\n \`\`\`${err}\`\`\``) }
     } catch (err) {
-      const messageError = msg.send(`Você não especificou uma conta matematica.\n
-Utilize *+* para somar
-Utilize *-* para subtrair
-Utilize *** para multiplicar
-Utilize */* para dividir
-Utilize *%* para porcentagem`, { reply: true })
-      if (!args[0] || !Number) return messageError
+      await msg.zapFail(err)
     }
   }
 }
