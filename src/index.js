@@ -1,9 +1,14 @@
 const { create, Client } = require('@open-wa/wa-automate')
 const AtizapClient = require('./config/AtizapClient')
 const config = require('../config.json')
-require('./config/pm2')
+const pm2 = require('./config/pm2')
 
-create(config.bot.settings).then((atizap) => start(atizap))
+if (config.bot.pm2.enable === true) pm2.start(config.bot.pm2.restartTime)
+
+create(config.bot.settings).then((atizap) => start(atizap)).catch(err => {
+  console.error(err)
+  return pm2.restart()
+})
 
 const start = async (atizap = new Client()) => {
   const zap = new AtizapClient(atizap)
