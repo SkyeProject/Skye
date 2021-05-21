@@ -1,7 +1,7 @@
 const { zap, config } = require('../index')
+const { createGroupDoc, createUserDoc } = require('../config/modules/database/mongocreate')
+const { findBestMatch } = require('string-similarity')
 const catchcommand = require('../config/modules/catchcommand')
-const mongocreate = require('../config/modules/database/mongocreate')
-const stringSimilarity = require('string-similarity')
 
 zap.atizap.onMessage(async (msg) => {
   try {
@@ -10,8 +10,8 @@ zap.atizap.onMessage(async (msg) => {
 
     let doc = await zap.mongo.Groups.findById(msg.from) || await zap.mongo.Users.findById(msg.from)
 
-    if (!doc && msg.isGroupMsg) doc = mongocreate.createGroupDoc(msg.from)
-    if (!doc) doc = mongocreate.createUserDoc(msg.from)
+    if (!doc && msg.isGroupMsg) doc = createGroupDoc(msg.from)
+    if (!doc) doc = createUserDoc(msg.from)
 
     const prefix = doc.prefix || config.bot.prefix
 
@@ -36,7 +36,7 @@ zap.atizap.onMessage(async (msg) => {
           cmd.config.aliases.forEach(alias => allCmdsNames.push(alias))
         }
       })
-      const matches = stringSimilarity.findBestMatch(cmd, allCmdsNames)
+      const matches = findBestMatch(cmd, allCmdsNames)
       return await zap.atizap.reply(msg.from, `*Eu não encontrei este comando!*\n\nVocê quis dizer: \`\`\`${prefix}${matches.bestMatch.target}\`\`\` ?`, msg.id).catch(e => { })
     }
 
