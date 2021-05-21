@@ -29,6 +29,7 @@ um banco de dados JSON bem simples e fácil de usar.
 > ⚠ **A Skye não é compatível com o Termux!**
 
 ## Como usar
+Caso tenha dúvidas, eu fiz um breve [tutorial para instalar no Windows](https://www.youtube.com/watch?v=E2Xh7setG84)
 - Clone o repositório:
 ```
 $ git clone https://github.com/SkyeProject/Skye.git

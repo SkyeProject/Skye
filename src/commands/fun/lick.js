@@ -1,6 +1,6 @@
 /*
-*   Comando pedido por Gabe Yata, namoral que comando estranho vei.............. N acredito q o Demetrius fez isso
-*   E ele ainda esqueceu de lançar no repositório da Skye... tô fazendo isso pra ele
+*   Comando pedido por Gabe Yata, namoral que comando estranho vei.............. (acho q ela tem um gosto um pouco estranho)
+*   N acredito que o demetrius fez isso e ainda esqueceu de lançar no repositório da Skye... tô fazendo esse trabalho por ele
 */
 
 const Command = require('../../config/Command')
@@ -13,7 +13,7 @@ module.exports = class LickCommand extends Command {
       name: 'lick',
       aliases: ['lamber', 'lambida'],
       category: 'fun',
-      description: 'Dê uma lambida em seu amigo',
+      description: 'Dê uma lambida em seu amigo 🥴',
       example: 'lamber @Gabe Yata',
       groupOnly: false,
       groupAdmPermission: {
@@ -33,7 +33,7 @@ module.exports = class LickCommand extends Command {
       const user = await msg.getContact(msg.sender.id)
       const mentioned = await msg.getContact(args[0])
 
-      return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'lambe', `*${user.username}* Lambeu *${mentioned.username}*! 🤪`)
+      return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'lambe', `*${user.username}* deu aquela lambida em *${mentioned.username}*! 🤪`)
     } catch (err) {
       await msg.zapFail(err)
     }
