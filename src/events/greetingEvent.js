@@ -2,7 +2,7 @@ const { zap } = require('../index')
 const CronJob = require('cron').CronJob
 
 const greetings = async (option, phrase) => {
-  const archives = require(`../config/modules/greetings/${option}.json`)
+  const archives = require(`../config/modules/API/greetings/${option}.json`)
   const doc = await zap.mongo.Groups.find()
 
   doc.forEach(async group => {

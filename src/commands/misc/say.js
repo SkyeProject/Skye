@@ -5,7 +5,7 @@ module.exports = class SayCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'say',
-      aliases: ['skye', 'diga', 'tts', 'falar', 'skyefalacomigopfv'],
+      aliases: ['falar', 'diga', 'tts', 'skye', 'skyefalacomigopfv'],
       category: 'misc',
       description: 'Diga alguma coisa pra mim falar :)',
       example: 'waifu',

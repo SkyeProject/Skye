@@ -15,8 +15,10 @@ zap.atizap.onMessage(async (msg) => {
 
     const prefix = doc.prefix || config.bot.prefix
 
+    msg.botContact = await zap.atizap.getMe()
+
     if (!msg.content.toLowerCase().startsWith(prefix) || msg.content.length === prefix.length) {
-      if (!msg.isGroupMsg) return await zap.atizap.sendText(msg.from, `Olaa :) Use ${prefix}ajuda para saber os meus comandos!`).catch(e => { })
+      if (!msg.isGroupMsg || msg.content === '@' + msg.botContact.me.user) return await zap.atizap.sendText(msg.from, `Olaa, use *${prefix}ajuda* para saber os meus comandos :)`).catch(e => { })
       return
     }
 
@@ -42,8 +44,6 @@ zap.atizap.onMessage(async (msg) => {
     if (msg.isGroupMsg) {
       docUser = await zap.mongo.Users.findById(msg.sender.id)
     }
-
-    msg.botContact = await zap.atizap.getMe()
 
     msg.send = async (message, ...args) => {
       let from = msg.from

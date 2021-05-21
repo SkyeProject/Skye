@@ -19,7 +19,7 @@ module.exports = class FortuneCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
-      const answer = require('../../config/games/fortune.json')
+      const answer = require('../../config/modules/API/games/fortune.json')
       if (!args[0]) return await msg.send('Eita, você não fez nenhuma pergunta meu caro amigo!', { reply: true })
       const quest = args.join(' ')
       const randomAnswer = answer[this.getRandomInt(0, Object.keys(answer).length)]

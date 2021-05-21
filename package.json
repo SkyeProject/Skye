@@ -1,6 +1,6 @@
 {
   "name": "skye",
-  "version": "v1.7.0",
+  "version": "v1.9.0",
   "description": "Um incrível bot pro WhatsApp.",
   "main": "./src/index.js",
   "scripts": {

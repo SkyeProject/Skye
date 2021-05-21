@@ -3,7 +3,10 @@
 Um simples bot desenvolvido para deixar o seu grupo do WhatsApp mais animado!
 
 Quer me adicionar? Tome aqui o meu número!
-> [+55 11 95353-2681](https://wa.me/5511953532681)
+- [+55 11 95353-2681](https://wa.me/5511953532681)
+
+Entre no nosso grupo do WhatsApp para sermos amigos!
+- [Clique aqui](https://chat.whatsapp.com/Hhng0Nc2rM3HAtwGsLJOfo)
 
 <p align="center">
 <img src="https://cdn.discordapp.com/attachments/685501923314368513/837858198610247730/jibril.png" width="70%">
