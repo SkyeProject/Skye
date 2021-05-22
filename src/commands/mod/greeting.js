@@ -4,7 +4,7 @@ module.exports = class GreetingCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'greeting',
-      aliases: ['saudação', 'saudacao', 'saudaçao', 'sdo'],
+      aliases: ['saudação', 'saudacao', 'saudaçao', 'saudações', 'sdo'],
       description: 'Que tão eu mandar um bom dia, ou um boa noite no seu grupo eim eim?',
       example: 'saudação dia ativar',
       category: 'mod',
