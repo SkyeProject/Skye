@@ -23,8 +23,10 @@ module.exports = class TotCommand extends Command {
       this.removeItem(args, '+')
       this.removeItem(args, 'e')
       this.removeItem(args, 'ou')
-      const that = this.getRandomValueInArray(args, 1)
-      await msg.send(`Entre *${args[0]}* e *${args[1]}*, eu escolho ${that}!`, { reply: true })
+      let text = `*${args[0]}* e *${args[1]}*`
+      if (args[2]) text = '*' + args.join(', ') + '*'
+      const randomValue = this.getRandomValueInArray(args, 1)
+      await msg.send(`Entre ${text} eu escolho *${randomValue}*!`, { reply: true })
     } catch (err) {
       await msg.zapFail(err)
     }

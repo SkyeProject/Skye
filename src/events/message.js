@@ -65,7 +65,7 @@ zap.atizap.onMessage(async (msg) => {
       zap.atizap.sendImage(from, image, 'file', message).catch(e => msg.zapFail(e))
     }
 
-    msg.sendSticker = (Base64, boolean) => {
+    msg.sendSticker = (Base64, boolean = false) => {
       const errortext = 'Não foi possível transformar o arquivo em um sticker. Se por acaso você estiver enviando um vídeo, na hora de enviar selecione a opção "gif".\nhttps://is.gd/aJNpv7'
       switch (boolean) {
         case false:
