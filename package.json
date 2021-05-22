@@ -27,6 +27,7 @@
     "aki-api": "^5.2.1",
     "canvacord": "^5.2.0",
     "canvas": "^2.8.0",
+    "canvas-text-wrapper": "^0.10.2",
     "cron": "^1.8.2",
     "deepai": "^1.0.17",
     "g-i-s": "^2.1.6",
