@@ -19,7 +19,7 @@ module.exports = class GroupCommand extends Command {
 
   async execute ({ msg }) {
     try {
-      await msg.send('*Você sabia que eu criei um grupo? Você pode entrar agorinha clicando no link!* ❤️ \n_https://chat.whatsapp.com/Hhng0Nc2rM3HAtwGsLJOfo_', { link: true })
+      await msg.send('*Você sabia que eu criei um grupo? Você pode entrar agorinha clicando no link!* ❤️ \n_https://chat.whatsapp.com/L70jEfsiymuKNg9JBiVvES_', { link: true })
     } catch (err) {
       await msg.zapFail(err)
     }
