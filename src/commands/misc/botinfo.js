@@ -35,7 +35,7 @@ module.exports = class CommandSay extends Command {
       })
       await msg.send(`*Informações sobre mim!*
 
-😎 | Criadores: MrRexD#0620 & demetrius#0620 (digite !contato para ver o número deles)
+😎 | Criadores: MrRexD#0620 & demetrius#0439 (digite !contato para ver o número deles)
 👾 | Versão: *${version}*
 🐏 | RAM utilizada: *${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB*
 🌎 | Grupos: *${allGroups.length}*
