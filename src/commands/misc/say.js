@@ -24,7 +24,7 @@ module.exports = class SayCommand extends Command {
       if (args.join(' ').length > 200) return await msg.send('Olá, você mandou um texto muito grande! Eu só consigo falar até 200 caracteres!', { reply: true })
 
       const message = await googleTTS.getAudioBase64(args.join(' '), { lang: 'pt' })
-      await this.zap.atizap.sendAudio(msg.from, `data:audio/mp3;base64,${message}`)
+      await this.zap.atizap.sendPtt(msg.from, `data:audio/mp3;base64,${message}`, msg.id)
     } catch (err) {
       await msg.zapFail(err)
     }

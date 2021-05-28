@@ -1,6 +1,7 @@
 const Command = require('../../config/Command')
-const superagent = require('superagent')
+const youtubedl = require('youtube-dl-exec')
 const googleIt = require('google-it')
+const { unlinkSync } = require('fs')
 
 module.exports = class PlayCommand extends Command {
   constructor (zap) {
@@ -23,7 +24,6 @@ module.exports = class PlayCommand extends Command {
     try {
       if (!args[0]) {
         return await msg.send(`Oiii, digite o nome de alguma música para mim pesquisar no Youtube e baixar para você!
-
 Exemplo:
 *${prefix}play abertura jojo*`, true)
       }
@@ -31,9 +31,18 @@ Exemplo:
 
       googleIt({ query: `${args.join(' ')} site:youtube.com/watch`, 'no-display': 1 }).then(async results => {
         if (!results[0]) return msg.send('Não encontrei a música!!')
-        const data = await superagent.post('https://st4rz.herokuapp.com/api/yta2?url=' + results[0].link)
-        if (data.body.status !== 200) return await msg.send('*A música que você mandou é muito grande, ou muito pesado, ou não está disponível!*', { reply: true })
-        await this.zap.atizap.sendAudio(msg.from, data.body.result)
+        await youtubedl(results[0].link, {
+          noWarnings: true,
+          noCallHome: true,
+          noCheckCertificate: true,
+          preferFreeFormats: true,
+          youtubeSkipDashManifest: true,
+          x: true,
+          audioFormat: 'mp3',
+          o: `./.temp/music_${msg.id}.mp3`
+        })
+        await this.zap.atizap.sendPtt(msg.from, `./.temp/music_${msg.id}.mp3`, msg.id)
+        unlinkSync(`./.temp/music_${msg.id}.mp3`)
       })
     } catch (err) {
       await msg.zapFail(err)
