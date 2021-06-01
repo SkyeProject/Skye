@@ -29,7 +29,7 @@ module.exports = class RemoveCommand extends Command {
       if (!member) return msg.send('Esta pessoa não está no grupo ou eu não consegui encontrá-la!', { reply: true })
       if (member.isSuperAdmin) return msg.send('Tá maluco? Acha que eu tenho poder de banir logo o dono do grupo? Quem dera se eu tivesse... 😈', { reply: true })
 
-      await this.zap.atizap.sendFileFromUrl(msg.from, 'https://is.gd/bqw2b6', 'bangif', `${me.username} mandou ${contact.username} pra vala!`)
+      await this.zap.atizap.sendFileFromUrl(msg.from, 'https://is.gd/bqw2b6', 'bangif', `*${me.username}* mandou *${contact.username}* pra vala!`)
       return await msg.kick(contact.number)
     } catch (err) {
       msg.zapFail(err)

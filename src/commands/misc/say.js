@@ -8,7 +8,7 @@ module.exports = class SayCommand extends Command {
       aliases: ['falar', 'diga', 'tts', 'skye', 'skyefalacomigopfv'],
       category: 'misc',
       description: 'Diga alguma coisa pra mim falar :)',
-      example: 'waifu',
+      example: 'say opa fala galerinha',
       groupOnly: false,
       groupAdmPermission: {
         bot: false,
