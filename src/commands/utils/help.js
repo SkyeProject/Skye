@@ -55,7 +55,8 @@ Outras formas de chamar o comando:
       })
       if (helpText === `Menu de ajuda da *${msg.botContact.pushname}*!!\n\n`) helpText += `Não obtive nenhum resultado com o parâmetro *${args[0]}*.\n`
       helpText += `\nUse *${prefix}ajuda <nome do comando>* para mais detalhes sobre ele.\n`
-      helpText += `\nPara visualizar todos os comandos, use *${prefix}ajuda geral*`
+      helpText += `\nPara visualizar todos os comandos, use *${prefix}ajuda geral*\n`
+      helpText += `\nNos apoie adquirindo a versão premium! *${prefix}premium* 💘`
       await msg.send(helpText, { reply: true })
     } catch (err) {
       await msg.zapFail(err)

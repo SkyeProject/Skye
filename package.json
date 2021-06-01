@@ -1,6 +1,6 @@
 {
   "name": "skye",
-  "version": "v1.9.5",
+  "version": "v2.0.0",
   "description": "Um incrível bot pro WhatsApp.",
   "main": "./src/index.js",
   "scripts": {
@@ -42,8 +42,7 @@
     "sleep-promise": "^9.1.0",
     "spinnies": "^0.5.1",
     "string-similarity": "^4.0.4",
-    "superagent": "^6.1.0",
-    "youtube-dl-exec": "^1.2.3"
+    "superagent": "^6.1.0"
   },
   "devDependencies": {
     "eslint": "^7.27.0",

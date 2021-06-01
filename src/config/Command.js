@@ -70,4 +70,22 @@ module.exports = class Commands {
     max = Math.floor(max)
     return Math.floor(Math.random() * (max - min)) + min
   }
+
+  getAllMentionedMembers (args, ...param) {
+    const options = param[0]
+    if (options && options.str && !options.number) return []
+    const memberArray = []
+    for (let i = 0; i < args.length; i++) {
+      if (options && options.str && options.str.includes(args[i].toLowerCase())) {
+        memberArray.push(options.number)
+        continue
+      }
+
+      const number = args[i].replace(/.*@/, '').match(/\d+/)
+      if (!number) continue
+      if (Number(number[0])) memberArray.push(number[0] + '@c.us')
+      if (options && i >= (options.limit - 1)) break
+    }
+    return memberArray
+  }
 }

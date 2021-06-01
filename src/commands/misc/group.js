@@ -4,7 +4,7 @@ module.exports = class GroupCommand extends Command {
   constructor (zap) {
     super(zap, {
       name: 'group',
-      aliases: ['grupo', 'skyegrupo', 'gruposkye', 'grp', 'convite'],
+      aliases: ['grupo', 'skyegrupo', 'gruposkye', 'grp', 'convite', 'link'],
       description: 'Entre no grupo oficial da skye!',
       example: 'grupo',
       category: 'misc',

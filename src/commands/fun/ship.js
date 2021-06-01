@@ -20,10 +20,10 @@ module.exports = class ShipCommand extends Command {
 
   async execute ({ msg, args }) {
     try {
-      if (args.includes('+')) args.splice(1, 1)
+      const ships = this.getAllMentionedMembers(args, { str: ['eu'], number: msg.sender.id, limit: 2 })
       if (!args[1]) return msg.send('Coloque o nome ou mencione duas pessoas para shipparem!')
-      const shipOne = await msg.getContact(args[0].replace('@', '') + '@c.us')
-      const shipTwo = await msg.getContact(args[1].replace('@', '') + '@c.us')
+      const shipOne = await msg.getContact(ships[0] ? ships[0] : args[0])
+      const shipTwo = await msg.getContact(ships[1] ? ships[1] : args[1])
 
       const texts = {
         loveLevel: {

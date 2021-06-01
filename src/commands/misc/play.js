@@ -1,7 +1,6 @@
 const Command = require('../../config/Command')
-const youtubedl = require('youtube-dl-exec')
+const superagent = require('superagent')
 const googleIt = require('google-it')
-const { unlinkSync } = require('fs')
 
 module.exports = class PlayCommand extends Command {
   constructor (zap) {
@@ -30,24 +29,10 @@ Exemplo:
       await msg.send('Sua música já está vindo!! :)', { reply: true })
 
       googleIt({ query: `${args.join(' ')} site:youtube.com/watch`, 'no-display': 1 }).then(async results => {
-        if (!results[0]) return msg.send('Não encontrei a música!!')
-        try {
-          await youtubedl(results[0].link, {
-            noWarnings: true,
-            noCallHome: true,
-            noCheckCertificate: true,
-            preferFreeFormats: true,
-            youtubeSkipDashManifest: true,
-            matchFilter: 'filesize < 150M',
-            x: true,
-            audioFormat: 'mp3',
-            o: `./.temp/music_${msg.id}.mp3`
-          })
-          await this.zap.atizap.sendPtt(msg.from, `./.temp/music_${msg.id}.mp3`, msg.id)
-          unlinkSync(`./.temp/music_${msg.id}.mp3`)
-        } catch (err) {
-          await msg.send('Ocorreu um erro. Provavelmente você mandou eu procurar um vídeo muito longo ou ocorreu um erro interno.')
-        }
+        if (!results[0]) return msg.send('Não encontrei a música!!', { reply: true })
+        const data = await superagent.post('https://st4rz.herokuapp.com/api/yta2?url=' + results[0].link)
+        if (data.body.status !== 200) return await msg.send('*A música que você mandou é muito grande, ou muito pesado, ou não está disponível!*', { reply: true })
+        await this.zap.atizap.sendPtt(msg.from, data.body.result, msg.id)
       })
     } catch (err) {
       await msg.zapFail(err)

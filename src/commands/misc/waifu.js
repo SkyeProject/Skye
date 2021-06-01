@@ -21,13 +21,12 @@ module.exports = class WaifuCommand extends Command {
 
   async execute ({ msg }) {
     try {
-      return await msg.sendImage((await superagent.get('https://nekos.life/api/v2/img/waifu')).body.url, 'O comando está desativado temporáriamente, para não te deixar na mão, escolhi uma waifu aleatória para você!')
-      // const data = (await superagent.get('https://st4rz.herokuapp.com/api/waifu')).body
-      // const text = `❤---*${data.name}*---❤
+      const data = (await superagent.get('https://st4rz.herokuapp.com/api/waifu')).body
+      const text = `❤---*${data.name}*---❤
 
-      // ${(await translate(data.desc || 'Sem descrição.', { to: 'pt' })).text}`
+${(await translate(data.desc || 'Sem descrição.', { to: 'pt' })).text}`
 
-      // await msg.sendImage(data.image, text)
+      await msg.sendImage(data.image, text)
     } catch (err) {
       await msg.zapFail(err)
     }
