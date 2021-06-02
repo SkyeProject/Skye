@@ -25,17 +25,23 @@ module.exports = class ImageCommand extends Command {
         if (msg.quotedMsg && msg.quotedMsg.type === 'sticker') {
           const base64 = (await decryptMedia(msg.quotedMsg)).toString('base64')
           return await msg.sendImage(`data:${msg.quotedMsg.mimetype};base64,${base64}`)
-        }
-        return await msg.send('Você não citou uma imagem!')
+        } else return await msg.send('Você não citou algo! (Se mencionou uma imagem, eu não irei mandar novamente porque né)')
+      }
+      const userID = (this.getAllMentionedMembers(args, { limit: 1, str: ['eu', 'me'], number: msg.sender.id }))[0]
+      if (userID) {
+        const user = await msg.getContact(userID)
+        return await msg.sendImage(user.avatar, '🌟 | Foto de ' + '*' + user.username + '*')
       }
       gis(args.join(' '), async (err, results) => {
         if (err || !results[0]) return await msg.send('Não encontrei nenhum resultado.', { reply: true })
-        for (const result of results) {
-          const res = await this.zap.deepai.callStandardApi('nsfw-detector', { image: result.url }).catch(e => {})
+        let nsfwCount = 0
+        while (true) {
+          if (nsfwCount >= 10) return await msg.send('Tentei procurar por *10* imagens diferentes, mas todas elas tiveram conteúdo *nsfw*.', { reply: true })
+          const link = (this.getRandomValueInArray(results, 1))[0]
+          const res = await this.zap.deepai.callStandardApi('nsfw-detector', { image: link.url }).catch(e => { })
           if (res) {
-            if (res.output.nsfw_score >= 0.40) return await msg.send('Foi detectado conteúdo *nsfw* na imagem, portanto eu não irei mostrá-la!', { reply: true })
-            await msg.sendImage(result.url, '*' + args.join(' ') + '*')
-            break
+            if (res.output.nsfw_score >= 0.40) { nsfwCount++; continue }
+            return await msg.sendImage(link.url, '*' + args.join(' ') + '*')
           }
         }
       })

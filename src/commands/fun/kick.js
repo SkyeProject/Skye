@@ -35,7 +35,7 @@ module.exports = class KickCommand extends Command {
 
       const numberDrawn = this.getRandomInt(0, 10)
       if (numberDrawn === 5) return await this.zap.atizap.sendVideoAsGif(msg.from, defense, 'block', `*${mentioned.username}* segurou o chute de *${user.username}*! 😮`)
-      else return await this.zap.atizap.sendFileFromUrl(msg.from, kick, 'chutao', `*${user.username}* deu um chutão em *${mentioned.username}*`)
+      else return await this.zap.atizap.sendVideoAsGif(msg.from, kick, 'chutao', `*${user.username}* deu um chutão em *${mentioned.username}*`)
     } catch (err) {
       await msg.zapFail(err)
     }
