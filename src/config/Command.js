@@ -81,10 +81,12 @@ module.exports = class Commands {
         continue
       }
 
-      const number = args[i].replace(/.*@/, '').match(/\d+/)
-      if (!number) continue
-      if (Number(number[0])) memberArray.push(number[0] + '@c.us')
-      if (options && i >= (options.limit - 1)) break
+      if (args[i].includes('@')) {
+        const number = args[i].replace(/.*@/, '').match(/\d+/)
+        if (!number) continue
+        if (Number(number[0])) memberArray.push(number[0] + '@c.us')
+        if (options && i >= (options.limit - 1)) break
+      }
     }
     return memberArray
   }
