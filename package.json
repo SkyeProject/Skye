@@ -50,6 +50,6 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
-    "pm2": "^4.5.6"
+    "pm2": "^5.1.0"
   }
 }
