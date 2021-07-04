@@ -3,7 +3,7 @@ const AtizapClient = require('./config/AtizapClient')
 const config = require('../config.json')
 const pm2 = require('./config/pm2')
 
-if (config.bot.pm2.enable === true) pm2.start(config.bot.pm2.restartTime)
+if (config.bot.pm2.enable) pm2.start(config.bot.pm2.restartTime)
 
 create(config.bot.settings).then((atizap) => start(atizap)).catch(err => {
   console.error(err)
@@ -13,6 +13,7 @@ create(config.bot.settings).then((atizap) => start(atizap)).catch(err => {
 const start = async (atizap = new Client()) => {
   const zap = new AtizapClient(atizap)
   zap.start({ events: './src/events/**/*.js', commands: './src/commands/**/*.js' })
+  
   module.exports = {
     zap,
     config
