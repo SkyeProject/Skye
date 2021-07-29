@@ -37,7 +37,7 @@
     "kitsu": "^10.0.0-alpha.10",
     "mathjs": "^9.4.1",
     "moment-timezone": "^0.5.33",
-    "mongoose": "^5.12.12",
+    "mongoose": "^5.13.4",
     "node-fetch": "^2.6.1",
     "sleep-promise": "^9.1.0",
     "spinnies": "^0.5.1",
