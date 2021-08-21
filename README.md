@@ -14,7 +14,7 @@ Entre no nosso grupo do WhatsApp para sermos amigos!
 
 ### Dependências
 
-- [NodeJS](https://nodejs.org/en/) - Utilizar a versão Current v16!
+- [NodeJS](https://nodejs.org/en/) - Uilizar a versão Current v16!
 - [FFmpeg](https://ffmpeg.org)
 - [Libwebp](https://developers.google.com/speed/webp/download)
 - [MongoDB](https://www.mongodb.com)
