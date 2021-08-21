@@ -24,7 +24,7 @@
     "@open-wa/wa-automate": "^4.1.0",
     "@open-wa/wa-decrypt": "^4.0.1",
     "@vitalets/google-translate-api": "^7.0.0",
-    "aki-api": "^5.2.1",
+    "aki-api": "^6.0.7",
     "canvacord": "^5.2.1",
     "canvas": "^2.8.0",
     "canvas-text-wrapper": "^0.10.2",
