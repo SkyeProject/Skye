@@ -22,7 +22,7 @@
   "dependencies": {
     "@babel/runtime": "^7.15.3",
     "@open-wa/wa-automate": "^4.17.1",
-    "@open-wa/wa-decrypt": "^4.2.0",
+    "@open-wa/wa-decrypt": "^4.2.1",
     "@vitalets/google-translate-api": "^7.0.0",
     "aki-api": "^6.0.7",
     "canvacord": "^5.2.3",
