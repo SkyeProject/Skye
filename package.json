@@ -29,7 +29,7 @@
     "canvas": "^2.8.0",
     "canvas-text-wrapper": "^0.10.2",
     "cron": "^1.8.2",
-    "deepai": "^1.0.17",
+    "deepai": "^1.0.21",
     "g-i-s": "^2.1.6",
     "glob": "^7.1.7",
     "google-it": "^1.6.2",
@@ -37,7 +37,7 @@
     "kitsu": "^10.0.0-alpha.14",
     "mathjs": "^9.4.4",
     "moment-timezone": "^0.5.33",
-    "mongoose": "^5.13.7",
+    "mongoose": "^6.2.7",
     "node-fetch": "^2.6.1",
     "sleep-promise": "^9.1.0",
     "spinnies": "^0.5.1",
@@ -49,7 +49,7 @@
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.24.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-promise": "^6.0.0",
     "pm2": "^5.1.1"
   }
 }
