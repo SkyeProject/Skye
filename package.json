@@ -21,7 +21,7 @@
   "homepage": "https://github.com/SkyeProject/Skye/#readme",
   "dependencies": {
     "@babel/runtime": "^7.15.3",
-    "@open-wa/wa-automate": "^4.17.1",
+    "@open-wa/wa-automate": "^4.32.9",
     "@open-wa/wa-decrypt": "^4.2.0",
     "@vitalets/google-translate-api": "^7.0.0",
     "aki-api": "^6.0.7",
@@ -49,7 +49,7 @@
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.24.1",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
+    "eslint-plugin-promise": "^6.0.0",
     "pm2": "^5.1.1"
   }
 }
