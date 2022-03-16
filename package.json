@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/SkyeProject/Skye/#readme",
   "dependencies": {
-    "@babel/runtime": "^7.15.3",
+    "@babel/runtime": "^7.17.7",
     "@open-wa/wa-automate": "^4.32.9",
     "@open-wa/wa-decrypt": "^4.2.0",
     "@vitalets/google-translate-api": "^7.0.0",
@@ -34,8 +34,7 @@
     "glob": "^7.1.7",
     "google-it": "^1.6.2",
     "google-tts-api": "^2.0.2",
-    "kitsu": "^10.0.0-alpha.22",
-    "mathjs": "^9.4.4",
+
     "moment-timezone": "^0.5.33",
     "mongoose": "^6.2.7",
     "node-fetch": "^2.6.1",
