@@ -28,7 +28,7 @@
     "canvacord": "^5.2.3",
     "canvas": "^2.9.0",
     "canvas-text-wrapper": "^0.10.2",
-    "cron": "^1.8.2",
+    "cron": "^1.8.3",
     "deepai": "^1.0.21",
     "g-i-s": "^2.1.6",
     "glob": "^7.1.7",
