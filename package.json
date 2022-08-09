@@ -32,7 +32,7 @@
     "deepai": "^1.0.21",
     "g-i-s": "^2.1.6",
     "glob": "^8.0.3",
-    "google-it": "^1.6.2",
+    "google-it": "^1.6.3",
     "google-tts-api": "^2.0.2",
 
     "moment-timezone": "^0.5.34",
