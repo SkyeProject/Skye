@@ -26,7 +26,7 @@
     "@vitalets/google-translate-api": "^8.0.0",
     "aki-api": "^6.0.8",
     "canvacord": "^5.4.3",
-    "canvas": "^2.9.0",
+    "canvas": "^2.9.3",
     "canvas-text-wrapper": "^0.10.2",
     "cron": "^1.8.2",
     "deepai": "^1.0.21",
