@@ -89,7 +89,7 @@ zap.atizap.onMessage(async (msg) => {
       if (number.startsWith('@')) number = number.replace('@', '')
       if (!number.includes('@c.us')) number = number + '@c.us'
       const contact = await zap.atizap.getContact(number)
-      const noPic = 'https://is.gd/YfUEbP'
+      const noPic = 'https://cdn.discordapp.com/attachments/685501923314368513/831934776948555826/nopic.png'
       if (!contact) {
         const alternative = {
           username: number.replace('@c.us', ''),
@@ -100,6 +100,18 @@ zap.atizap.onMessage(async (msg) => {
         return alternative
       }
       const contactPic = await zap.atizap.getProfilePicFromServer(number) || noPic
+      if (await zap.atizap.getProfilePicFromServer(number) === 'ERROR: 404' || await zap.atizap.getProfilePicFromServer(number) === 'ERROR: 401') {
+        const userNoPic = {
+          username: contact.verifiedName || contact.pushname || contact.formattedName,
+          number: contact.id,
+          avatar: noPic,
+          isMe: contact.isMe,
+          isMyContact: contact.isMyContact,
+          found: true
+        }
+        if (userNoPic.isMe) userNoPic.username = msg.botContact.pushname
+        return userNoPic
+      }
       const user = {
         username: contact.verifiedName || contact.pushname || contact.formattedName,
         number: contact.id,
