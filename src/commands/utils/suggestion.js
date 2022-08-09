@@ -13,7 +13,8 @@ module.exports = class SuggestionCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: false
     })
   }
 

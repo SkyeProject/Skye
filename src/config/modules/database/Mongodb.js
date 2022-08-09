@@ -4,8 +4,7 @@ module.exports = class AtizapDB {
   constructor (uri) {
     mongoose.connect(uri, {
       useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: true
+      useUnifiedTopology: true
     }).catch(console.error)
 
     this.Groups = mongoose.model('Groups', new mongoose.Schema({

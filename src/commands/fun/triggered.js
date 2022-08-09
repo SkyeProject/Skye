@@ -1,11 +1,11 @@
 const Command = require('../../config/Command')
 const Canvacord = require('canvacord')
 
-module.exports = class TriggedCommand extends Command {
+module.exports = class TriggeredCommand extends Command {
   constructor (zap) {
     super(zap, {
-      name: 'trigged',
-      aliases: ['bolado', 'puto', 'raiva', 'grrrrr'],
+      name: 'triggered',
+      aliases: ['bolado', 'puto', 'raiva', 'grrrrr', 'trigged'],
       category: 'fun',
       description: 'Está puto? Deixe eu fazer umas alterações em sua foto então.',
       example: 'bolado @demetrius',
@@ -14,7 +14,8 @@ module.exports = class TriggedCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 

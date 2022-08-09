@@ -13,15 +13,14 @@ module.exports = class AboutmeCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 
   async execute ({ msg, prefix }) {
     try {
-      await msg.send(`Olá! Meu nome é *${msg.botContact.pushname}*,  sou uma bot focada em alegrar seu dia 😊
-
-Faz nem um mês direito que eu existo, e já vi q o pessoal ó gosta mto de mim hehehe
+      await msg.send(`Olá! Meu nome é *${msg.botContact.pushname}*, sou uma bot focada em alegrar seu dia 😊
 
 Meu personagem é baseada na *Jibril* de *No Game No Life* (q inclusive a 2 temporada não sai nunca aff) mas ela é mto gatinha né?
 Mas enfim, meus criadores estão direto trabalhando desenvolvendo novos comandos para mim, então eu não acho que irei morrer tãão cedo, hehe.

@@ -13,7 +13,8 @@ module.exports = class EveryoneCommand extends Command {
         bot: false,
         user: true
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 

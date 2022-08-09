@@ -19,11 +19,12 @@ module.exports = class TemplateCommand extends Command {
         bot: false, // caso o bot precisa de adm, marque como true
         user: false // ou se o usuário precisar de adm, marque como true tbm
       },
-      ownerOnly: false // somente para os dev do bot? Se sim marca true
+      ownerOnly: false, // somente para os dev do bot? Se sim marca true
+      isWorking: true // O comando parou de funcionar por atualizações da API ou da NPM? Marque como false para desabilitar o comando e estourar uma mensagem pro usuário.
     })
   }
 
-  async execute ({ msg, args, prefix }) {
+  async execute ({ msg, args, prefix }) { // o argumento msg é obrigatorio! consulte message.js (linha 48) para mais informações.
     try {
     // Seu código aqui...
       return await msg.send('Olá :)')

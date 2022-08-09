@@ -86,7 +86,10 @@ Skye.data.json
 # managed by open-wa. see: https://github.com/open-wa/wa-automate-nodejs/issues/1632
 **.data.json
 # end managed by open-wa. see: https://github.com/open-wa/wa-automate-nodejs/issues/1632
-
 # managed
 **.node-persist**
+# end managed
+
+# managed
+**_IGNORE_**
 # end managed

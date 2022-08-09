@@ -17,7 +17,8 @@ module.exports = class KickCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 
@@ -27,6 +28,7 @@ module.exports = class KickCommand extends Command {
 
       const user = await msg.getContact(msg.sender.id)
       const mentioned = await msg.getContact(args[0])
+      const skyeName = args[0].toLowerCase()
 
       const kicks = require('../../config/modules/API/kick/kicks.json')
       const defenses = require('../../config/modules/API/kick/defenses.json')
@@ -34,7 +36,7 @@ module.exports = class KickCommand extends Command {
       const defense = defenses[this.getRandomInt(0, Object.keys(defenses).length)]
 
       const numberDrawn = this.getRandomInt(0, 10)
-      if (numberDrawn === 5) return await this.zap.atizap.sendVideoAsGif(msg.from, defense, 'block', `*${mentioned.username}* segurou o chute de *${user.username}*! 😮`)
+      if (numberDrawn === 5 || mentioned.number === '5511953532681@c.us' || skyeName === 'skye') return await this.zap.atizap.sendVideoAsGif(msg.from, defense, 'block', `*${mentioned.username}* segurou o chute de *${user.username}*! 😮`)
       else return await this.zap.atizap.sendVideoAsGif(msg.from, kick, 'chutao', `*${user.username}* deu um chutão em *${mentioned.username}*`)
     } catch (err) {
       await msg.zapFail(err)

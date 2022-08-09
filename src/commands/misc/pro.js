@@ -13,7 +13,8 @@ module.exports = class PremiumCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: true,
+      isWorking: true
     })
   }
 

@@ -14,7 +14,8 @@ module.exports = class SayCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 

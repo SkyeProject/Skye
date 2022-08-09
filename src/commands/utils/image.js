@@ -15,7 +15,8 @@ module.exports = class ImageCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: false
     })
   }
 
@@ -34,14 +35,13 @@ module.exports = class ImageCommand extends Command {
       }
       gis(args.join(' '), async (err, results) => {
         if (err || !results[0]) return await msg.send('Não encontrei nenhum resultado.', { reply: true })
-        while (true) {
-          const link = (this.getRandomValueInArray(results, 1))[0]
-          const res = await this.zap.deepai.callStandardApi('nsfw-detector', { image: link.url }).catch(e => { })
-          if (res) {
-            if (res.output.nsfw_score >= 0.40) return await msg.send('Detectei conteúdo *nsfw* na imagem, procure por outra coisa.', { reply: true })
-            return await msg.sendImage(link.url, '*' + args.join(' ') + '*')
-          }
-        }
+        const link = (this.getRandomValueInArray(results, 1))[0]
+        msg.sendImage(link.url, `*${args.join(' ')}*`)
+        // const res = await this.zap.deepai.callStandardApi('nsfw-detector', { image: link.url }).catch(e => { })
+        // if (res) {
+        //   if (res.output.nsfw_score >= 0.40) return await msg.send('Detectei conteúdo *nsfw* na imagem, procure por outra coisa.', { reply: true })
+        //   return await msg.sendImage(link.url, '*' + args.join(' ') + '*')
+        // }
       })
     } catch (err) {
       await msg.zapFail(err)

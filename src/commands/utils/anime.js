@@ -16,7 +16,8 @@ module.exports = class AnimeCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 

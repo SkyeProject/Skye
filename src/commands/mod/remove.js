@@ -13,7 +13,8 @@ module.exports = class RemoveCommand extends Command {
         bot: true,
         user: true
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 

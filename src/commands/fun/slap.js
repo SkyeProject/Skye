@@ -15,7 +15,8 @@ module.exports = class SlapCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 
@@ -26,7 +27,8 @@ module.exports = class SlapCommand extends Command {
       const user = await msg.getContact(msg.sender.id)
       if (!args[0]) return await msg.send('Você não mencionou ninguém... Por acaso quer se bater?', { reply: true })
       const mentioned = await msg.getContact(args[0])
-      return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'socão', `*${user.username}* deu um tapa em *${mentioned.username}*! 😣`)
+      const skyeName = args[0].toLowerCase()
+      mentioned.number === '5511953532681@c.us' || skyeName === 'skye' ? await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'socao da skye', `${user.username} tentou me bater, mas fui mais rapida e bati nelx antes! 😈`) : await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'socão', `*${user.username}* deu um tapa em *${mentioned.username}*! 😣`)
     } catch (err) {
       await msg.zapFail(err)
     }

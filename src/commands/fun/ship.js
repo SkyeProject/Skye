@@ -14,7 +14,8 @@ module.exports = class ShipCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 
@@ -24,7 +25,9 @@ module.exports = class ShipCommand extends Command {
       if (!args[1]) return msg.send('Coloque o nome ou mencione duas pessoas para shipparem!')
       const shipOne = await msg.getContact(ships[0] ? ships[0] : args[0])
       const shipTwo = await msg.getContact(ships[1] ? ships[1] : args[1])
-
+      // if (shipTwo.username.includes(possibleArgs) || shipTwo.username === possibleArgs === 'and') shipTwo = msg.send('ddd')
+      // if (!shipTwo) return msg.send('Coloque o nome ou mencione duas pessoas para shipparem!')
+      // console.log(shipTwo.username)
       const texts = {
         loveLevel: {
           0: 'Lamento, mas vai ser só fracasso se tentarem.',
@@ -50,7 +53,7 @@ module.exports = class ShipCommand extends Command {
       const approxeq = (a, b) => {
         return a - b < 10 && a - b >= 0
       }
-      const coupleName = randomName(shipOne.username, shipTwo.username) + ' ❤'
+      const coupleName = randomName(shipOne.username, shipTwo.username) + '  ❤'
       const loveXP = Math.floor(Math.random() * 100)
       let loveText
       let loveEmote
@@ -65,7 +68,6 @@ module.exports = class ShipCommand extends Command {
           break
         }
       }
-
       /*
      Aqui começa a parte do Canvas, é a primeira vez que eu uso, vi 999999 tutoriais na internet pra consegui fazer isso. Se você acha que pode melhorar esse código,
      por favor envie uma PR pois irá nos ajudar bastante :))))

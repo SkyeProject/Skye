@@ -50,12 +50,12 @@ zap.atizap.onMessage(async (msg) => {
       args = args[0]
       if (args) {
         if (args.from) from = args.from
-        if (args.reply) return await zap.atizap.reply(from, message, msg.id).catch(e => msg.zapFail(e))
-        if (args.mention) return await zap.atizap.sendTextWithMentions(from, message).catch(e => msg.zapFail(e))
-        if (args.youtube) return await zap.atizap.sendYoutubeLink(from, message).catch(e => msg.zapFail(e))
-        if (args.link) return await zap.atizap.sendLinkWithAutoPreview(from, message).catch(e => msg.zapFail(e))
+        if (args.reply) return await zap.atizap.reply(from, message, msg.id).catch(e => msg.zapFail(e)) // msg.send('Sua Mensagem', { reply: true })
+        if (args.mention) return await zap.atizap.sendTextWithMentions(from, message).catch(e => msg.zapFail(e)) // msg.send('Mensagem mencionando alguem', { mention: true })
+        if (args.youtube) return await zap.atizap.sendYoutubeLink(from, message).catch(e => msg.zapFail(e)) // msg.send('Mensagem com um link do youtube', { youtube: true })
+        if (args.link) return await zap.atizap.sendLinkWithAutoPreview(from, message).catch(e => msg.zapFail(e)) // msg.send('Mensagem com preview de um link', { link: true })
       }
-      return await zap.atizap.sendText(from, message)
+      return await zap.atizap.sendText(from, message) // Caso não coloque um argumento, a mensagem será enviada normalmente.
     }
 
     if (docUser && docUser.status.isBanned) return msg.send(`❗ | Você está banido de me usar!\n\nMotivo: *${docUser.status.reason}*`)
@@ -144,10 +144,11 @@ zap.atizap.onMessage(async (msg) => {
     const file = zap.commands.get(cmd) || zap.commands.get(zap.aliases.get(cmd))
     if (file) {
       if (config.discord.enable) catchcommand(msg)
-      if (file.config.ownerOnly && !devsNumbers.includes(msg.getSenderNumber())) return
+      if (file.config.ownerOnly && !devsNumbers.includes(msg.getSenderNumber())) return msg.send('Você não tem permissão para usar esse comando.')
+      if (file.config.isWorking === false && !devsNumbers.includes(msg.getSenderNumber())) return msg.send('Este comando está desabilitado para reforma.')
       if (file.config.groupOnly && !msg.isGroupMsg) return await msg.send('Este comando só pode ser executado em grupos.')
-      if (file.config.groupAdmPermission.user && !msg.findUserInGroup(msg.sender.id).isAdmin) return await msg.send('Você não é ADM do grupo, que pena!')
-      if (file.config.groupAdmPermission.bot && !msg.findUserInGroup(msg.botContact.me._serialized).isAdmin) return await msg.send('Eu preciso ser ADM do grupo para executar esse comando, pois eu não sou mágica.')
+      if (file.config.groupAdmPermission.user && !msg.findUserInGroup(msg.sender.id).isAdmin) return await msg.send('Você não é um administrador do grupo, que pena!')
+      if (file.config.groupAdmPermission.bot && !msg.findUserInGroup(msg.botContact.me._serialized).isAdmin) return await msg.send('Eu preciso ser administradora do grupo para executar este comando!')
       file.amountTimes++
       file.execute({ msg, args, prefix, doc })
     }

@@ -14,7 +14,8 @@ module.exports = class AlertCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: true
+      ownerOnly: true,
+      isWorking: true
     })
   }
 

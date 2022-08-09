@@ -12,7 +12,8 @@ module.exports = class Commands {
         bot: options.groupAdmPermission.bot || false,
         user: options.groupAdmPermission.user || false
       },
-      ownerOnly: options.ownerOnly || false
+      ownerOnly: options.ownerOnly || false,
+      isWorking: options.isWorking || false
     }
     this.amountTimes = 0
   }

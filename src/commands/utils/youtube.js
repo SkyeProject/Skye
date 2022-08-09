@@ -14,7 +14,8 @@ module.exports = class YoutubeCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 

@@ -14,7 +14,8 @@ module.exports = class DevBanCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: true
+      ownerOnly: true,
+      isWorking: true
     })
   }
 

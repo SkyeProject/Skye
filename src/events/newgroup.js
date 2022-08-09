@@ -1,5 +1,4 @@
 const { zap, config } = require('../index')
-const DiscordEmbed = require('../config/modules/DiscordEmbedHook')
 
 zap.atizap.onAddedToGroup(async (group) => {
   await zap.atizap.sendText(group.id, `🤗 | Olaa, muito obrigado por me adicionar! Utilize *${config.bot.prefix}help* para saber os meus comandos!!!`)
@@ -13,18 +12,18 @@ zap.atizap.onAddedToGroup(async (group) => {
   allGroups.forEach(group => {
     allUsers.push(group.participantsCount - 1)
   })
-  if (config.discord.enable) {
-    new DiscordEmbed()
-      .setWebhook(config.discord.webhookUrlforGroups)
-      .setThumbnail(groupPic)
-      .setColor('#7727f4')
-      .setTitle(`❤ | ${group.name || group.formattedTitle}`)
-      .addFields(
-        { name: '👑 Dono do servidor:', value: `\`${owner.verifiedName || owner.pushname || owner.formattedName}\` `, inline: true },
-        { name: '💻 ID do Servidor:', value: `\`${group.id}\``, inline: false },
-        { name: '👀 Membros:', value: `**${group.participantsCount}** membros.` })
-      .setFooter(`Estou em ${allGroups.length} grupos com ${allUsers.reduce((a, b) => a + b)} usuários no total!`, picBot)
-      .setTimestamp()
-      .send()
-  }
+  // if (config.discord.enable) {
+  //   new DiscordEmbed()
+  //     .setWebhook(config.discord.webhookUrlforGroups)
+  //     .setThumbnail(groupPic)
+  //     .setColor('#7727f4')
+  //     .setTitle(`❤ | ${group.name || group.formattedTitle}`)
+  //     .addFields(
+  //       { name: '👑 Dono do servidor:', value: `\`${owner.verifiedName || owner.pushname || owner.formattedName}\` `, inline: true },
+  //       { name: '💻 ID do Servidor:', value: `\`${group.id}\``, inline: false },
+  //       { name: '👀 Membros:', value: `**${group.participantsCount}** membros.` })
+  //     .setFooter(`Estou em ${allGroups.length} grupos com ${allUsers.reduce((a, b) => a + b)} usuários no total!`, picBot)
+  //     .setTimestamp()
+  //     .send()
+  // }
 })

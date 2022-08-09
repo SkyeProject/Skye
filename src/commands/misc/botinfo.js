@@ -14,7 +14,8 @@ module.exports = class CommandSay extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 
@@ -40,7 +41,6 @@ module.exports = class CommandSay extends Command {
 🐏 | RAM utilizada: *${Math.round(process.memoryUsage().heapUsed / 1024 / 1024)}MB*
 🌎 | Grupos: *${allGroups.length}*
 🙌 | Usuários: *${allUsers.reduce((a, b) => a + b)}*
-🔋 | Bateria restante: *${await this.zap.atizap.getBatteryLevel()}%*
 💻 | Versão do Node.js: *${process.version}*
 👩🏼‍💻 | WA-VERSION: *${await this.zap.atizap.getWAVersion()}*
 🌟 | Comando mais utilizado desde o último restart: *${mostUsedCommands[0].name}*

@@ -15,7 +15,8 @@ module.exports = class PokeCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: false
     })
   }
 

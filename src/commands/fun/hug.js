@@ -15,7 +15,8 @@ module.exports = class HugCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 
@@ -26,7 +27,8 @@ module.exports = class HugCommand extends Command {
       const user = await msg.getContact(msg.sender.id)
       if (!args[0]) return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'abraço', `*${msg.botContact.pushname}* abraçou *${user.username}*! ❤️`)
       const mentioned = await msg.getContact(args[0])
-      return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'abraço', `*${user.username}* abraçou bem forte *${mentioned.username}*! ❤️`)
+      const skyeName = args[0].toLowerCase()
+      mentioned.number === '5511953532681@c.us' || skyeName === 'skye' ? await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'abraço', `*${user.username}* me deu um abraço! Obrigada ><`) : await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'abraço', `*${user.username}* abraçou bem forte *${mentioned.username}*! ❤️`)
     } catch (err) {
       await msg.zapFail(err)
     }

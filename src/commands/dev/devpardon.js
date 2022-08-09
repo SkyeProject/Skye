@@ -13,7 +13,8 @@ module.exports = class DevPardonCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: true
+      ownerOnly: true,
+      isWorking: true
     })
   }
 

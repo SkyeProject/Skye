@@ -15,7 +15,8 @@ module.exports = class PatCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: true
     })
   }
 
@@ -26,7 +27,8 @@ module.exports = class PatCommand extends Command {
       const user = await msg.getContact(msg.sender.id)
       if (!args[0]) return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'carinhu', `Quer carinho *${user.username}*? Eu dou! ❤️`)
       const mentioned = await msg.getContact(args[0])
-      return await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'carinhu', `*${user.username}* fez carinho em *${mentioned.username}*! ❤️`)
+      const skyeName = args[0].toLowerCase()
+      mentioned.number === '5511953532681@c.us' || skyeName === 'skye' ? await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'carinhu', `*${user.username}* me deu carinho! Que fofx! ❤️`) : await this.zap.atizap.sendVideoAsGif(msg.from, `data:video/mp4;base64,${video}`, 'carinhu', `*${user.username}* fez carinho em *${mentioned.username}*! ❤️`)
     } catch (err) {
       await msg.zapFail(err)
     }

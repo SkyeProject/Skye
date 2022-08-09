@@ -16,7 +16,8 @@ module.exports = class AkiCommand extends Command {
         bot: false,
         user: false
       },
-      ownerOnly: false
+      ownerOnly: false,
+      isWorking: false
     })
   }
 
@@ -32,7 +33,7 @@ Use *${prefix}akinator iniciar*`)
 
       this.zap.inGame.add(msg.sender.id)
 
-      const aki = new Aki('pt')
+      const aki = new Aki('br')
       await aki.start()
 
       const akisend = async (...args) => {
