@@ -42,7 +42,7 @@
     "sleep-promise": "^9.1.0",
     "spinnies": "^0.5.1",
     "string-similarity": "^4.0.4",
-    "superagent": "^8.0.3"
+    "superagent": "^8.0.5"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
